@@ -1,0 +1,44 @@
+/* Header */
+
+.topbarContainer {
+  display: flex;
+  background-color: #df444c;
+  height: 70px;
+  align-items: center;
+  > .topbarLeft {
+    display: flex;
+    flex: 1;
+  }
+  > .topbarCenter {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    color: white;
+    > .topbarCenter_logo {
+      font-size: 24px;
+      margin-left: 20px;
+      font-weight: bold;
+      object-fit: scale-down;
+    }
+  }
+  > .topbarRight {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    & img {
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    & a {
+      margin-right: 20px;
+      color: white;
+      text-decoration: unset;
+      &:hover {
+        color: rgb(88, 100, 112);
+        font-weight: bold;
+      }
+    }
+  }
+}
