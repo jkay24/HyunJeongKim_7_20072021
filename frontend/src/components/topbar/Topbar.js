@@ -8,13 +8,12 @@ export default function Topbar() {
       <div className="topbarLeft">
         <span className="topbarLeft__logo">
           <img
-            src={require("../../assets/logos/icon-left-font.png")}
+            src={require("../../assets/logos/logo-aligned.svg").default}
             alt="Groupomania logo"
           ></img>
         </span>
       </div>
       <div className="topbarRight">
-        {/*drop down menu with profile pic and option to modify or log out*/}
         <div className="topbarRight__profile">
           <img
             src={require("../../assets/profiles/1.png")}
@@ -24,7 +23,6 @@ export default function Topbar() {
           <div className="topbarRight__profile--name">User 1</div>
         </div>
         <div className="topbarRight__links">
-          {/*drop down menu with option to modify profile or log out*/}
           <a href="../pages/profile">
             <FontAwesomeIcon
               icon={faUserEdit}

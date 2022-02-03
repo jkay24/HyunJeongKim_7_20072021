@@ -6,8 +6,8 @@
 .share {
   height: 150px;
   border-radius: 10px;
-  -webkit-box-shadow: 0 0 10px 3px #df444c;
-          box-shadow: 0 0 10px 3px #df444c;
+  -webkit-box-shadow: 0 0 8px 3px #fd2d01;
+          box-shadow: 0 0 8px 3px #fd2d01;
   background-color: #fffaf0;
 }
 
@@ -73,13 +73,14 @@
 
 .share > .shareWrapper > .shareBottom > .shareBottom__upload > .shareBottom__upload__icon {
   margin-right: 10px;
+  color: #e79095;
 }
 
 .share > .shareWrapper > .shareBottom > .shareBottom__submit {
   border: none;
   padding: 7px;
   border-radius: 7px;
-  background-color: #df444c;
+  background-color: #fd2d01;
   cursor: pointer;
   font-weight: 600;
   font-size: 16px;

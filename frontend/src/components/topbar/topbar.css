@@ -13,7 +13,7 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  background-color: #df444c;
+  background-color: #e79095;
   height: 80px;
   padding: 0 5em 0 5em;
 }
@@ -22,15 +22,12 @@
   color: #fffaf0;
 }
 
-.topbarContainer > .topbarLeft > .topbarLeft__logo {
-  height: 80px;
-}
-
 .topbarContainer > .topbarLeft > .topbarLeft__logo > img {
-  -o-object-fit: scale-down;
-     object-fit: scale-down;
+  -o-object-fit: cover;
+     object-fit: cover;
   height: 80px;
-  width: auto;
+  width: 350px;
+  margin-left: -30px;
 }
 
 .topbarContainer > .topbarRight {
@@ -92,10 +89,12 @@
 .topbarContainer > .topbarRight > .topbarRight__links > a > .topbarRight__links__icons--logout {
   width: 1.25em;
   padding-right: 0.5em;
+  color: #e79095;
 }
 
 .topbarContainer > .topbarRight > .topbarRight__links > a > .topbarRight__links__icons--edit {
   padding-right: 0.5em;
+  color: #e79095;
 }
 
 .topbarContainer > .topbarRight > .topbarRight__links > a:hover {

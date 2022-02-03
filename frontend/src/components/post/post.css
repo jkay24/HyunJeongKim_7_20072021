@@ -7,8 +7,8 @@
   margin: 2em 0;
   width: 100%;
   border-radius: 10px;
-  -webkit-box-shadow: 0 0 10px 3px #df444c;
-          box-shadow: 0 0 10px 3px #df444c;
+  -webkit-box-shadow: 0 0 8px 3px #fd2d01;
+          box-shadow: 0 0 8px 3px #fd2d01;
   background-color: #fffaf0;
 }
 
@@ -71,7 +71,7 @@
 }
 
 .post > .postWrapper > .postBottom > .postBottom__like > .postBottom__like--icon {
-  color: #df444c;
+  color: #fd2d01;
   margin-right: 3px;
   cursor: pointer;
 }

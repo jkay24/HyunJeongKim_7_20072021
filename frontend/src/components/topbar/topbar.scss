@@ -4,17 +4,17 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: $primary-color;
+  background-color: $quaternary-color;
   height: 80px;
   padding: 0 5em 0 5em;
   > .topbarLeft {
     color: $tertiary-color;
     > .topbarLeft__logo {
-      height: 80px;
       > img {
-        object-fit: scale-down;
+        object-fit: cover;
         height: 80px;
-        width: auto;
+        width: 350px;
+        margin-left: -30px;
       }
     }
   }
@@ -55,9 +55,11 @@
           &--logout {
             width: 1.25em;
             padding-right: 0.5em;
+            color: $quaternary-color;
           }
           &--edit {
             padding-right: 0.5em;
+            color: $quaternary-color;
           }
         }
         &:hover {
