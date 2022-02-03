@@ -20,9 +20,13 @@ export default function Post() {
           <img className="postCenter__img" src="" alt=""></img>
         </div>
         <div className="postBottom">
-          <div className="postBottom__like"></div>
-          <FontAwesomeIcon icon={faThumbsUp} className="postBottom__icon" />
-          <span className="postBottom__likeCounter">3</span>
+          <div className="postBottom__like">
+            <FontAwesomeIcon
+              icon={faThumbsUp}
+              className="postBottom__like--icon"
+            />
+            <span className="postBottom__like--counter">3</span>
+          </div>
           <span className="postBottom__noComments">0 commentaires</span>
         </div>
       </div>

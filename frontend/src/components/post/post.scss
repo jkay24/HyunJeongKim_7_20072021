@@ -41,15 +41,16 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      > .postBottom__icon {
-        color: $primary-color;
-        margin-right: 3px;
-        cursor: pointer;
+      > .posBottom__like {
+        > .postBottom__like--icon {
+          color: $primary-color;
+          margin-right: 3px;
+          cursor: pointer;
+        }
+        > .postBottom__like--counter {
+          font-size: 14px;
+        }
       }
-      > .postBottom__likeCounter {
-        font-size: 14px;
-      }
-
       > .postBottom__noComments {
         display: flex;
         align-items: center;
