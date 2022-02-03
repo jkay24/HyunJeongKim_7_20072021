@@ -1,1 +1,94 @@
-/* No CSS *//*# sourceMappingURL=share.css.map */
+* {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+.share {
+  height: 150px;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 0 10px 3px #df444c;
+          box-shadow: 0 0 10px 3px #df444c;
+  background-color: #fffaf0;
+}
+
+.share > .shareWrapper {
+  padding: 10px;
+}
+
+.share > .shareWrapper > .shareTop {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.share > .shareWrapper > .shareTop > .shareTop__img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  margin-right: 15px;
+}
+
+.share > .shareWrapper > .shareTop > .shareTop__input {
+  border: none;
+  width: 80%;
+  font-size: 16px;
+}
+
+.share > .shareWrapper > .shareTop > .shareTop__input:focus {
+  outline: none;
+}
+
+.share > .shareWrapper > .shareHr {
+  margin: 5px;
+}
+
+.share > .shareWrapper > .shareBottom {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 0 20px 0 20px;
+}
+
+.share > .shareWrapper > .shareBottom > .shareBottom__upload {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-left: 16em;
+  cursor: pointer;
+}
+
+.share > .shareWrapper > .shareBottom > .shareBottom__upload > .shareBottom__upload__icon {
+  margin-right: 10px;
+}
+
+.share > .shareWrapper > .shareBottom > .shareBottom__submit {
+  border: none;
+  padding: 7px;
+  border-radius: 7px;
+  background-color: #df444c;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 16px;
+  width: 20%;
+  color: #fffaf0;
+}
+
+.share > .shareWrapper > .shareBottom > .shareBottom__submit:hover {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+/*# sourceMappingURL=share.css.map */

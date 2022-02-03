@@ -1,26 +1,44 @@
 import "../topbar/topbar.css";
+import { faSignOutAlt, faUserEdit } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Topbar() {
   return (
     <div className="topbarContainer">
-      <div className="topbarLeft"></div>
-      <div className="topbarCenter">
-        <span className="topbarCenter_logo">
+      <div className="topbarLeft">
+        <span className="topbarLeft__logo">
           <img
-            src="/images/logos/icon-left-front.png"
+            src={require("../../assets/logos/icon-left-font.png")}
             alt="Groupomania logo"
           ></img>
         </span>
       </div>
       <div className="topbarRight">
         {/*drop down menu with profile pic and option to modify or log out*/}
-        <img src="/images/" alt="photo de profil" className="topbarRight_img">
-          {/*person's icon/profile pic*/}
-        </img>
-        <div className="topbarRight_links">
+        <div className="topbarRight__profile">
+          <img
+            src={require("../../assets/profiles/1.png")}
+            alt="photo de profil"
+            className="topbarRight__profile--img"
+          ></img>
+          <div className="topbarRight__profile--name">User 1</div>
+        </div>
+        <div className="topbarRight__links">
           {/*drop down menu with option to modify profile or log out*/}
-          <a href="../pages/profile">Modifier</a>
-          <a href="../pages/login">Déconnexion</a>
+          <a href="../pages/profile">
+            <FontAwesomeIcon
+              icon={faUserEdit}
+              className="topbarRight__links__icons--edit"
+            />
+            Modifier
+          </a>
+          <a href="../pages/login">
+            <FontAwesomeIcon
+              icon={faSignOutAlt}
+              className="topbarRight__links__icons--logout"
+            />
+            Déconnexion
+          </a>
         </div>
       </div>
     </div>

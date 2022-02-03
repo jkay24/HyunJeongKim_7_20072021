@@ -1,8 +1,11 @@
+@import "../../styles/style.scss";
 .feed {
-  flex: 1;
+  display: flex;
   justify-content: center;
+  background-color: $secondary-color;
+  height: 90vh;
   > .feedWrapper {
-      padding: 20px;
+    padding: 40px;
+    width: 50%;
   }
 }
-

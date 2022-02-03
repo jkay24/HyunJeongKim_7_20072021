@@ -1,43 +1,71 @@
-/* Header */
+@import "../../styles/style.scss";
 
 .topbarContainer {
   display: flex;
-  background-color: #df444c;
-  height: 70px;
   align-items: center;
+  justify-content: space-between;
+  background-color: $primary-color;
+  height: 80px;
+  padding: 0 5em 0 5em;
   > .topbarLeft {
-    display: flex;
-    flex: 1;
-  }
-  > .topbarCenter {
-    display: flex;
-    flex: 1;
-    justify-content: center;
-    color: white;
-    > .topbarCenter_logo {
-      font-size: 24px;
-      margin-left: 20px;
-      font-weight: bold;
-      object-fit: scale-down;
+    color: $tertiary-color;
+    > .topbarLeft__logo {
+      height: 80px;
+      > img {
+        object-fit: scale-down;
+        height: 80px;
+        width: auto;
+      }
     }
   }
   > .topbarRight {
-    display: flex;
-    flex: 1;
-    align-items: center;
-    justify-content: space-between;
-    color: white;
-    & img {
-      border-radius: 50%;
-      object-fit: cover;
+    display: inline-block;
+    position: relative;
+    color: $tertiary-color;
+    &:hover .topbarRight__links {
+      display: block;
+      width: max-content;
     }
-    & a {
-      margin-right: 20px;
-      color: white;
-      text-decoration: unset;
-      &:hover {
-        color: rgb(88, 100, 112);
+    > .topbarRight__profile {
+      @include flexCenter;
+      cursor: pointer;
+      height: 80px;
+      > img {
+        border-radius: 50%;
+        object-fit: cover;
+        height: 60px;
+        align-items: center;
+      }
+      > .topbarRight__profile--name {
+        margin-left: 15px;
+        color: $tertiary-color;
         font-weight: bold;
+      }
+    }
+    > .topbarRight__links {
+      display: none;
+      position: absolute;
+      z-index: 1;
+      > a {
+        color: $tertiary-color;
+        text-decoration: none;
+        display: block;
+        padding: 0.5em;
+        > .topbarRight__links__icons {
+          &--logout {
+            width: 1.25em;
+            padding-right: 0.5em;
+          }
+          &--edit {
+            padding-right: 0.5em;
+          }
+        }
+        &:hover {
+          @include hover;
+          color: $tertiary-color;
+          background-color: darken($secondary-color, 20%);
+          border-radius: 7px;
+        }
       }
     }
   }

@@ -1,4 +1,17 @@
-@import "../components/topbar/topbar.scss";
+$primary-color: #df444c;
+$secondary-color: rgb(88, 100, 112);
+$tertiary-color: #fffaf0;
+
+@mixin hover {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+@mixin flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 * {
   margin: 0;

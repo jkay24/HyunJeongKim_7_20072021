@@ -1,0 +1,62 @@
+@import "../../styles/style.scss";
+
+.share {
+  height: 150px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 3px $primary-color;
+  background-color: $tertiary-color;
+  > .shareWrapper {
+    padding: 10px;
+    > .shareTop {
+      display: flex;
+      align-items: center;
+      > .shareTop__img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 15px;
+      }
+      > .shareTop__input {
+        border: none;
+        width: 80%;
+        font-size: 16px;
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+    > .shareHr {
+      margin: 5px;
+    }
+    > .shareBottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 0 20px 0 20px;
+      > .shareBottom__upload {
+        display: flex;
+        align-items: center;
+        margin-left: 16em;
+        cursor: pointer;
+        > .shareBottom__upload__icon {
+          margin-right: 10px;
+        }
+      }
+      > .shareBottom__submit {
+        border: none;
+        padding: 7px;
+        border-radius: 7px;
+        background-color: $primary-color;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 16px;
+        width: 20%;
+        color: $tertiary-color;
+        &:hover {
+          @include hover;
+        }
+      }
+    }
+  }
+}

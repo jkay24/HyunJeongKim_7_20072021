@@ -1,13 +1,21 @@
+* {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+}
+
 .feed {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  background-color: #586470;
+  height: 90vh;
 }
 
 .feed > .feedWrapper {
-  padding: 20px;
+  padding: 40px;
+  width: 50%;
 }
 /*# sourceMappingURL=feed.css.map */
