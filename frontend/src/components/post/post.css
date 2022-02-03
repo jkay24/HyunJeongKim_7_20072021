@@ -70,13 +70,13 @@
           justify-content: space-between;
 }
 
-.post > .postWrapper > .postBottom > .posBottom__like > .postBottom__like--icon {
+.post > .postWrapper > .postBottom > .postBottom__like > .postBottom__like--icon {
   color: #df444c;
   margin-right: 3px;
   cursor: pointer;
 }
 
-.post > .postWrapper > .postBottom > .posBottom__like > .postBottom__like--counter {
+.post > .postWrapper > .postBottom > .postBottom__like > .postBottom__like--counter {
   font-size: 14px;
 }
 
