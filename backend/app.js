@@ -1,36 +1,11 @@
 const express = require("express");
 const app = express();
 const dotenv = require("dotenv");
-const mysql = require("mysql");
 const path = require("path");
 const helmet = require("helmet");
+const db = require("./config/db");
 
-//Import routes
-const saucesRoutes = require("./routes/sauces");
-const userRoutes = require("./routes/user");
-
-dotenv.config();
-
-//Connect to database
-var con = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "Hellokitty1!",
-});
-
-con.connect(function (err) {
-  if (err) throw err;
-  console.log("Connected to MySQL database!");
-});
-
-//Middleware
-
-app.use(
-  helmet({
-    //Had to disable this so that images show up...
-    crossOriginResourcePolicy: false,
-  })
-);
+//Cors
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
@@ -44,11 +19,35 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(express.json());
+//Import routes
+/* const postRoutes = require("./routes/posts");
+const userRoutes = require("./routes/user"); */
 
-//Routes to middlewares
-app.use("/images", express.static(path.join(__dirname, "images")));
-app.use("/api/auth", userRoutes);
-app.use("/api/sauces", saucesRoutes);
+dotenv.config();
+
+app.get("/", (req, res) => {
+  db.query(
+    "INSERT INTO users (prenom, nom, email, pw) VALUES ('janet', 'kim', 'janet.hyunjkim@gmail.com', 'password');",
+    (err, res) => {
+      if (err) {
+        console.log(err);
+      }
+    }
+  );
+});
+
+//Middlewares
+app.use(
+  helmet({
+    //Had to disable this so that images show up...
+    crossOriginResourcePolicy: false,
+  })
+);
+app.use(express.json());
+/* app.use("/images", express.static(path.join(__dirname, "images"))); */
+
+//Routes
+/* app.use("/api/auth", userRoutes);
+app.use("/api/post", postRoutes); */
 
 module.exports = app;
