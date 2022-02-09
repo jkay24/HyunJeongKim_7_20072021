@@ -8,7 +8,7 @@ export default function Login() {
   const [emailReg, setEmailReg] = useState("");
   const [pwReg, setPwReg] = useState("");
   const signup = () => {
-    Axios.post("http://localhost:3000/signup", {
+    Axios.post("http://localhost:3000/api/user/signup", {
       firstname: firstnameReg,
       lastname: lastnameReg,
       email: emailReg,
