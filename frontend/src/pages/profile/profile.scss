@@ -1,0 +1,51 @@
+@import "../../styles/style.scss";
+
+.profile {
+  @include flexCenter;
+  > .profileWrapper {
+    @include flexCenter;
+    @include boxShadow;
+    flex-direction: column;
+    padding: 10px;
+    width: 35%;
+    > .profileTop {
+      display: flex;
+      > img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+      > .profileTop__icon {
+        color: $quaternary-color;
+        position: absolute;
+        top: 10%;
+        left: 52%;
+        cursor: pointer;
+      }
+    }
+    > .profileBottom {
+      width: 85%;
+      .profileBottom__info {
+        padding: 0rem 1rem 0 1rem;
+        > label {
+          display: flex;
+          justify-content: space-between;
+          padding: 0.5rem;
+          > input {
+            width: 70%;
+            font-size: 15px;
+          }
+        }
+      }
+    }
+    > button {
+      @include button;
+      width: 50%;
+      margin: 0.5rem;
+      &:hover {
+        @include hover;
+      }
+    }
+  }
+}

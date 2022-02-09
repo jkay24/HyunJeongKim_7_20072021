@@ -3,6 +3,12 @@ import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Post() {
+  /*   const [like, setLike] = useState(post.like);
+  const [isLiked, setIsliked] = useState(false);
+  const likeHandler = () => {
+    setLike(isLiked ? like - 1 : like + 1);
+    setIsLiked(!isLiked)
+  }; */
   return (
     <div className="post">
       <div className="postWrapper">
@@ -24,8 +30,9 @@ export default function Post() {
             <FontAwesomeIcon
               icon={faThumbsUp}
               className="postBottom__like--icon"
+              // onClick={this.likeHandler}
             />
-            <span className="postBottom__like--counter">3</span>
+            <span className="postBottom__like--counter">2</span>
           </div>
           <span className="postBottom__noComments">0 commentaires</span>
         </div>

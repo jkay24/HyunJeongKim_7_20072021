@@ -4,12 +4,12 @@
 }
 
 .post {
-  margin: 2em 0;
-  width: 100%;
   border-radius: 10px;
   -webkit-box-shadow: 0 0 8px 3px #fd2d01;
           box-shadow: 0 0 8px 3px #fd2d01;
   background-color: #fffaf0;
+  margin: 2em 0;
+  width: 100%;
 }
 
 .post > .postWrapper {

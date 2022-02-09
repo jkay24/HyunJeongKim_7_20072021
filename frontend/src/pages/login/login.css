@@ -1,1 +1,114 @@
-/* No CSS *//*# sourceMappingURL=login.css.map */
+* {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+.login {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-color: #586470;
+  height: 100vh;
+}
+
+.login > .loginHeader {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #e79095;
+  height: 80px;
+  width: 100%;
+}
+
+.login > .loginHeader > img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  height: 80px;
+  width: 350px;
+}
+
+.login > .loginWrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 0 8px 3px #fd2d01;
+          box-shadow: 0 0 8px 3px #fd2d01;
+  background-color: #fffaf0;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 10px;
+  width: 45%;
+  background-color: #fffaf0;
+  margin: auto;
+}
+
+.login > .loginWrapper > .loginTitle {
+  font-weight: bolder;
+  padding: 1rem;
+}
+
+.login > .loginWrapper > .loginTop {
+  width: 85%;
+}
+
+.login > .loginWrapper > .loginTop .loginTop__info > label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 0.5rem;
+}
+
+.login > .loginWrapper > .loginTop .loginTop__info > label > input {
+  width: 65%;
+  font-size: 15px;
+}
+
+.login > .loginWrapper > .loginBottom {
+  padding: 1rem;
+}
+
+.login > .loginWrapper > .loginBottom > .loginBottom__prompt {
+  font-style: italic;
+  font-size: smaller;
+  padding-top: 1.5rem;
+}
+
+.login > .loginWrapper > .loginBottom > button {
+  border: none;
+  padding: 7px;
+  border-radius: 7px;
+  background-color: #fd2d01;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 16px;
+  color: #fffaf0;
+  width: 100%;
+}
+
+.login > .loginWrapper > .loginBottom > button:hover {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+/*# sourceMappingURL=login.css.map */

@@ -1,0 +1,61 @@
+@import "../../styles/style.scss";
+
+.login {
+  display: flex;
+  flex-direction: column;
+  background-color: $secondary-color;
+  height: 100vh;
+  > .loginHeader {
+    @include flexCenter;
+    background-color: $quaternary-color;
+    height: 80px;
+    width: 100%;
+    > img {
+      object-fit: cover;
+      height: 80px;
+      width: 350px;
+    }
+  }
+  > .loginWrapper {
+    @include flexCenter;
+    @include boxShadow;
+    flex-direction: column;
+    padding: 10px;
+    width: 45%;
+    background-color: $tertiary-color;
+    margin: auto;
+    > .loginTitle {
+      font-weight: bolder;
+      padding: 1rem;
+    }
+    > .loginTop {
+      width: 85%;
+      .loginTop__info {
+        > label {
+          display: flex;
+          justify-content: space-between;
+          padding: 0.5rem;
+          > input {
+            width: 65%;
+            font-size: 15px;
+          }
+        }
+      }
+    }
+    > .loginBottom {
+      padding: 1rem;
+      > .loginBottom__prompt {
+        font-style: italic;
+        font-size: smaller;
+        padding-top: 1.5rem;
+      }
+      > button {
+        @include button;
+        width: 100%;
+        &:hover {
+          @include hover;
+        }
+      }
+    }
+  }
+}

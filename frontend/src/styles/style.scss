@@ -14,6 +14,23 @@ $quaternary-color: #e79095;
   align-items: center;
 }
 
+@mixin button {
+  border: none;
+  padding: 7px;
+  border-radius: 7px;
+  background-color: $primary-color;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 16px;
+  color: $tertiary-color;
+}
+
+@mixin boxShadow {
+  border-radius: 10px;
+  box-shadow: 0 0 8px 3px $primary-color;
+  background-color: $tertiary-color;
+}
+
 * {
   margin: 0;
   font-family: "Poppins", sans-serif;
