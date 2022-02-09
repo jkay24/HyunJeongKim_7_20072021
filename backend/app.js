@@ -4,19 +4,14 @@ const dotenv = require("dotenv");
 const path = require("path");
 const helmet = require("helmet");
 const cors = require("cors");
+const { Sequelize } = require("sequelize");
 
 dotenv.config();
 
 //Cors
-app.use(
-  cors({
-    origin: "http://localhost:3000",
-    credentials: true,
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    preflightContinue: false,
-  })
-);
-
+/* app.use(cors()); */
+/* res.setHeader("Content-type", "text/html");
+res.status("200").send("Ok"); */
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
@@ -28,6 +23,12 @@ app.use((req, res, next) => {
     "GET, POST, PUT, DELETE, PATCH, OPTIONS"
   );
   next();
+});
+app.get("/", async function (req, res) {
+  const sequelize = new Sequelize("groupomania", "root", "Hellokitty1!", {
+    host: "localhost",
+    dialect: "mySQL",
+  });
 });
 
 //Import routes
