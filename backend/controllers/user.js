@@ -1,7 +1,5 @@
-const bcrypt = require("bcrypt");
+/* const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const User = require("../models/user");
-const passwordSchema = require("../models/password");
 const MaskData = require("maskdata");
 
 //SINGUP FUNCTION
@@ -63,3 +61,4 @@ exports.login = (req, res, next) => {
     })
     .catch((error) => res.status(500).json({ error }));
 };
+ */
