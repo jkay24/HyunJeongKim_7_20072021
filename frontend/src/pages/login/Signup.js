@@ -2,8 +2,10 @@ import "../login/login.css";
 import Header from "../../components/header/Header";
 import React, { useState } from "react";
 import Axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Signup() {
+  let navigate = useNavigate();
   const [firstnameReg, setFirstnameReg] = useState("");
   const [lastnameReg, setLastnameReg] = useState("");
   const [emailReg, setEmailReg] = useState("");
@@ -73,7 +75,14 @@ export default function Signup() {
             S'inscrire
           </button>
           <div className="loginBottom__prompt">Déjà un compte ?</div>
-          <button className="loginBottom__signup">Se connécter</button>
+          <button
+            className="loginBottom__signup"
+            onClick={() => {
+              navigate("/login");
+            }}
+          >
+            Connectez-vous !
+          </button>
         </div>
       </div>
     </div>

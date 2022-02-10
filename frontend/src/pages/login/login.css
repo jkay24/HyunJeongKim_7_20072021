@@ -72,7 +72,8 @@
 .login > .loginWrapper > .loginBottom > .loginBottom__prompt {
   font-style: italic;
   font-size: smaller;
-  padding-top: 1.5rem;
+  padding-top: 2rem;
+  padding-bottom: 0.5rem;
 }
 
 .login > .loginWrapper > .loginBottom > button {

@@ -1,9 +1,10 @@
 import "../topbar/topbar.css";
-import Header from "../../components/header/Header";
 import { faSignOutAlt, faUserEdit } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useNavigate } from "react-router-dom";
 
 export default function Topbar() {
+  let navigate = useNavigate();
   return (
     <div className="topbarContainer">
       <div className="topbar__logo">
@@ -22,14 +23,22 @@ export default function Topbar() {
           <div className="topbarRight__profile--name">User 1</div>
         </div>
         <div className="topbarRight__links">
-          <a href="../pages/profile">
+          <a
+            onClick={() => {
+              navigate("/profile");
+            }}
+          >
             <FontAwesomeIcon
               icon={faUserEdit}
               className="topbarRight__links__icons--edit"
             />
             Modifier
           </a>
-          <a href="../pages/login">
+          <a
+            onClick={() => {
+              navigate("/login");
+            }}
+          >
             <FontAwesomeIcon
               icon={faSignOutAlt}
               className="topbarRight__links__icons--logout"

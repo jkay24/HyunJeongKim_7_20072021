@@ -56,13 +56,14 @@
 .profile > .profileWrapper > .profileTop > .profileTop__icon {
   color: #e79095;
   position: absolute;
-  top: 43%;
+  top: 41%;
   left: 52%;
   cursor: pointer;
 }
 
 .profile > .profileWrapper > .profileBottom {
   width: 85%;
+  margin: 1rem 0 1rem 0;
 }
 
 .profile > .profileWrapper > .profileBottom .profileBottom__info {
@@ -94,7 +95,7 @@
   font-size: 16px;
   color: #fffaf0;
   width: 50%;
-  margin: 0.5rem;
+  margin: 1rem;
 }
 
 .profile > .profileWrapper > button:hover {
