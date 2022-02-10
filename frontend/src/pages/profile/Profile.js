@@ -1,10 +1,12 @@
 import { faImage } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../profile/profile.css";
+import Header from "../../components/header/Header";
 
 export default function Profile() {
   return (
     <div className="profile">
+      <Header />
       <div className="profileWrapper">
         <div className="profileTop">
           <img

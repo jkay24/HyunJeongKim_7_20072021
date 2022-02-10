@@ -22,11 +22,11 @@ exports.login = (req, res) => {
   const email = req.body.email;
   const pw = req.body.pw;
   db.query(
-    "SELECT * FROM users WHERE email == ? AND pw == ?",
+    "SELECT * FROM users WHERE email = ? AND pw = ?",
     [email, pw],
-    (err, res) => {
+    (err, result) => {
       if (err) {
-        res.send(err);
+        res.send({ err });
       }
       if (result) {
         res.send(result);

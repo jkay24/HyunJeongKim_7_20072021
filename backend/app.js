@@ -9,9 +9,7 @@ const { Sequelize } = require("sequelize");
 dotenv.config();
 
 //Cors
-/* app.use(cors()); */
-/* res.setHeader("Content-type", "text/html");
-res.status("200").send("Ok"); */
+app.use(cors());
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
@@ -24,6 +22,8 @@ app.use((req, res, next) => {
   );
   next();
 });
+
+//Connect to mySQL database for goupomania
 app.get("/", async function (req, res) {
   const sequelize = new Sequelize("groupomania", "root", "Hellokitty1!", {
     host: "localhost",

@@ -1,17 +1,16 @@
 import "../topbar/topbar.css";
+import Header from "../../components/header/Header";
 import { faSignOutAlt, faUserEdit } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Topbar() {
   return (
     <div className="topbarContainer">
-      <div className="topbarLeft">
-        <span className="topbarLeft__logo">
-          <img
-            src={require("../../assets/logos/logo-aligned.svg").default}
-            alt="Groupomania logo"
-          ></img>
-        </span>
+      <div className="topbar__logo">
+        <img
+          src={require("../../assets/logos/logo-aligned.svg").default}
+          alt="Groupomania logo"
+        ></img>
       </div>
       <div className="topbarRight">
         <div className="topbarRight__profile">

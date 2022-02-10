@@ -1,11 +1,10 @@
 @import "../../styles/style.scss";
 .feed {
-  display: flex;
-  justify-content: center;
-  background-color: $secondary-color;
-  height: 90vh;
+  background-color: #586470;
+  height: 100vh;
+  padding-top: 3rem;
   > .feedWrapper {
-    padding: 40px;
-    width: 50%;
+    margin: auto;
+    width: 45%;
   }
 }

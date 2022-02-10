@@ -18,15 +18,7 @@
   padding: 0 5em 0 5em;
 }
 
-.topbarContainer > .topbarLeft {
-  color: #fffaf0;
-}
-
-.topbarContainer > .topbarLeft > .topbarLeft__logo > img {
-  -o-object-fit: cover;
-     object-fit: cover;
-  height: 80px;
-  width: 350px;
+.topbarContainer > .topbar__logo > img {
   margin-left: -30px;
 }
 

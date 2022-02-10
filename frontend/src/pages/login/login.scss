@@ -1,29 +1,9 @@
 @import "../../styles/style.scss";
 
 .login {
-  display: flex;
-  flex-direction: column;
-  background-color: $secondary-color;
-  height: 100vh;
-  > .loginHeader {
-    @include flexCenter;
-    background-color: $quaternary-color;
-    height: 80px;
-    width: 100%;
-    > img {
-      object-fit: cover;
-      height: 80px;
-      width: 350px;
-    }
-  }
+  @include profileLogin;
   > .loginWrapper {
-    @include flexCenter;
-    @include boxShadow;
-    flex-direction: column;
-    padding: 10px;
-    width: 45%;
-    background-color: $tertiary-color;
-    margin: auto;
+    @include wrapper;
     > .loginTitle {
       font-weight: bolder;
       padding: 1rem;
@@ -44,6 +24,8 @@
     }
     > .loginBottom {
       padding: 1rem;
+      width: 40%;
+      text-align: center;
       > .loginBottom__prompt {
         font-style: italic;
         font-size: smaller;

@@ -4,18 +4,13 @@
 }
 
 .feed {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
   background-color: #586470;
-  height: 90vh;
+  height: 100vh;
+  padding-top: 3rem;
 }
 
 .feed > .feedWrapper {
-  padding: 40px;
-  width: 50%;
+  margin: auto;
+  width: 45%;
 }
 /*# sourceMappingURL=feed.css.map */

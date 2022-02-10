@@ -1,0 +1,13 @@
+@import "../../styles/style.scss";
+
+.header {
+  @include flexCenter;
+  background-color: $quaternary-color;
+  height: 80px;
+  width: 100%;
+  > img {
+    object-fit: cover;
+    height: 80px;
+    width: 350px;
+  }
+}

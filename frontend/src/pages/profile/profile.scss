@@ -1,13 +1,9 @@
 @import "../../styles/style.scss";
 
 .profile {
-  @include flexCenter;
+  @include profileLogin;
   > .profileWrapper {
-    @include flexCenter;
-    @include boxShadow;
-    flex-direction: column;
-    padding: 10px;
-    width: 35%;
+    @include wrapper;
     > .profileTop {
       display: flex;
       > img {
@@ -19,7 +15,7 @@
       > .profileTop__icon {
         color: $quaternary-color;
         position: absolute;
-        top: 10%;
+        top: 43%;
         left: 52%;
         cursor: pointer;
       }

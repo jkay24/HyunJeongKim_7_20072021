@@ -1,8 +1,9 @@
 {
     "version": 3,
-    "mappings": "",
+    "mappings": "ACoDA,AAAA,CAAC,CAAC;EACA,MAAM,EAAE,CAAC;EACT,WAAW,EAAE,qBAAqB;CACnC",
     "sources": [
-        "home.scss"
+        "home.scss",
+        "../../styles/style.scss"
     ],
     "names": [],
     "file": "home.css"
