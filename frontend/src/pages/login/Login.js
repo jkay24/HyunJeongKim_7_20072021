@@ -7,16 +7,24 @@ import { useNavigate } from "react-router-dom";
 export default function Login() {
   let navigate = useNavigate();
   const [email, setEmail] = useState("");
-  const [pw, setPw] = useState("");
+  const [password, setPw] = useState("");
   const [loginStatus, setLoginStatus] = useState("");
-  const login = async (e) => {
+  const login = (e) => {
     e.preventDefault();
-    await Axios.post("http://localhost:3000/api/auth/login", {
-      email: email,
-      password: pw,
-    }).then((response) => {
-      console.log(response);
-    });
+    const data = { email: email, password: password };
+    Axios.post("http://localhost:3000/api/auth/login", data)
+      .then((response) => {
+        console.log(response);
+        if (response.data.error) {
+          console.log(response.data.error);
+        } else {
+          sessionStorage.setItem("JWToken", response.data.token);
+          navigate("/home");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (

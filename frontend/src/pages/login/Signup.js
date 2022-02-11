@@ -10,6 +10,7 @@ export default function Signup() {
   const [lastnameReg, setLastnameReg] = useState("");
   const [emailReg, setEmailReg] = useState("");
   const [pwReg, setPwReg] = useState("");
+  const [loginStatus, setLoginStatus] = useState("");
   const signup = () => {
     Axios.post("http://localhost:3000/api/auth/signup", {
       firstname: firstnameReg,

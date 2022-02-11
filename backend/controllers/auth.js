@@ -12,10 +12,11 @@ exports.signup = async (req, res) => {
     if (exist) {
       return res
         .status(409)
-        .json({ error: "Email " + email + " is already in use" });
+        .json({ message: "Email " + email + " is already in use" });
     } else {
       Users.findOne({ where: { email: email } })
         .then((exist) => {
+          // If email wasn't in database, hash pw and add the user to users table
           if (!exist) {
             bcrypt.hash(password, 10).then((hash) => {
               Users.create({
@@ -36,7 +37,7 @@ exports.signup = async (req, res) => {
           } else {
             return res
               .status(409)
-              .json({ error: "Email " + email + " is already in use" });
+              .json({ message: `Email ${email} is already in use` });
           }
         })
         .catch((error) => {
@@ -47,36 +48,31 @@ exports.signup = async (req, res) => {
 };
 
 exports.login = async (req, res) => {
-  const email = req.body.email;
-  const pw = req.body.pw;
-  try {
-    await db.query(
-      "SELECT * FROM users WHERE email = ?;",
-      email,
-      (err, result) => {
-        if (err) {
-          res.send({ err });
-        }
-        if (result.length > 0) {
-          try {
-            bcrypt.compare(req.body.pw, result[0].pw, (error, response) => {
-              if (response) {
-                res.send(result);
-              } else {
-                res.send({
-                  message: "Mauvaise combinaison email / mot de passe !",
-                });
-              }
+  const { email, password } = req.body;
+  await Users.findOne({ where: { email: email } })
+    .then((user) => {
+      if (user) {
+        bcrypt.compare(password, user.password).then((match) => {
+          if (match) {
+            res.status(200).json({
+              userId: user._id,
+              token: jwt.sign(
+                { id: user.id },
+                process.env.ACCESS_TOKEN_SECRET,
+                {
+                  expiresIn: "24h",
+                }
+              ),
             });
-          } catch (err) {
-            console.log(err);
+          } else {
+            return res.status(403).json({ error: "Invalid password." });
           }
-        } else {
-          res.send({ message: "Utilisateur non trouvée !" });
-        }
+        });
+      } else {
+        return res.status(404).json({ message: email + "does not exist." });
       }
-    );
-  } catch (error) {
-    console.log(error);
-  }
+    })
+    .catch((error) => {
+      return res.status(500).json({ error });
+    });
 };
