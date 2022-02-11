@@ -1,19 +1,19 @@
 const jwt = require("jsonwebtoken");
-const db = require("./config/db");
+const db = require("../config/db");
 require("dotenv").config();
 
 //Verify assigned token
 module.exports = (req, res, next) => {
-  try {
-    const token = req.headers.authorization.split(" ")[1];
-    const verified = jwt.verify(token, process.env.RANDOM_TOKEN_SECRET);
-    const userId = verified.userId;
-    if (req.body.userId && req.body.userId !== userId) {
-      throw "User ID non valable !";
-    } else {
-      next();
-    }
-  } catch (error) {
-    res.status(401).json({ error: error | "Requête non authentifiée !" });
-  }
+  const authHeader = req.headers["authorization"];
+  const token = authHeader && authHeader.split(" ")[1];
+  if (token == null)
+    return res
+      .status(401)
+      .json({ error: error | "Requête non authentifiée !" });
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
+    if (err)
+      return res.status(403).json({ error: error | "User ID non valable !" });
+    req.email = decoded.email;
+    next();
+  });
 };

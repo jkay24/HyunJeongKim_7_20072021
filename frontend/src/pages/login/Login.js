@@ -9,18 +9,16 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [pw, setPw] = useState("");
   const [loginStatus, setLoginStatus] = useState("");
-  const login = () => {
-    Axios.post("http://localhost:3000/api/user/login", {
+  const login = async (e) => {
+    e.preventDefault();
+    await Axios.post("http://localhost:3000/api/auth/login", {
       email: email,
-      pw: pw,
+      password: pw,
     }).then((response) => {
-      if (response.data.message) {
-        setLoginStatus(response.data.message);
-      } else {
-        setLoginStatus(response.data[0].email);
-      }
+      console.log(response);
     });
   };
+
   return (
     <div className="login">
       <Header />

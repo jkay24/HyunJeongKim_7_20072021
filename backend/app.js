@@ -4,7 +4,8 @@ const dotenv = require("dotenv");
 const path = require("path");
 const helmet = require("helmet");
 const cors = require("cors");
-const { Sequelize } = require("sequelize");
+const cookieParser = require("cookie-parser");
+const cookieSession = require("cookie-session");
 
 dotenv.config();
 
@@ -23,18 +24,12 @@ app.use((req, res, next) => {
   next();
 });
 
-//Connect to mySQL database for goupomania
-app.get("/", async function (req, res) {
-  const sequelize = new Sequelize("groupomania", "root", "Hellokitty1!", {
-    host: "localhost",
-    dialect: "mySQL",
-  });
-});
-
 //Import routes
-const userRoutes = require("./routes/users");
+
+const authRoutes = require("./routes/auth");
 /* const postRoutes = require("./routes/posts");
-const authRoutes = require("./routes/auth"); */
+const userRoutes = require("./routes/users");
+ */
 
 //Middlewares
 app.use(
@@ -45,10 +40,22 @@ app.use(
 );
 app.use(express.json());
 /* app.use("/images", express.static(path.join(__dirname, "images"))); */
+app.use(cookieParser());
+
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: true }));
+app.use(
+  cookieSession({
+    name: "session",
+    secret: process.env.COOKIE_SECRET,
+    httpOnly: true,
+  })
+);
 
 //Routes
-app.use("/api/user", userRoutes);
+app.use("/api/auth", authRoutes);
 /* app.use("/api/post", postRoutes);
-app.use("/api/auth", authRoutes); */
+app.use("/api/user", userRoutes);
+ */
 
 module.exports = app;
