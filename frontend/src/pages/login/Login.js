@@ -2,9 +2,10 @@ import "../login/login.css";
 import Header from "../../components/header/Header";
 import React, { useState } from "react";
 import Axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function Login() {
+  let { id } = useParams();
   let navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPw] = useState("");
@@ -19,7 +20,7 @@ export default function Login() {
           console.log(response.data.error);
         } else {
           sessionStorage.setItem("JWToken", response.data.token);
-          navigate("/home");
+          navigate("/home/${id}");
         }
       })
       .catch((error) => {

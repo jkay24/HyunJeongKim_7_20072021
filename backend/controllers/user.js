@@ -1,53 +1,39 @@
-const dbc = require("../config/db");
-const db = dbc.getDB();
+const { Users } = require("../models");
+const bcrypt = require("bcrypt");
 
-exports.getOneUser = (req, res, next) => {
-  const { id: id } = req.params;
-  db.query(`SELECT * FROM users WHERE id = ${id};`, (err, result) => {
-    if (err) {
-      res.status(404).json({ err });
-      throw err;
-    }
-    delete result[0].pw;
-    res.status(200).json(result);
-  });
-};
-
-exports.modifyUser = (req, res, next) => {
-  if (req.file) {
-    const { id: id } = req.params;
-    let { destination, filename } = req.file;
-    destination = destination + filename;
-
-    const sqlInsertImage = `INSERT INTO images (post_id, user_id, image_url) VALUES (NULL, ${user_id}, "${destination}");`;
-    db.query(sqlInsertImage, (err, result) => {
-      if (err) {
-        res.status(404).json({ err });
-        throw err;
-      }
+exports.getOneUser = async (req, res) => {
+  try {
+    const id = req.params.id;
+    await Users.findByPk(id, {
+      attributes: ["firstname", "lastname", "email", "image", "isAdmin"],
+    }).then((user) => {
+      if (!user) {
+        res.status(404).json({ error: "User ID " + id + " not found." });
+      } else res.status(200).json(user);
     });
+  } catch (error) {
+    res.status(500).send({ error: "An error has occurred. " + error });
   }
-  const { user_firstname, user_lastname } = req.body;
-  const { id: userId } = req.params;
-  const sqlUpdateUser = `UPDATE users SET user_firstname = "${user_firstname}", user_lastname = "${user_lastname}" WHERE users.user_id = ${userId};`;
-  db.query(sqlUpdateUser, (err, result) => {
-    if (err) {
-      res.status(404).json({ err });
-      throw err;
-    }
-    if (result) {
-      res.status(200).json(result);
-    }
-  });
 };
-exports.getProfilePic = (req, res, next) => {
-  const { id: user_id } = req.params;
-  const sqlGetUser = `SELECT image_url FROM images WHERE images.user_id = ${user_id} ORDER BY images.image_id desc;`;
-  db.query(sqlGetUser, (err, result) => {
-    if (err) {
-      res.status(404).json({ err });
-      throw err;
+
+exports.modifyUser = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const { oldPassword, newPassword } = req.body;
+    let image;
+    if (req.file) {
+      image = `${req.protocol}://${req.get("host")}/image/${req.file.filename}`;
     }
-    res.status(200).json(result);
-  });
+    await Users.update({ ...req.body, image: image }, { where: { id: id } });
+    res.status(201).json({ message: "User ID " + id + " updated." });
+  } catch (error) {
+    res.status(500).send({ error: "An error has occurred. " + error });
+  }
+};
+
+exports.deleteUser = (req, res) => {
+  const id = req.params.id;
+  Users.destroy({ where: { id: id } })
+    .then(() => res.status(200).json({ message: "User deleted." }))
+    .catch((error) => res.status(400).json({ error }));
 };

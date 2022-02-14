@@ -1,14 +1,32 @@
 import "../post/post.css";
 import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useEffect, useState } from "react";
+import Axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Post() {
-  /*   const [like, setLike] = useState(post.like);
-  const [isLiked, setIsliked] = useState(false);
-  const likeHandler = () => {
-    setLike(isLiked ? like - 1 : like + 1);
-    setIsLiked(!isLiked)
-  }; */
+  let navigate = useNavigate();
+  const [listOfPosts, setListOfPosts] = useState([]);
+  const [likedPosts, setLikedPosts] = useState([]);
+  useEffect(() => {
+    if (!sessionStorage.getItem("JWToken")) {
+      navigate("/");
+    } else {
+      Axios.get("http://localhost:3000/api/post", {
+        headers: {
+          JWToken: sessionStorage.getItem("JWToken"),
+        },
+      }).then((res) => {
+        setListOfPosts(res.data.listOfPosts);
+        setLikedPosts(
+          res.data.likedPosts.map((like) => {
+            return like.PostId;
+          })
+        );
+      });
+    }
+  }, []);
   return (
     <div className="post">
       <div className="postWrapper">
@@ -21,10 +39,12 @@ export default function Post() {
           <span className="postTop__user">User 1</span>
           <span className="postTop__postDate">il y a 5 mins</span>
         </div>
-        <div className="postCenter">
-          <span className="postCenter__text">Hello</span>
-          <img className="postCenter__img" src="" alt=""></img>
-        </div>
+        {/*  {listOfPosts.map((value, key) => {
+            return (
+              <div className="postCenter" key={key}>
+                <span className="postCenter__text">{value.content}</span>
+                <img className="postCenter__img" src={value.image} alt="" />      
+              </div> )}} */}
         <div className="postBottom">
           <div className="postBottom__like">
             <FontAwesomeIcon

@@ -7,7 +7,38 @@ require("dotenv").config({ path: "../.env" });
 //SIGNUP FUNCTION
 exports.signup = async (req, res) => {
   const { firstname, lastname, email, password } = req.body;
-  // Check if email already exists in the Users table
+  //INPUT VALUE VALIDATION
+  //Test for first and last names
+  const regExNames = /^[a-zA-Z\s]{2,20}$/;
+  if (!regExNames.test(firstname)) {
+    return res.status(400).json({
+      message:
+        "Veuillez saisir un prénom valide entre 2 à 20 lettres, sans chiffre ni symbole.",
+    });
+  }
+  if (!regExNames.test(lastname)) {
+    return res.status(400).json({
+      message:
+        "Veuillez saisir un nom valide entre 2 à 20 lettres, sans chiffre ni symbole.",
+    });
+  }
+  //Test for email address
+  const regExEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  if (!regExEmail.test(email)) {
+    return res.status(400).json({
+      message: "Veuillez saisir une adresse mail valide.",
+    });
+  }
+  //Test for password
+  const regExPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,18}$/;
+  if (!regExPassword.test(password)) {
+    return res.status(400).json({
+      error:
+        "Veuillez saisir un mot de passe avec au moins 6 caractères, comprenant une lettre maj, une min et un chiffre.",
+    });
+  }
+
+  // AFTER INPUT VALIDATION, CHECK if email already exists in the Users table
   await Users.findOne({ where: { email: email } }).then((exist) => {
     if (exist) {
       return res
@@ -37,7 +68,9 @@ exports.signup = async (req, res) => {
           } else {
             return res
               .status(409)
-              .json({ message: `Email ${email} is already in use` });
+              .json({
+                message: "Un compte existe déjà avec cette adresse mail.",
+              });
           }
         })
         .catch((error) => {
@@ -47,15 +80,19 @@ exports.signup = async (req, res) => {
   });
 };
 
+//LOGIN FUNCTION
 exports.login = async (req, res) => {
   const { email, password } = req.body;
+  if (email == null || password == null) {
+    return res.status(400).json({ error });
+  }
   await Users.findOne({ where: { email: email } })
     .then((user) => {
       if (user) {
         bcrypt.compare(password, user.password).then((match) => {
           if (match) {
             res.status(200).json({
-              userId: user._id,
+              userId: user.id,
               token: jwt.sign(
                 { id: user.id },
                 process.env.ACCESS_TOKEN_SECRET,

@@ -1,15 +1,14 @@
 const express = require("express");
-const app = express();
 const dotenv = require("dotenv");
 const path = require("path");
 const helmet = require("helmet");
 const cors = require("cors");
-const cookieParser = require("cookie-parser");
-const cookieSession = require("cookie-session");
 
 dotenv.config();
 
 //Cors
+
+const app = express();
 app.use(cors());
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -25,11 +24,9 @@ app.use((req, res, next) => {
 });
 
 //Import routes
-
 const authRoutes = require("./routes/auth");
-/* const postRoutes = require("./routes/posts");
+const postRoutes = require("./routes/posts");
 const userRoutes = require("./routes/users");
- */
 
 //Middlewares
 app.use(
@@ -38,24 +35,15 @@ app.use(
     crossOriginResourcePolicy: false,
   })
 );
+
+// Parse JSON requests
 app.use(express.json());
-/* app.use("/images", express.static(path.join(__dirname, "images"))); */
-app.use(cookieParser());
-
-// parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
-app.use(
-  cookieSession({
-    name: "session",
-    secret: process.env.COOKIE_SECRET,
-    httpOnly: true,
-  })
-);
 
-//Routes
+//Call routes
 app.use("/api/auth", authRoutes);
-/* app.use("/api/post", postRoutes);
 app.use("/api/user", userRoutes);
- */
+app.use("/api/post", postRoutes);
+app.use("/images", express.static(path.join(__dirname, "images")));
 
 module.exports = app;

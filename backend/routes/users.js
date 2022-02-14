@@ -5,7 +5,7 @@ const auth = require("../middleware/auth");
 const multer = require("../middleware/multer-config");
 
 router.get("/:id", auth, userCtrl.getOneUser);
-router.get("/image/:id", auth, userCtrl.getProfilePic);
-router.put("/:id", auth, multer.single("profilePic"), userCtrl.modifyUser);
+router.put("/update/:id", auth, multer.single("image"), userCtrl.modifyUser);
+router.delete("/delete/:id", auth, userCtrl.deleteUser);
 
 module.exports = router;
