@@ -41,7 +41,7 @@ export default function Share() {
           <input
             type="text"
             className="shareTop__input"
-            placeholder="Dis-nous {firstname} !"
+            placeholder="Quoi de neuf ?"
           ></input>
         </div>
         <hr className="shareHr" />
