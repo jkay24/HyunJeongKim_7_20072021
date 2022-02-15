@@ -12,7 +12,7 @@ exports.getOneUser = async (req, res) => {
       } else res.status(200).json(user);
     });
   } catch (error) {
-    res.status(500).send({ error: "An error has occurred. " + error });
+    res.status(500).send({ error: error });
   }
 };
 

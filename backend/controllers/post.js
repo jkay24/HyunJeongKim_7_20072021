@@ -28,8 +28,7 @@ exports.createPost = async (req, res) => {
 exports.getAllPosts = async (req, res) => {
   try {
     const listOfPosts = await Posts.findAll();
-    const likedPosts = await Likes.findAll({ where: { UserId: req.user.id } });
-    res.status(200).json({ listOfPosts: listOfPosts, likedPosts: likedPosts });
+    res.status(200).json({ listOfPosts: listOfPosts });
   } catch (error) {
     res.status(400).json({ error: "An error has occurred. " + error });
   }

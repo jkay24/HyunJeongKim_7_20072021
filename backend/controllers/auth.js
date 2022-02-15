@@ -66,11 +66,9 @@ exports.signup = async (req, res) => {
                 });
             });
           } else {
-            return res
-              .status(409)
-              .json({
-                message: "Un compte existe déjà avec cette adresse mail.",
-              });
+            return res.status(409).json({
+              message: "Un compte existe déjà avec cette adresse mail.",
+            });
           }
         })
         .catch((error) => {
@@ -84,7 +82,7 @@ exports.signup = async (req, res) => {
 exports.login = async (req, res) => {
   const { email, password } = req.body;
   if (email == null || password == null) {
-    return res.status(400).json({ error });
+    return res.status(400).json({ error: "Login failed." });
   }
   await Users.findOne({ where: { email: email } })
     .then((user) => {

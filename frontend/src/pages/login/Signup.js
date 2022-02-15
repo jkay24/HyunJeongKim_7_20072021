@@ -10,7 +10,6 @@ export default function Signup() {
   const [lastnameReg, setLastnameReg] = useState("");
   const [emailReg, setEmailReg] = useState("");
   const [pwReg, setPwReg] = useState("");
-  const [loginStatus, setLoginStatus] = useState("");
   const signup = () => {
     Axios.post("http://localhost:3000/api/auth/signup", {
       firstname: firstnameReg,
@@ -57,7 +56,7 @@ export default function Signup() {
             <label className="loginTop__info--email">
               Email{" "}
               <input
-                type="text"
+                type="email"
                 name="email"
                 onChange={(e) => {
                   setEmailReg(e.target.value);
@@ -67,7 +66,7 @@ export default function Signup() {
             <label className="loginTop__info--pw">
               Mot de passe{" "}
               <input
-                type="text"
+                type="password"
                 name="password"
                 onChange={(e) => {
                   setPwReg(e.target.value);

@@ -3,7 +3,7 @@ import { faSignOutAlt, faUserEdit } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate, useParams } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-import Axios from "axios";
+import axios from "axios";
 
 export default function Topbar() {
   let { id } = useParams();
@@ -12,13 +12,17 @@ export default function Topbar() {
   const [image, setImage] = useState("");
   useEffect(() => {
     if (!sessionStorage.getItem("JWToken")) {
-      window.location.replace(`/`);
+      navigate("/login");
     } else {
-      Axios.get("http://localhost:3000/api/user/${id}", {
-        headers: {
-          JWToken: sessionStorage.getItem("JWToken"),
-        },
-      }).then((res) => {
+      const fetchUserProfile = async () => {
+        const res = await axios.get("http://localhost:3000/api/user/${id}", {
+          headers: {
+            JWToken: sessionStorage.getItem("JWToken"),
+          },
+        });
+        console.log(res);
+      };
+      fetchUserProfile().then((res) => {
         setFirstname(res.data.firstname);
         setImage(res.data.image);
       });
@@ -35,7 +39,7 @@ export default function Topbar() {
       <div className="topbarRight">
         <div className="topbarRight__profile">
           <img
-            src={require("../../assets/profiles/1.png")}
+            src={image || require("../../assets/profiles/default-avatar.png")}
             alt="photo de profil"
             className="topbarRight__profile--img"
           ></img>

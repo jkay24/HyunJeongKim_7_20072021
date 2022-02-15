@@ -1,33 +1,21 @@
 import "../login/login.css";
 import Header from "../../components/header/Header";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import { loginCall } from "../apiCalls";
+import { AuthContext } from "../../context/AuthContext";
 
 export default function Login() {
   let { id } = useParams();
   let navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPw] = useState("");
-  const [loginStatus, setLoginStatus] = useState("");
+  const { user, isFetching, error, dispatch } = useContext(AuthContext);
   const login = (e) => {
     e.preventDefault();
-    const data = { email: email, password: password };
-    Axios.post("http://localhost:3000/api/auth/login", data)
-      .then((response) => {
-        console.log(response);
-        if (response.data.error) {
-          console.log(response.data.error);
-        } else {
-          sessionStorage.setItem("JWToken", response.data.token);
-          navigate("/home/${id}");
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    loginCall({ email: email, password: password }, dispatch);
   };
-
   return (
     <div className="login">
       <Header />
@@ -38,28 +26,30 @@ export default function Login() {
             <label className="loginTop__info--email">
               Email{" "}
               <input
-                type="text"
+                type="email"
                 name="email"
                 onChange={(e) => {
                   setEmail(e.target.value);
                 }}
+                value={email}
               ></input>
             </label>
             <label className="loginTop__info--pw">
               Mot de passe{" "}
               <input
-                type="text"
+                type="password"
                 name="password"
                 onChange={(e) => {
                   setPw(e.target.value);
                 }}
+                value={password}
               ></input>
             </label>
           </form>
         </div>
         <div className="loginBottom">
           <button className="loginBottom__login" onClick={login}>
-            Se connecter
+            {isFetching ? "Veuillez patienter" : " Se connecter"}
           </button>
           <div className="loginBottom__prompt">Pas encore de compte ?</div>
           <button
@@ -71,7 +61,6 @@ export default function Login() {
             Inscrivez-vous !
           </button>
         </div>
-        <div>{loginStatus}</div>
       </div>
     </div>
   );
