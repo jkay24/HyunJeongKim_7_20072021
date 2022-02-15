@@ -22,12 +22,9 @@ function App() {
         <Routes>
           <Route path="/" element={user ? <Home /> : <Signup />}></Route>
           <Route path="/signup" element={<Signup />} />
-          <Route
-            path="/login"
-            element={user ? <Navigate to="/" /> : <Login />}
-          />
+          <Route path="/login" element={user ? <Home /> : <Login />} />
           <Route path="/home/:id" element={<Home />} />
-          <Route path="/profile/:id" element={user ? <Profile /> : <Login />} />
+          <Route path="/profile/:id" element={<Profile />} />
         </Routes>
       </Router>
     </div>
