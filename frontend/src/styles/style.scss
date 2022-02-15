@@ -49,7 +49,7 @@ $lg: 992px;
     width: 80%;
     font-size: 85%;
   }
-  @media (min-width: $sm) and (max-width: $md) {
+  @media (min-width: $sm) and (max-width: $lg) {
     width: 60%;
   }
   @media (min-width: $lg) {
@@ -67,5 +67,12 @@ $lg: 992px;
 
 * {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   font-family: "Poppins", sans-serif;
+}
+
+.app {
+  position: fixed;
+  width: 100vw;
 }

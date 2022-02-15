@@ -1,6 +1,14 @@
 * {
   margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   font-family: "Poppins", sans-serif;
+}
+
+.app {
+  position: fixed;
+  width: 100vw;
 }
 
 .topbarContainer {
@@ -18,8 +26,23 @@
   padding: 0 5em 0 5em;
 }
 
+@media (max-width: 780px) {
+  .topbarContainer {
+    padding: 0;
+  }
+}
+
 .topbarContainer > .topbar__logo > img {
   margin-left: -30px;
+}
+
+@media (max-width: 600px) {
+  .topbarContainer > .topbar__logo > img {
+    margin: 0;
+    width: 70%;
+    -o-object-fit: cover;
+       object-fit: cover;
+  }
 }
 
 .topbarContainer > .topbarRight {
@@ -33,6 +56,9 @@
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
+  background-color: #2b3137;
+  border-radius: 7px;
+  padding: 0 1rem 0 1rem;
 }
 
 .topbarContainer > .topbarRight > .topbarRight__profile {
@@ -59,6 +85,12 @@
           align-items: center;
 }
 
+@media (max-width: 600px) {
+  .topbarContainer > .topbarRight > .topbarRight__profile > img {
+    height: 40px;
+  }
+}
+
 .topbarContainer > .topbarRight > .topbarRight__profile > .topbarRight__profile--name {
   margin-left: 15px;
   color: #fffaf0;
@@ -69,6 +101,7 @@
   display: none;
   position: absolute;
   z-index: 1;
+  right: 15%;
 }
 
 .topbarContainer > .topbarRight > .topbarRight__links > a {
@@ -92,8 +125,5 @@
 .topbarContainer > .topbarRight > .topbarRight__links > a:hover {
   text-transform: uppercase;
   font-weight: bold;
-  color: #fffaf0;
-  background-color: #2b3137;
-  border-radius: 7px;
 }
 /*# sourceMappingURL=topbar.css.map */

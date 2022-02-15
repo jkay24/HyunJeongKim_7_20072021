@@ -1,6 +1,14 @@
 * {
   margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   font-family: "Poppins", sans-serif;
+}
+
+.app {
+  position: fixed;
+  width: 100vw;
 }
 
 .login {
@@ -45,7 +53,7 @@
   }
 }
 
-@media (min-width: 600px) and (max-width: 822px) {
+@media (min-width: 600px) and (max-width: 992px) {
   .login > .loginWrapper {
     width: 60%;
   }
@@ -81,7 +89,7 @@
   font-size: 15px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 822px) {
   .login > .loginWrapper > .loginTop .loginTop__info > label > input {
     width: 55%;
   }
@@ -89,7 +97,7 @@
 
 .login > .loginWrapper > .loginBottom {
   padding: 1rem;
-  width: 50%;
+  width: 55%;
   text-align: center;
 }
 

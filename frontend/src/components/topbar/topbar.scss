@@ -7,8 +7,16 @@
   background-color: $quaternary-color;
   height: 80px;
   padding: 0 5em 0 5em;
+  @media (max-width: 780px) {
+    padding: 0;
+  }
   > .topbar__logo {
     > img {
+      @media (max-width: $sm) {
+        margin: 0;
+        width: 70%;
+        object-fit: cover;
+      }
       margin-left: -30px;
     }
   }
@@ -19,6 +27,9 @@
     &:hover .topbarRight__links {
       display: block;
       width: max-content;
+      background-color: darken($secondary-color, 20%);
+      border-radius: 7px;
+      padding: 0 1rem 0 1rem;
     }
     > .topbarRight__profile {
       @include flexCenter;
@@ -29,6 +40,9 @@
         object-fit: cover;
         height: 60px;
         align-items: center;
+        @media (max-width: $sm) {
+          height: 40px;
+        }
       }
       > .topbarRight__profile--name {
         margin-left: 15px;
@@ -40,6 +54,7 @@
       display: none;
       position: absolute;
       z-index: 1;
+      right: 15%;
       > a {
         color: $tertiary-color;
         text-decoration: none;
@@ -58,9 +73,6 @@
         }
         &:hover {
           @include hover;
-          color: $tertiary-color;
-          background-color: darken($secondary-color, 20%);
-          border-radius: 7px;
         }
       }
     }

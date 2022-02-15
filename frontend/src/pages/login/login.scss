@@ -18,7 +18,7 @@
           > input {
             width: 65%;
             font-size: 15px;
-            @media (max-width: $sm) {
+            @media (max-width: $md) {
               width: 55%;
             }
           }
@@ -27,7 +27,7 @@
     }
     > .loginBottom {
       padding: 1rem;
-      width: 50%;
+      width: 55%;
       text-align: center;
       > .loginBottom__prompt {
         font-style: italic;
