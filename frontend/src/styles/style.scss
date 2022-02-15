@@ -2,6 +2,9 @@ $primary-color: #fd2d01;
 $secondary-color: rgb(88, 100, 112);
 $tertiary-color: #fffaf0;
 $quaternary-color: #e79095;
+$sm: 600px;
+$md: 822px;
+$lg: 992px;
 
 @mixin hover {
   text-transform: uppercase;
@@ -23,6 +26,9 @@ $quaternary-color: #e79095;
   font-weight: 600;
   font-size: 16px;
   color: $tertiary-color;
+  @media (max-width: $sm) {
+    font-size: 95%;
+  }
 }
 
 @mixin boxShadow {
@@ -37,9 +43,18 @@ $quaternary-color: #e79095;
   @include boxShadow;
   flex-direction: column;
   padding: 10px;
-  width: 45%;
   background-color: $tertiary-color;
   margin: auto;
+  @media (max-width: $sm) {
+    width: 80%;
+    font-size: 85%;
+  }
+  @media (min-width: $sm) and (max-width: $md) {
+    width: 60%;
+  }
+  @media (min-width: $lg) {
+    width: 45%;
+  }
 }
 
 //div for profile and login pages

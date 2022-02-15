@@ -88,6 +88,12 @@
   width: 20%;
 }
 
+@media (max-width: 600px) {
+  .share > .shareWrapper > .shareBottom > .shareBottom__submit {
+    font-size: 95%;
+  }
+}
+
 .share > .shareWrapper > .shareBottom > .shareBottom__submit:hover {
   text-transform: uppercase;
   font-weight: bold;

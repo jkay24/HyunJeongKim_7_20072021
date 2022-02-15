@@ -60,7 +60,7 @@ export default function Post() {
           ></img>
           {/*  </Link> */}
           <span className="postTop__user">{firstname}</span>
-          <span className="postTop__postDate">{format(posts.createdAt)}</span>
+          <span className="postTop__postDate">il y a 5 mins</span>
         </div>
         {posts.map((p) => (
           <>

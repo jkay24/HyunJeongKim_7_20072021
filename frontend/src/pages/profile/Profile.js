@@ -89,8 +89,10 @@ export default function Profile() {
             </label>
           </form>
         </div>
-        <button className="profileSave">Enregistrer</button>
-        <button className="profileDelete">Supprimer le compte</button>
+        <div className="profileButtons">
+          <button className="profileSave">Enregistrer</button>
+          <button className="profileDelete">Supprimer le compte</button>
+        </div>
       </div>
     </div>
   );

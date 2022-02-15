@@ -3,7 +3,6 @@ import {
   BrowserRouter as Router,
   Route,
   Routes,
-  Navigate,
   useParams,
 } from "react-router-dom";
 import Signup from "./pages/login/Signup";

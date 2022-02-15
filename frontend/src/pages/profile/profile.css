@@ -34,15 +34,36 @@
       -ms-flex-direction: column;
           flex-direction: column;
   padding: 10px;
-  width: 45%;
   background-color: #fffaf0;
   margin: auto;
+}
+
+@media (max-width: 600px) {
+  .profile > .profileWrapper {
+    width: 80%;
+    font-size: 85%;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 822px) {
+  .profile > .profileWrapper {
+    width: 60%;
+  }
+}
+
+@media (min-width: 992px) {
+  .profile > .profileWrapper {
+    width: 45%;
+  }
 }
 
 .profile > .profileWrapper > .profileTop {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
 }
 
 .profile > .profileWrapper > .profileTop > img {
@@ -53,12 +74,26 @@
      object-fit: cover;
 }
 
+@media (max-width: 600px) {
+  .profile > .profileWrapper > .profileTop > img {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 822px) {
+  .profile > .profileWrapper > .profileTop > img {
+    width: 80px;
+    height: 80px;
+  }
+}
+
 .profile > .profileWrapper > .profileTop > .profileTop__icon {
   color: #e79095;
   position: absolute;
-  top: 41%;
-  left: 52%;
   cursor: pointer;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
 }
 
 .profile > .profileWrapper > .profileBottom {
@@ -85,7 +120,19 @@
   font-size: 15px;
 }
 
-.profile > .profileWrapper > button {
+@media (max-width: 600px) {
+  .profile > .profileWrapper > .profileBottom .profileBottom__info > label > input {
+    width: 60%;
+  }
+}
+
+.profile > .profileWrapper > .profileButtons {
+  padding: 1rem;
+  width: 90%;
+  text-align: center;
+}
+
+.profile > .profileWrapper > .profileButtons > button {
   border: none;
   padding: 10px;
   border-radius: 7px;
@@ -94,11 +141,23 @@
   font-weight: 600;
   font-size: 16px;
   color: #fffaf0;
-  width: 50%;
+  width: 60%;
   margin: 1rem;
 }
 
-.profile > .profileWrapper > button:hover {
+@media (max-width: 600px) {
+  .profile > .profileWrapper > .profileButtons > button {
+    font-size: 95%;
+  }
+}
+
+@media (max-width: 600px) {
+  .profile > .profileWrapper > .profileButtons > button {
+    width: 70%;
+  }
+}
+
+.profile > .profileWrapper > .profileButtons > button:hover {
   text-transform: uppercase;
   font-weight: bold;
 }

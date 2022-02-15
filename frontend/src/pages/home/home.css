@@ -2,4 +2,15 @@
   margin: 0;
   font-family: "Poppins", sans-serif;
 }
+
+.home {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 100vh;
+}
 /*# sourceMappingURL=home.css.map */
