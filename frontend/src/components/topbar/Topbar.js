@@ -1,17 +1,17 @@
 import "../topbar/topbar.css";
 import { faSignOutAlt, faUserEdit } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 export default function Topbar() {
   let navigate = useNavigate();
   let { id } = useParams();
-  const Navigatehere = () => {
+  /* const Navigatehere = () => {
     console.log(`/profile/{$id}`);
     navigate(`/profile/5`);
-  };
+  }; */
   const [firstname, setFirstname] = useState("");
   const [image, setImage] = useState("");
   useEffect(() => {
@@ -50,20 +50,28 @@ export default function Topbar() {
           <div className="topbarRight__profile--name">{firstname}</div>
         </div>
         <div className="topbarRight__links">
-          <Link to="/profile/2">
+          <a
+            onClick={() => {
+              navigate("/profile/{$id}");
+            }}
+          >
             <FontAwesomeIcon
               icon={faUserEdit}
               className="topbarRight__links__icons--edit"
             />
             Modifier
-          </Link>
-          <Link to="/login">
+          </a>
+          <a
+            onClick={() => {
+              navigate("/login");
+            }}
+          >
             <FontAwesomeIcon
               icon={faSignOutAlt}
               className="topbarRight__links__icons--logout"
             />
             Déconnexion
-          </Link>
+          </a>
         </div>
       </div>
     </div>

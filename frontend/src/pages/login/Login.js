@@ -15,7 +15,9 @@ export default function Login() {
   const login = (e) => {
     e.preventDefault();
     loginCall({ email: email, password: password }, dispatch);
+    navigate("/home/{$id}");
   };
+
   return (
     <div className="login">
       <Header />
