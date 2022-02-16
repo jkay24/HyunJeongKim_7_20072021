@@ -30,12 +30,12 @@
     > .shareBottom {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-end;
       margin: 0 20px 0 20px;
       > .shareBottom__upload {
         display: flex;
         align-items: center;
-        margin-left: 45%;
+        margin-right: 1rem;
         cursor: pointer;
         > .shareBottom__upload__icon {
           margin-right: 10px;
