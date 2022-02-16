@@ -34,7 +34,10 @@ export default function Share() {
       <div className="shareWrapper">
         <div className="shareTop">
           <img
-            src={image || require("../../assets/profiles/default-avatar.png")}
+            src={
+              image ||
+              require("http://localhost:3000/images/default-avatar.png")
+            }
             alt="photo de profil"
             className="shareTop__img"
           ></img>

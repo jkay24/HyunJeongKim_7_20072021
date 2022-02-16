@@ -55,7 +55,10 @@ export default function Post() {
           {/* <Link to={"/profile/:id"}> */}
           <img
             className="postTop__img"
-            src={image || require("../../assets/profiles/default-avatar.png")}
+            src={
+              image ||
+              require("http://localhost:3000/images/default-avatar.png")
+            }
             alt=""
           ></img>
           {/*  </Link> */}

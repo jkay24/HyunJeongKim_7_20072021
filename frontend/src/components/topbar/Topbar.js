@@ -46,7 +46,10 @@ export default function Topbar() {
       <div className="topbarRight">
         <div className="topbarRight__profile">
           <img
-            src={image || require("../../assets/profiles/default-avatar.png")}
+            src={
+              image ||
+              require("http://localhost:3000/images/default-avatar.png")
+            }
             alt="photo de profil"
             className="topbarRight__profile--img"
           ></img>

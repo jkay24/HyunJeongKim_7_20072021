@@ -61,7 +61,10 @@ export default function Profile() {
         <div className="profileTop">
           <img
             className="profileTop__img"
-            src={image || require("../../assets/profiles/default-avatar.png")}
+            src={
+              image ||
+              require("http://localhost:3000/images/default-avatar.png")
+            }
             alt="profile pic"
           ></img>
           <FontAwesomeIcon
