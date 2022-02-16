@@ -7,8 +7,8 @@ $md: 822px;
 $lg: 992px;
 
 @mixin hover {
-  text-transform: uppercase;
   font-weight: bold;
+  text-transform: uppercase;
 }
 
 @mixin flexCenter {
@@ -27,7 +27,7 @@ $lg: 992px;
   font-size: 16px;
   color: $tertiary-color;
   @media (max-width: $sm) {
-    font-size: 95%;
+    font-size: 90%;
   }
 }
 

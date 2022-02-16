@@ -109,6 +109,12 @@
   margin: 1rem 0 1rem 0;
 }
 
+@media (max-width: 600px) {
+  .profile > .profileWrapper > .profileBottom {
+    width: 100%;
+  }
+}
+
 .profile > .profileWrapper > .profileBottom .profileBottom__info {
   padding: 0rem 1rem 0 1rem;
 }
@@ -130,7 +136,7 @@
 
 @media (max-width: 600px) {
   .profile > .profileWrapper > .profileBottom .profileBottom__info > label > input {
-    width: 60%;
+    width: 65%;
   }
 }
 
@@ -155,7 +161,7 @@
 
 @media (max-width: 600px) {
   .profile > .profileWrapper > .profileButtons > button {
-    font-size: 95%;
+    font-size: 90%;
   }
 }
 
@@ -166,7 +172,7 @@
 }
 
 .profile > .profileWrapper > .profileButtons > button:hover {
-  text-transform: uppercase;
   font-weight: bold;
+  text-transform: uppercase;
 }
 /*# sourceMappingURL=profile.css.map */

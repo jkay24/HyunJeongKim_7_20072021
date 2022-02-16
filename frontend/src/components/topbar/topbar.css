@@ -53,9 +53,7 @@
 
 .topbarContainer > .topbarRight:hover .topbarRight__links {
   display: block;
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
+  width: 13rem;
   background-color: #2b3137;
   border-radius: 7px;
   padding: 0 1rem 0 1rem;
@@ -123,7 +121,7 @@
 }
 
 .topbarContainer > .topbarRight > .topbarRight__links > a:hover {
-  text-transform: uppercase;
   font-weight: bold;
+  text-transform: uppercase;
 }
 /*# sourceMappingURL=topbar.css.map */

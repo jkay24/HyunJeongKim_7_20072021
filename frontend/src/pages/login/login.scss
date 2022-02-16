@@ -10,6 +10,9 @@
     }
     > .loginTop {
       width: 85%;
+      @media (max-width: $sm) {
+        width: 95%;
+      }
       .loginTop__info {
         > label {
           display: flex;
@@ -27,7 +30,7 @@
     }
     > .loginBottom {
       padding: 1rem;
-      width: 55%;
+      width: 60%;
       text-align: center;
       > .loginBottom__prompt {
         font-style: italic;

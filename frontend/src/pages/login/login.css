@@ -74,6 +74,12 @@
   width: 85%;
 }
 
+@media (max-width: 600px) {
+  .login > .loginWrapper > .loginTop {
+    width: 95%;
+  }
+}
+
 .login > .loginWrapper > .loginTop .loginTop__info > label {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -97,7 +103,7 @@
 
 .login > .loginWrapper > .loginBottom {
   padding: 1rem;
-  width: 55%;
+  width: 60%;
   text-align: center;
 }
 
@@ -122,12 +128,12 @@
 
 @media (max-width: 600px) {
   .login > .loginWrapper > .loginBottom > button {
-    font-size: 95%;
+    font-size: 90%;
   }
 }
 
 .login > .loginWrapper > .loginBottom > button:hover {
-  text-transform: uppercase;
   font-weight: bold;
+  text-transform: uppercase;
 }
 /*# sourceMappingURL=login.css.map */

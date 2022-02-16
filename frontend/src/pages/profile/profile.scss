@@ -20,8 +20,6 @@
           width: 80px;
           height: 80px;
         }
-        @media (min-width: $lg) {
-        }
       }
       > .profileTop__icon {
         color: $quaternary-color;
@@ -33,6 +31,9 @@
     > .profileBottom {
       width: 85%;
       margin: 1rem 0 1rem 0;
+      @media (max-width: $sm) {
+        width: 100%;
+      }
       .profileBottom__info {
         padding: 0rem 1rem 0 1rem;
         > label {
@@ -43,7 +44,7 @@
             width: 70%;
             font-size: 15px;
             @media (max-width: $sm) {
-              width: 60%;
+              width: 65%;
             }
           }
         }
