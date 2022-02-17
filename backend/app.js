@@ -6,6 +6,10 @@ const cors = require("cors");
 
 dotenv.config();
 
+if (process.getgid) {
+  console.log("Current gid: " + process.pid);
+}
+
 //Cors
 
 const app = express();

@@ -3,15 +3,18 @@ const bcrypt = require("bcrypt");
 
 exports.getOneUser = async (req, res) => {
   try {
+    console.log("Request received ");
+    console.log(req);
     const id = req.params.id;
     await Users.findByPk(id, {
-      attributes: ["firstname", "lastname", "email", "image", "isAdmin"],
+      attributes: ["firstname", "lastname", "email", "profilePic", "admin"],
     }).then((user) => {
       if (!user) {
         res.status(404).json({ error: "User ID " + id + " not found." });
       } else res.status(200).json(user);
     });
   } catch (error) {
+    console.log(error);
     res.status(500).send({ error: error });
   }
 };
@@ -27,7 +30,7 @@ exports.modifyUser = async (req, res) => {
     await Users.update({ ...req.body, image: image }, { where: { id: id } });
     res.status(201).json({ message: "User ID " + id + " updated." });
   } catch (error) {
-    res.status(500).send({ error: "An error has occurred. " + error });
+    res.status(500).send({ error: "An error has occurred" + error });
   }
 };
 

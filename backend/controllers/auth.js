@@ -90,7 +90,7 @@ exports.login = async (req, res) => {
         bcrypt.compare(password, user.password).then((match) => {
           if (match) {
             res.status(200).json({
-              userId: user.id,
+              id: user.id,
               token: jwt.sign(
                 { id: user.id },
                 process.env.ACCESS_TOKEN_SECRET,

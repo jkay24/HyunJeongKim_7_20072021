@@ -36,7 +36,7 @@ export default function Share() {
         <div className="shareTop">
           <img
             //@Fix src with user profilePic later
-            src={require("http://localhost:3000/images/default-avatar.png")}
+            src={"http://localhost:3000/images/default-avatar.png"}
             alt="photo de profil"
             className="shareTop__img"
           ></img>

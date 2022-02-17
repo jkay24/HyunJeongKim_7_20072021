@@ -8,13 +8,8 @@ import { AuthContext } from "../../context/AuthContext";
 
 export default function Topbar() {
   const { user } = useContext(AuthContext);
-
   let navigate = useNavigate();
   let { id } = useParams();
-  /* const Navigatehere = () => {
-    console.log(`/profile/{$id}`);
-    navigate(`/profile/5`);
-  }; */
   const [firstname, setFirstname] = useState("");
   const [image, setImage] = useState("");
   useEffect(() => {
@@ -22,7 +17,8 @@ export default function Topbar() {
       navigate("/login");
     } else {
       const fetchUserProfile = async () => {
-        const res = await axios.get("http://localhost:3000/api/user/${id}", {
+        console.log({ id });
+        const res = await axios.get(`http://localhost:3000/api/user/${id}`, {
           headers: {
             JWToken: sessionStorage.getItem("JWToken"),
           },
@@ -31,7 +27,7 @@ export default function Topbar() {
       };
       fetchUserProfile().then((res) => {
         setFirstname(res.data.firstname);
-        setImage(res.data.image);
+        setImage(res.data.profilePic);
       });
     }
   }, []);
@@ -46,10 +42,7 @@ export default function Topbar() {
       <div className="topbarRight">
         <div className="topbarRight__profile">
           <img
-            src={
-              image ||
-              require("http://localhost:3000/images/default-avatar.png")
-            }
+            src={image || "http://localhost:3000/images/default-avatar.png"}
             alt="photo de profil"
             className="topbarRight__profile--img"
           ></img>
@@ -58,7 +51,7 @@ export default function Topbar() {
         <div className="topbarRight__links">
           <a
             onClick={() => {
-              navigate("/profile/{$id}");
+              navigate(`/profile/${id}`);
             }}
           >
             <FontAwesomeIcon

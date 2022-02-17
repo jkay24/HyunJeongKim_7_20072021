@@ -40,10 +40,7 @@ export default function Post() {
         <div className="postTop">
           <img
             className="postTop__img"
-            src={
-              image ||
-              require("http://localhost:3000/images/default-avatar.png")
-            }
+            src={image || "http://localhost:3000/images/default-avatar.png"}
             alt=""
           ></img>
           <span className="postTop__user">User</span>

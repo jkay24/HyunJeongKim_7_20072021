@@ -7,7 +7,6 @@ import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
 
 export default function Login() {
-  let { id } = useParams();
   let navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPw] = useState("");
@@ -23,7 +22,8 @@ export default function Login() {
           console.log(response.data.error);
         } else {
           sessionStorage.setItem("JWToken", response.data.token);
-          navigate("/home/${id}");
+          let id = response.data.id;
+          navigate(`/home/` + id);
         }
       })
       .catch((error) => {

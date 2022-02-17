@@ -7,18 +7,18 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function Profile() {
+  let { id } = useParams();
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
   const [image, setImage] = useState("");
   let navigate = useNavigate();
-  let { id } = useParams();
   useEffect(() => {
     if (!sessionStorage.getItem("JWToken")) {
       navigate("/login");
     } else {
       const fetchUserProfile = async () => {
-        const res = await axios.get("http://localhost:3000/api/user/${id}", {
+        const res = await axios.get(`http://localhost:3000/api/user/${id}`, {
           headers: {
             JWToken: sessionStorage.getItem("JWToken"),
           },
@@ -29,7 +29,7 @@ export default function Profile() {
         setFirstname(res.data.firstname);
         setLastname(res.data.lastname);
         setEmail(res.data.email);
-        setImage(res.data.image);
+        setImage(res.data.profilePic);
       });
     }
   }, []);
@@ -39,7 +39,7 @@ export default function Profile() {
     const data = new FormData();
     data.append("image", image);
     axios
-      .put("http://localhost:3000/api/user/update/${id}", data, {
+      .put(`http://localhost:3000/api/user/update/`, data, {
         headers: {
           JWToken: sessionStorage.getItem("JWToken"),
         },
@@ -48,8 +48,8 @@ export default function Profile() {
         if (res.data.error) {
           console.log(res.data.error);
         } else {
-          setImage({ ...image, image: data });
-          window.location.replace(`/user/${id}`);
+          /*   setImage({ ...image, image: data });
+          window.location.replace(`/user/${id}`); */
         }
       });
   };
@@ -61,10 +61,7 @@ export default function Profile() {
         <div className="profileTop">
           <img
             className="profileTop__img"
-            src={
-              image ||
-              require("http://localhost:3000/images/default-avatar.png")
-            }
+            src={image || "http://localhost:3000/images/default-avatar.png"}
             alt="profile pic"
           ></img>
           <FontAwesomeIcon
