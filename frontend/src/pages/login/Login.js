@@ -14,8 +14,21 @@ export default function Login() {
   const { user, isFetching, error, dispatch } = useContext(AuthContext);
   const login = (e) => {
     e.preventDefault();
-    loginCall({ email: email, password: password }, dispatch);
-    navigate("/home/{$id}");
+    const data = { email: email, password: password };
+    axios
+      .post("http://localhost:3000/api/auth/login", data)
+      .then((response) => {
+        console.log(response);
+        if (response.data.error) {
+          console.log(response.data.error);
+        } else {
+          sessionStorage.setItem("JWToken", response.data.token);
+          navigate("/home/${id}");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
   return (
     <div className="login">

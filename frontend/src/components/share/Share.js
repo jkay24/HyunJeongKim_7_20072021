@@ -2,62 +2,85 @@ import "./share.css";
 import { faPhotoVideo } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useParams, useNavigate } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext, useRef } from "react";
 import axios from "axios";
+import { AuthContext } from "../../context/AuthContext";
 
 export default function Share() {
-  let navigate = useNavigate();
-  const [firstname, setFirstname] = useState("");
-  const [image, setImage] = useState("");
+  const { user } = useContext(AuthContext);
   let { id } = useParams();
-  useEffect(() => {
-    if (!sessionStorage.getItem("JWToken")) {
-      navigate("/login");
-    } else {
-      const fetchUserProfile = async () => {
-        const res = await axios.get("http://localhost:3000/api/user/${id}", {
-          headers: {
-            JWToken: sessionStorage.getItem("JWToken"),
-          },
-        });
-        console.log(res);
-      };
-      fetchUserProfile().then((res) => {
-        setFirstname(res.data.firstname);
-        setImage(res.data.image);
+  const [content, setContent] = useState("");
+  const [file, setFile] = useState(null);
+  const description = useRef();
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    const data = new FormData();
+    data.append("content", content);
+    data.append("file", file);
+    axios
+      .post("http://localhost:3000/api/post", data, {
+        headers: {
+          JWToken: sessionStorage.getItem("JWToken"),
+        },
+      })
+      .then(() => {
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.log(error);
       });
-    }
-  }, []);
-
+  };
   return (
     <div className="share">
       <div className="shareWrapper">
         <div className="shareTop">
           <img
-            src={
-              image ||
-              require("http://localhost:3000/images/default-avatar.png")
-            }
+            //@Fix src with user profilePic later
+            src={require("http://localhost:3000/images/default-avatar.png")}
             alt="photo de profil"
             className="shareTop__img"
           ></img>
           <input
+            name="content"
+            id="content"
             type="text"
             className="shareTop__input"
             placeholder="Quoi de neuf ?"
+            aria-label="quoi de neuf"
+            onChange={(e) => setContent(e.target.value)}
           ></input>
         </div>
         <hr className="shareHr" />
-        <div className="shareBottom">
-          <div className="shareBottom__upload">
+        {file && (
+          <div className="shareImgContainer">
+            <img className="shareImg" src={URL.createObjectURL(file)} alt="" />
+            <span className="shareCancelImg" onClick={() => setFile(null)} />
+          </div>
+        )}
+        <form className="shareBottom" onSubmit={submitHandler}>
+          <label htmlFor="file" className="shareBottom__upload">
             <FontAwesomeIcon
               icon={faPhotoVideo}
               className="shareBottom__upload__icon"
             />
             Photo/video
-          </div>
-          <button className="shareBottom__submit">Publier</button>
-        </div>
+            <input
+              style={{ display: "none" }}
+              type="file"
+              id="file"
+              name="file"
+              accept=".jpeg, .jpg, .png, .gif, .webp"
+              onChange={(e) => setFile(e.target.files[0])}
+            />
+          </label>
+          <button
+            className="shareBottom__submit"
+            type="submit"
+            aria-label="valider"
+          >
+            Publier
+          </button>
+        </form>
       </div>
     </div>
   );

@@ -1,50 +1,36 @@
 import "../post/post.css";
 import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { useNavigate, useParams, Link } from "react-router-dom";
-import { format } from "timeago.js";
+import { AuthContext } from "../../context/AuthContext";
 
 export default function Post() {
-  let navigate = useNavigate();
-  const [posts, setPosts] = useState([]);
-  const [firstname, setFirstname] = useState("");
-  const [image, setImage] = useState("");
+  const { user } = useContext(AuthContext);
   let { id } = useParams();
-  useEffect(() => {
-    if (!sessionStorage.getItem("JWToken")) {
-      navigate("/login");
-    } else {
-      const fetchUserProfile = async () => {
-        const res = await axios.get("http://localhost:3000/api/user/${id}", {
-          headers: {
-            JWToken: sessionStorage.getItem("JWToken"),
-          },
-        });
-        console.log(res);
-      };
-      fetchUserProfile().then((res) => {
-        setFirstname(res.data.firstname);
-        setImage(res.data.image);
-      });
-    }
-  }, []);
-
+  let navigate = useNavigate();
+  const [posts, setPost] = useState("");
+  const [content, setContent] = useState("");
+  const [image, setImage] = useState();
   useEffect(() => {
     if (!sessionStorage.getItem("JWToken")) {
       navigate("/");
     } else {
       const fetchPosts = async () => {
-        const res = await axios.get("http://localhost:3000/api/post", {
+        const res = await axios.get("http://localhost:3000/api/post/${id}", {
           headers: {
             JWToken: sessionStorage.getItem("JWToken"),
           },
         });
-        setPosts(res.data);
+        setPost(
+          res.data.sort((p1, p2) => {
+            return new Date(p2.createdAt) - new Date(p1.createdAt);
+          })
+        );
       };
       fetchPosts().then((res) => {
-        setPosts(res.data.post);
+        setPost(res.data.post);
       });
     }
   }, []);
@@ -52,7 +38,6 @@ export default function Post() {
     <div className="post">
       <div className="postWrapper">
         <div className="postTop">
-          {/* <Link to={"/profile/:id"}> */}
           <img
             className="postTop__img"
             src={
@@ -61,19 +46,13 @@ export default function Post() {
             }
             alt=""
           ></img>
-          {/*  </Link> */}
-          <span className="postTop__user">{firstname}</span>
-          <span className="postTop__postDate">il y a 5 mins</span>
+          <span className="postTop__user">User</span>
+          <span className="postTop__postDate"></span>
         </div>
-        {posts.map((p) => (
-          <>
-            <Post key={p.id} post={p} />
-            <div className="postCenter">
-              <span className="postCenter__text">{p}</span>
-              <img className="postCenter__img" src={p} alt="" />
-            </div>
-          </>
-        ))}
+        <div className="postCenter">
+          <span className="postCenter__text"></span>
+          <img className="postCenter__img" src="" alt="" />
+        </div>
         <div className="postBottom">
           <div className="postBottom__like">
             <FontAwesomeIcon

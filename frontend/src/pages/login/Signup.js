@@ -1,7 +1,7 @@
 import "../login/login.css";
 import Header from "../../components/header/Header";
 import React, { useState } from "react";
-import Axios from "axios";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 export default function Signup() {
@@ -11,12 +11,13 @@ export default function Signup() {
   const [emailReg, setEmailReg] = useState("");
   const [pwReg, setPwReg] = useState("");
   const signup = () => {
-    Axios.post("http://localhost:3000/api/auth/signup", {
-      firstname: firstnameReg,
-      lastname: lastnameReg,
-      email: emailReg,
-      password: pwReg,
-    })
+    axios
+      .post("http://localhost:3000/api/auth/signup", {
+        firstname: firstnameReg,
+        lastname: lastnameReg,
+        email: emailReg,
+        password: pwReg,
+      })
       .then((response) => {
         console.log(response);
       })
