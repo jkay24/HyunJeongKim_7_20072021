@@ -7,7 +7,7 @@ import { useNavigate, useParams, Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 
 export default function Post() {
-  let { id } = useParams();
+  const id = JSON.parse(localStorage.getItem("user")).id;
   let navigate = useNavigate();
   const [user, setUser] = useState({});
   const [posts, setPost] = useState("");
@@ -39,11 +39,8 @@ export default function Post() {
             JWToken: sessionStorage.getItem("JWToken"),
           },
         });
-        setPost(
-          res.data.sort((p1, p2) => {
-            return new Date(p2.createdAt) - new Date(p1.createdAt);
-          })
-        );
+
+        setPost(res.data);
       };
       fetchPosts().then((res) => {
         setPost(res.data.post);
@@ -63,7 +60,11 @@ export default function Post() {
           <span className="postTop__postDate"></span>
         </div>
         <div className="postCenter">
-          <span className="postCenter__text"></span>
+          <span className="postCenter__text">
+            {/* {posts.map((p) => (
+              <Post key={p._id} post={p} />
+            ))} */}
+          </span>
           {/* <img className="postCenter__img" src="" alt="" /> */}
           {file && (
             <div className="postCenter__img">

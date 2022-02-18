@@ -92,7 +92,14 @@ exports.login = async (req, res) => {
             res.status(200).json({
               id: user.id,
               token: jwt.sign(
-                { id: user.id },
+                {
+                  id: user.id,
+                  firstname: user.firstname,
+                  lastname: user.lastname,
+                  email: user.email,
+                  profilePic: user.profilePic,
+                  admin: user.admin,
+                },
                 process.env.ACCESS_TOKEN_SECRET,
                 {
                   expiresIn: "24h",
