@@ -7,7 +7,8 @@ import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 
 export default function Topbar() {
-  const { user } = useContext(AuthContext);
+  const [user, setUser] = useState({});
+  const userId = useParams().id;
   let navigate = useNavigate();
   let { id } = useParams();
   const [firstname, setFirstname] = useState("");
@@ -23,14 +24,12 @@ export default function Topbar() {
             JWToken: sessionStorage.getItem("JWToken"),
           },
         });
-        console.log(res);
+
+        setUser(res.data);
       };
-      fetchUserProfile().then((res) => {
-        setFirstname(res.data.firstname);
-        setImage(res.data.profilePic);
-      });
+      fetchUserProfile();
     }
-  }, []);
+  }, [userId]);
   return (
     <div className="topbarContainer">
       <div className="topbar__logo">
@@ -42,11 +41,14 @@ export default function Topbar() {
       <div className="topbarRight">
         <div className="topbarRight__profile">
           <img
-            src={image || "http://localhost:3000/images/default-avatar.png"}
+            src={
+              user.profilePic ||
+              "http://localhost:3000/images/default-avatar.png"
+            }
             alt="photo de profil"
             className="topbarRight__profile--img"
           ></img>
-          <div className="topbarRight__profile--name">{firstname}</div>
+          <div className="topbarRight__profile--name">{user.firstname}</div>
         </div>
         <div className="topbarRight__links">
           <a

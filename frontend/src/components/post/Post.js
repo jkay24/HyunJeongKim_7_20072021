@@ -12,6 +12,7 @@ export default function Post() {
   let navigate = useNavigate();
   const [posts, setPost] = useState("");
   const [content, setContent] = useState("");
+  const [file, setFile] = useState(null);
   const [image, setImage] = useState();
   useEffect(() => {
     if (!sessionStorage.getItem("JWToken")) {
@@ -43,12 +44,21 @@ export default function Post() {
             src={image || "http://localhost:3000/images/default-avatar.png"}
             alt=""
           ></img>
-          <span className="postTop__user">User</span>
+          <span className="postTop__user">Display user name</span>
           <span className="postTop__postDate"></span>
         </div>
         <div className="postCenter">
           <span className="postCenter__text"></span>
-          <img className="postCenter__img" src="" alt="" />
+          {/* <img className="postCenter__img" src="" alt="" /> */}
+          {file && (
+            <div className="postCenter__img">
+              <img src={URL.createObjectURL(file)} alt="" />
+              <span
+                className="postCenter__Cancelimg"
+                onClick={() => setFile(null)}
+              />
+            </div>
+          )}
         </div>
         <div className="postBottom">
           <div className="postBottom__like">

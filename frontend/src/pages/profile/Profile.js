@@ -8,10 +8,9 @@ import axios from "axios";
 
 export default function Profile() {
   let { id } = useParams();
-  const [firstname, setFirstname] = useState("");
-  const [lastname, setLastname] = useState("");
-  const [email, setEmail] = useState("");
+  const [user, setUser] = useState({});
   const [image, setImage] = useState("");
+  const userId = useParams().id;
   let navigate = useNavigate();
   useEffect(() => {
     if (!sessionStorage.getItem("JWToken")) {
@@ -23,23 +22,17 @@ export default function Profile() {
             JWToken: sessionStorage.getItem("JWToken"),
           },
         });
-        console.log(res);
+        setUser(res.data);
       };
-      fetchUserProfile().then((res) => {
-        setFirstname(res.data.firstname);
-        setLastname(res.data.lastname);
-        setEmail(res.data.email);
-        setImage(res.data.profilePic);
-      });
+      fetchUserProfile();
     }
-  }, []);
-
+  }, [userId]);
   const handleUpload = (e) => {
     e.preventDefault();
     const data = new FormData();
     data.append("image", image);
     axios
-      .put(`http://localhost:3000/api/user/update/`, data, {
+      .put(`http://localhost:3000/api/user/update/${id}`, data, {
         headers: {
           JWToken: sessionStorage.getItem("JWToken"),
         },
@@ -48,8 +41,8 @@ export default function Profile() {
         if (res.data.error) {
           console.log(res.data.error);
         } else {
-          /*   setImage({ ...image, image: data });
-          window.location.replace(`/user/${id}`); */
+          setImage({ ...image, image: data });
+          window.location.replace(`/profile/${id}`);
         }
       });
   };
@@ -58,18 +51,30 @@ export default function Profile() {
     <div className="profile">
       <Header />
       <div className="profileWrapper">
-        <div className="profileTop">
+        <form className="profileTop">
           <img
             className="profileTop__img"
-            src={image || "http://localhost:3000/images/default-avatar.png"}
+            src={
+              user.profilePic ||
+              "http://localhost:3000/images/default-avatar.png"
+            }
             alt="profile pic"
           ></img>
+          <input
+            style={{ display: "none" }}
+            type="file"
+            id="image"
+            name="image"
+            accept=".jpeg, .jpg, .png, .gif, .webp"
+            onChange={(e) => setImage(e.target.files[0])}
+            aria-label="modifier votre image"
+          />
           <FontAwesomeIcon
             icon={faImage}
             className="profileTop__icon"
             onClick={handleUpload}
           />
-        </div>
+        </form>
         <div className="profileBottom">
           <form className="profileBottom__info">
             <label className="profileBottom__info--firstName">
@@ -77,15 +82,20 @@ export default function Profile() {
               <input
                 type="text"
                 name="firstName"
-                placeholder={firstname}
+                placeholder={user.firstname}
               ></input>
             </label>
             <label className="profileBottom__info--lastName">
               Nom{" "}
-              <input type="text" name="lastName" placeholder={lastname}></input>
+              <input
+                type="text"
+                name="lastName"
+                placeholder={user.lastname}
+              ></input>
             </label>
             <label className="profileBottom__info--email">
-              Email <input type="text" name="email" placeholder={email}></input>
+              Email{" "}
+              <input type="text" name="email" placeholder={user.email}></input>
             </label>
           </form>
         </div>

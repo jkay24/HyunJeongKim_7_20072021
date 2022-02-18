@@ -14,7 +14,6 @@ exports.getOneUser = async (req, res) => {
       } else res.status(200).json(user);
     });
   } catch (error) {
-    console.log(error);
     res.status(500).send({ error: error });
   }
 };
@@ -22,12 +21,16 @@ exports.getOneUser = async (req, res) => {
 exports.modifyUser = async (req, res) => {
   try {
     const id = req.params.id;
-    const { oldPassword, newPassword } = req.body;
     let image;
     if (req.file) {
-      image = `${req.protocol}://${req.get("host")}/image/${req.file.filename}`;
+      image = `${req.protocol}://${req.get("host")}/images/${
+        req.file.filename
+      }`;
     }
-    await Users.update({ ...req.body, image: image }, { where: { id: id } });
+    await Users.update(
+      { ...req.body, profilePic: image },
+      { where: { id: id } }
+    );
     res.status(201).json({ message: "User ID " + id + " updated." });
   } catch (error) {
     res.status(500).send({ error: "An error has occurred" + error });
