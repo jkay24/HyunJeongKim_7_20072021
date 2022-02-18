@@ -8,26 +8,23 @@ import { AuthContext } from "../../context/AuthContext";
 
 export default function Topbar() {
   const [user, setUser] = useState({});
-  const userId = useParams().id;
+  const id = JSON.parse(localStorage.getItem("user")).id;
   let navigate = useNavigate();
-  let { id } = useParams();
   useEffect(() => {
     if (!sessionStorage.getItem("JWToken")) {
       navigate("/login");
     } else {
       const fetchUserProfile = async () => {
-        console.log({ id });
-        const res = await axios.get(`http://localhost:3000/api/user/${id}`, {
+        const res = await axios.get(`http://localhost:3000/api/user/` + id, {
           headers: {
             JWToken: sessionStorage.getItem("JWToken"),
           },
         });
-
         setUser(res.data);
       };
       fetchUserProfile();
     }
-  }, [userId]);
+  }, [id]);
   return (
     <div className="topbarContainer">
       <div className="topbar__logo">
@@ -40,8 +37,9 @@ export default function Topbar() {
         <div className="topbarRight__profile">
           <img
             src={
-              user.profilePic ||
-              "http://localhost:3000/images/default-avatar.png"
+              user.profilePic
+                ? user.profilePic
+                : "http://localhost:3000/images/default-avatar.png"
             }
             alt="photo de profil"
             className="topbarRight__profile--img"
@@ -51,7 +49,7 @@ export default function Topbar() {
         <div className="topbarRight__links">
           <a
             onClick={() => {
-              navigate(`/profile/${id}`);
+              navigate(`/profile/` + id);
             }}
           >
             <FontAwesomeIcon
@@ -62,7 +60,7 @@ export default function Topbar() {
           </a>
           <a
             onClick={() => {
-              navigate("/login");
+              navigate(`/login`);
             }}
           >
             <FontAwesomeIcon

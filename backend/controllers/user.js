@@ -3,8 +3,6 @@ const bcrypt = require("bcrypt");
 
 exports.getOneUser = async (req, res) => {
   try {
-    console.log("Request received ");
-    console.log(req);
     const id = req.params.id;
     await Users.findByPk(id, {
       attributes: ["firstname", "lastname", "email", "profilePic", "admin"],

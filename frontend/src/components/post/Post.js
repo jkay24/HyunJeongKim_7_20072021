@@ -7,19 +7,34 @@ import { useNavigate, useParams, Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 
 export default function Post() {
-  const { user } = useContext(AuthContext);
   let { id } = useParams();
   let navigate = useNavigate();
+  const [user, setUser] = useState({});
   const [posts, setPost] = useState("");
   const [content, setContent] = useState("");
   const [file, setFile] = useState(null);
   const [image, setImage] = useState();
   useEffect(() => {
     if (!sessionStorage.getItem("JWToken")) {
+      navigate("/login");
+    } else {
+      const fetchUserProfile = async () => {
+        const res = await axios.get(`http://localhost:3000/api/user/` + id, {
+          headers: {
+            JWToken: sessionStorage.getItem("JWToken"),
+          },
+        });
+        setUser(res.data);
+      };
+      fetchUserProfile();
+    }
+  }, [id]);
+  useEffect(() => {
+    if (!sessionStorage.getItem("JWToken")) {
       navigate("/");
     } else {
       const fetchPosts = async () => {
-        const res = await axios.get("http://localhost:3000/api/post/${id}", {
+        const res = await axios.get(`http://localhost:3000/api/post/`, {
           headers: {
             JWToken: sessionStorage.getItem("JWToken"),
           },
@@ -44,7 +59,7 @@ export default function Post() {
             src={image || "http://localhost:3000/images/default-avatar.png"}
             alt=""
           ></img>
-          <span className="postTop__user">Display user name</span>
+          <span className="postTop__user">{user.firstname}</span>
           <span className="postTop__postDate"></span>
         </div>
         <div className="postCenter">
