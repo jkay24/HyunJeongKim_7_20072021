@@ -3,7 +3,7 @@ import {
   BrowserRouter as Router,
   Route,
   Routes,
-  useParams,
+  Navigate,
 } from "react-router-dom";
 import Signup from "./pages/login/Signup";
 import Login from "./pages/login/Login";
@@ -14,15 +14,19 @@ import React, { useContext } from "react";
 
 function App() {
   const { user } = useContext(AuthContext);
-  const { id } = useParams();
   return (
     <div className="app">
       <Router>
         <Routes>
           <Route path="/" element={user ? <Home /> : <Signup />}></Route>
-          <Route path="/signup" element={user ? <Home /> : <Signup />} />
-          <Route path="/login" element={user ? <Home /> : <Login />} />
-          <Route path="/home/:id" element={<Home />} />
+          <Route
+            path="/signup"
+            element={user ? <Navigate replace to="/" /> : <Signup />}
+          />
+          <Route
+            path="/login"
+            element={user ? <Navigate replace to="/" /> : <Login />}
+          />
           <Route path="/profile/:id" element={<Profile />} />
         </Routes>
       </Router>
