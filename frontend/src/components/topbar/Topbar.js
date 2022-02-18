@@ -11,8 +11,6 @@ export default function Topbar() {
   const userId = useParams().id;
   let navigate = useNavigate();
   let { id } = useParams();
-  const [firstname, setFirstname] = useState("");
-  const [image, setImage] = useState("");
   useEffect(() => {
     if (!sessionStorage.getItem("JWToken")) {
       navigate("/login");
