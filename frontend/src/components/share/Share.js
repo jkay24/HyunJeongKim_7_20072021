@@ -33,7 +33,7 @@ export default function Share() {
   return (
     <div className="share">
       <div className="shareWrapper">
-        <div className="shareTop">
+        <form className="shareTop" onSubmit={submitHandler}>
           <img
             //@Fix src with user profilePic later
             src={"http://localhost:3000/images/default-avatar.png"}
@@ -49,7 +49,7 @@ export default function Share() {
             aria-label="quoi de neuf"
             onChange={(e) => setContent(e.target.value)}
           ></input>
-        </div>
+        </form>
         <hr className="shareHr" />
         {file && (
           <div className="shareImgContainer">

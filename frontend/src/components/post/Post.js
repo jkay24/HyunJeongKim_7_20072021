@@ -10,6 +10,7 @@ export default function Post() {
   const id = JSON.parse(localStorage.getItem("user")).id;
   let navigate = useNavigate();
   const [user, setUser] = useState({});
+  const [listOfPosts, setListOfPosts] = useState([]);
   const [posts, setPost] = useState("");
   const [content, setContent] = useState("");
   const [file, setFile] = useState(null);
@@ -39,12 +40,9 @@ export default function Post() {
             JWToken: sessionStorage.getItem("JWToken"),
           },
         });
-
-        setPost(res.data);
+        setListOfPosts();
       };
-      fetchPosts().then((res) => {
-        setPost(res.data.post);
-      });
+      fetchPosts();
     }
   }, []);
   return (
