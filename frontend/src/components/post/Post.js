@@ -7,29 +7,25 @@ import { useNavigate, useParams, Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 
 export default function Post() {
-  const id = JSON.parse(localStorage.getItem("user")).id;
   let navigate = useNavigate();
-  const [user, setUser] = useState({});
   const [listOfPosts, setListOfPosts] = useState([]);
-  const [posts, setPost] = useState("");
   const [content, setContent] = useState("");
   const [file, setFile] = useState(null);
   const [image, setImage] = useState();
+  const { user } = useContext(AuthContext);
+  let userId = JSON.parse(localStorage.getItem("user")).id;
+  const [profileData, setProfileData] = useState({});
   useEffect(() => {
-    if (!sessionStorage.getItem("JWToken")) {
-      navigate("/login");
-    } else {
-      const fetchUserProfile = async () => {
-        const res = await axios.get(`http://localhost:3000/api/user/` + id, {
-          headers: {
-            JWToken: sessionStorage.getItem("JWToken"),
-          },
-        });
-        setUser(res.data);
-      };
-      fetchUserProfile();
-    }
-  }, [id]);
+    const fetchUserProfile = async () => {
+      const res = await axios.get(`http://localhost:3000/api/user/${userId}`, {
+        headers: {
+          JWToken: user.token,
+        },
+      });
+      setProfileData(res.data);
+    };
+    fetchUserProfile();
+  }, [userId]);
   useEffect(() => {
     if (!sessionStorage.getItem("JWToken")) {
       navigate("/");
@@ -51,17 +47,20 @@ export default function Post() {
         <div className="postTop">
           <img
             className="postTop__img"
-            src={image || "http://localhost:3000/images/default-avatar.png"}
+            src={
+              profileData.profilePic ||
+              "http://localhost:3000/images/default-avatar.png"
+            }
             alt=""
           ></img>
-          <span className="postTop__user">{user.firstname}</span>
+          <span className="postTop__user">{profileData.firstname}</span>
           <span className="postTop__postDate"></span>
         </div>
         <div className="postCenter">
           <span className="postCenter__text">
-            {/* {posts.map((p) => (
+            {/*  {listOfPosts.map((p) => (
               <Post key={p._id} post={p} />
-            ))} */}
+            ))}  */}
           </span>
           {/* <img className="postCenter__img" src="" alt="" /> */}
           {file && (

@@ -1,30 +1,27 @@
 import "../topbar/topbar.css";
 import { faSignOutAlt, faUserEdit } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useParams, useNavigate } from "react-router-dom";
-import React, { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect, useContext, createContext } from "react";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 
 export default function Topbar() {
-  const [user, setUser] = useState({});
-  const id = JSON.parse(localStorage.getItem("user")).id;
-  let navigate = useNavigate();
+  const { user } = useContext(AuthContext);
+  let userId = JSON.parse(localStorage.getItem("user")).id;
+  const [profileData, setProfileData] = useState({});
   useEffect(() => {
-    if (!sessionStorage.getItem("JWToken")) {
-      navigate("/login");
-    } else {
-      const fetchUserProfile = async () => {
-        const res = await axios.get(`http://localhost:3000/api/user/` + id, {
-          headers: {
-            JWToken: sessionStorage.getItem("JWToken"),
-          },
-        });
-        setUser(res.data);
-      };
-      fetchUserProfile();
-    }
-  }, [id]);
+    const fetchUserProfile = async () => {
+      const res = await axios.get(`http://localhost:3000/api/user/${userId}`, {
+        headers: {
+          JWToken: user.token,
+        },
+      });
+      setProfileData(res.data);
+    };
+    fetchUserProfile();
+  }, [userId]);
+  let navigate = useNavigate();
   return (
     <div className="topbarContainer">
       <div className="topbar__logo">
@@ -37,19 +34,21 @@ export default function Topbar() {
         <div className="topbarRight__profile">
           <img
             src={
-              user.profilePic
-                ? user.profilePic
+              profileData.profilePic
+                ? profileData.profilePic
                 : "http://localhost:3000/images/default-avatar.png"
             }
             alt="photo de profil"
             className="topbarRight__profile--img"
           ></img>
-          <div className="topbarRight__profile--name">{user.firstname}</div>
+          <div className="topbarRight__profile--name">
+            {profileData.firstname}
+          </div>
         </div>
         <div className="topbarRight__links">
           <a
             onClick={() => {
-              navigate(`/profile/` + id);
+              navigate(`/profile/` + userId);
             }}
           >
             <FontAwesomeIcon

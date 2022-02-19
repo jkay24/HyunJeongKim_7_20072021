@@ -80,6 +80,7 @@ exports.signup = async (req, res) => {
 
 //LOGIN FUNCTION
 exports.login = async (req, res) => {
+  console.log("logging");
   const { email, password } = req.body;
   if (email == null || password == null) {
     return res.status(400).json({ error: "Login failed." });

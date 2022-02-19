@@ -7,11 +7,22 @@ import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 
 export default function Share() {
-  const { user } = useContext(AuthContext);
-  let { id } = useParams();
   const [content, setContent] = useState("");
   const [file, setFile] = useState(null);
-  const description = useRef();
+  const { user } = useContext(AuthContext);
+  let userId = JSON.parse(localStorage.getItem("user")).id;
+  const [profileData, setProfileData] = useState({});
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      const res = await axios.get(`http://localhost:3000/api/user/${userId}`, {
+        headers: {
+          JWToken: user.token,
+        },
+      });
+      setProfileData(res.data);
+    };
+    fetchUserProfile();
+  }, [userId]);
   const submitHandler = async (e) => {
     e.preventDefault();
     const data = new FormData();
@@ -20,7 +31,7 @@ export default function Share() {
     axios
       .post("http://localhost:3000/api/post", data, {
         headers: {
-          JWToken: sessionStorage.getItem("JWToken"),
+          JWToken: user.token,
         },
       })
       .then(() => {
@@ -35,8 +46,10 @@ export default function Share() {
       <div className="shareWrapper">
         <form className="shareTop" onSubmit={submitHandler}>
           <img
-            //@Fix src with user profilePic later
-            src={"http://localhost:3000/images/default-avatar.png"}
+            src={
+              profileData.profilePic ||
+              "http://localhost:3000/images/default-avatar.png"
+            }
             alt="photo de profil"
             className="shareTop__img"
           ></img>
@@ -45,7 +58,7 @@ export default function Share() {
             id="content"
             type="text"
             className="shareTop__input"
-            placeholder="Quoi de neuf ?"
+            placeholder={`Quoi de neuf, ${profileData.firstname}?`}
             aria-label="quoi de neuf"
             onChange={(e) => setContent(e.target.value)}
           ></input>
