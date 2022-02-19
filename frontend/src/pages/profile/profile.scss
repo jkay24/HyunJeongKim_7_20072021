@@ -4,21 +4,30 @@
   @include profileLogin;
   > .profileWrapper {
     @include wrapper;
+    > a {
+      position: relative;
+      left: 47%;
+      > .profileClose {
+        color: $quaternary-color;
+      }
+    }
     > .profileTop {
       display: flex;
       justify-content: flex-end;
-      > img {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        object-fit: cover;
-        @media (max-width: $sm) {
-          width: 60px;
-          height: 60px;
-        }
-        @media (min-width: $sm) and (max-width: $lg) {
-          width: 80px;
-          height: 80px;
+      > label {
+        > img {
+          width: 100px;
+          height: 100px;
+          border-radius: 50%;
+          object-fit: cover;
+          @media (max-width: $sm) {
+            width: 60px;
+            height: 60px;
+          }
+          @media (min-width: $sm) and (max-width: $lg) {
+            width: 80px;
+            height: 80px;
+          }
         }
       }
       > .profileTop__icon {

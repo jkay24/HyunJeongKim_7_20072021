@@ -29,12 +29,13 @@ export default function Share() {
     data.append("content", content);
     data.append("file", file);
     axios
-      .post("http://localhost:3000/api/post", data, {
+      .post(`http://localhost:3000/api/post`, data, {
         headers: {
           JWToken: user.token,
         },
       })
-      .then(() => {
+      .then((res) => {
+        setContent(res.data);
         window.location.reload();
       })
       .catch((error) => {

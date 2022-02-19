@@ -7,10 +7,11 @@ exports.createPost = async (req, res) => {
     res.status(400).json({ message: "Content is required." });
   } else {
     if (req.file) {
-      image = `${req.protocol}://${req.get("host")}/image/${req.file.filename}`;
+      image = `${req.protocol}://${req.get("host")}/images/${
+        req.file.filename
+      }`;
     }
     const post = req.body;
-    post.firstname = req.user.firstname;
     post.UserId = req.user.id;
     post.image = image;
     await Posts.create(post)

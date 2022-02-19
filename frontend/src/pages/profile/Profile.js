@@ -1,9 +1,9 @@
-import { faImage } from "@fortawesome/free-solid-svg-icons";
+import { faImage, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState, useContext } from "react";
 import "../profile/profile.css";
 import Header from "../../components/header/Header";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 
@@ -40,30 +40,38 @@ export default function Profile() {
           setImage(res.data);
           window.location.replace(`/profile/${userId}`);
         }
+      })
+      .catch((error) => {
+        console.log(error);
       });
   };
   return (
     <div className="profile">
       <Header />
       <div className="profileWrapper">
+        <Link to="/">
+          <FontAwesomeIcon icon={faTimes} className="profileClose" />
+        </Link>
         <form className="profileTop">
-          <img
-            className="profileTop__img"
-            src={
-              profileData.profilePic ||
-              "http://localhost:3000/images/default-avatar.png"
-            }
-            alt="profile pic"
-          ></img>
-
-          <input
-            type="file"
-            id="image"
-            name="image"
-            accept=".jpeg, .jpg, .png, .gif, .webp"
-            onChange={(e) => setImage(e.target.files[0])}
-            aria-label="modifier votre image"
-          />
+          <label htmlFor="image" className="profileTop__upload">
+            <input
+              style={{ display: "none" }}
+              type="file"
+              id="image"
+              name="image"
+              accept=".jpeg, .jpg, .png, .gif, .webp"
+              onChange={(e) => setImage(e.target.files[0])}
+              aria-label="modifier votre image"
+            />{" "}
+            <img
+              className="profileTop__img"
+              src={
+                profileData.profilePic ||
+                "http://localhost:3000/images/default-avatar.png"
+              }
+              alt="profile pic"
+            ></img>
+          </label>
           <FontAwesomeIcon
             icon={faImage}
             className="profileTop__icon"

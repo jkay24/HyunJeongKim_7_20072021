@@ -28,7 +28,7 @@
 
 @media (max-width: 780px) {
   .topbarContainer {
-    padding: 0;
+    padding: 0 2rem 0 2rem;
   }
 }
 
@@ -84,6 +84,7 @@
   -o-object-fit: cover;
      object-fit: cover;
   height: 60px;
+  width: 60px;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -92,6 +93,7 @@
 @media (max-width: 600px) {
   .topbarContainer > .topbarRight > .topbarRight__profile > img {
     height: 40px;
+    width: 40px;
   }
 }
 

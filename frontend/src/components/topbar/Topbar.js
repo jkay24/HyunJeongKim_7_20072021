@@ -1,5 +1,9 @@
 import "../topbar/topbar.css";
-import { faSignOutAlt, faUserEdit } from "@fortawesome/free-solid-svg-icons";
+import {
+  faSignOutAlt,
+  faUserEdit,
+  faWindowRestore,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect, useContext, createContext } from "react";
@@ -8,6 +12,7 @@ import { AuthContext } from "../../context/AuthContext";
 
 export default function Topbar() {
   const { user } = useContext(AuthContext);
+  let navigate = useNavigate();
   let userId = JSON.parse(localStorage.getItem("user")).id;
   const [profileData, setProfileData] = useState({});
   useEffect(() => {
@@ -21,7 +26,13 @@ export default function Topbar() {
     };
     fetchUserProfile();
   }, [userId]);
-  let navigate = useNavigate();
+
+  const logOut = (e) => {
+    localStorage.clear();
+    window.location.reload();
+    navigate(`/`);
+  };
+
   return (
     <div className="topbarContainer">
       <div className="topbar__logo">
@@ -57,7 +68,7 @@ export default function Topbar() {
           </a>
           <a
             onClick={() => {
-              navigate(`/login`);
+              logOut();
             }}
           >
             <FontAwesomeIcon
