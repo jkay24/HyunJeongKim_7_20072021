@@ -27,6 +27,7 @@ export default function Profile() {
     e.preventDefault();
     const data = new FormData();
     data.append("image", image);
+    console.log(data);
     axios
       .put(`http://localhost:3000/api/user/update/${userId}`, data, {
         headers: {

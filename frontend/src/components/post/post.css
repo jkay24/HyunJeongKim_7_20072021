@@ -11,6 +11,12 @@
   width: 100vw;
 }
 
+.title {
+  color: #fffaf0;
+  font-weight: 800;
+  margin: 3rem 0 1rem 0;
+}
+
 .post {
   border-radius: 10px;
   -webkit-box-shadow: 0 0 8px 3px #fd2d01;

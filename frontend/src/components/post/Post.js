@@ -42,50 +42,54 @@ export default function Post() {
     fetchPosts();
   }, []);
   return (
-    <div className="post">
-      {Object.values(listOfPosts).map((value, key) => {
-        return (
-          <div className="postWrapper" key={key}>
-            <div className="postTop">
-              <img
-                className="postTop__img"
-                src={
-                  profileData.profilePic ||
-                  "http://localhost:3000/images/default-avatar.png"
-                }
-                alt=""
-              ></img>
-              <span className="postTop__user">{value[key].firstname}</span>
-              <span className="postTop__postDate">
-                <TimeAgo date={value[key].createdAt} formatter={formatter} />
-              </span>
-            </div>
-            <div className="postCenter">
-              <span className="postCenter__text">{value[key].content}</span>
-              {value[key].image && (
-                <>
-                  <img
-                    className="postCenter__img"
-                    src={value[key].image}
-                    alt="illustration du post"
-                  />
-                </>
-              )}
-            </div>
-            <div className="postBottom">
-              <div className="postBottom__like">
-                <FontAwesomeIcon
-                  icon={faThumbsUp}
-                  className="postBottom__like--icon"
-                  // onClick={this.likeHandler}
-                />
-                <span className="postBottom__like--counter">2</span>
+    <>
+      <div className="title">Publications récentes</div>
+      <hr />
+      <div className="post">
+        {Object.values(listOfPosts).map((value, key) => {
+          return (
+            <div className="postWrapper" key={key}>
+              <div className="postTop">
+                <img
+                  className="postTop__img"
+                  src={
+                    value[key].profilePic ||
+                    "http://localhost:3000/images/default-avatar.png"
+                  }
+                  alt=""
+                ></img>
+                <span className="postTop__user">{value[key].firstname}</span>
+                <span className="postTop__postDate">
+                  <TimeAgo date={value[key].createdAt} formatter={formatter} />
+                </span>
               </div>
-              <span className="postBottom__noComments">0 commentaires</span>
+              <div className="postCenter">
+                <span className="postCenter__text">{value[key].content}</span>
+                {value[key].image && (
+                  <>
+                    <img
+                      className="postCenter__img"
+                      src={value[key].image}
+                      alt="illustration du post"
+                    />
+                  </>
+                )}
+              </div>
+              <div className="postBottom">
+                <div className="postBottom__like">
+                  <FontAwesomeIcon
+                    icon={faThumbsUp}
+                    className="postBottom__like--icon"
+                    // onClick={this.likeHandler}
+                  />
+                  <span className="postBottom__like--counter">2</span>
+                </div>
+                <span className="postBottom__noComments">0 commentaires</span>
+              </div>
             </div>
-          </div>
-        );
-      })}
-    </div>
+          );
+        })}
+      </div>
+    </>
   );
 }

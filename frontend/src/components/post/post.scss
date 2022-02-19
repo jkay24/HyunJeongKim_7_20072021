@@ -1,5 +1,10 @@
 @import "../../styles/style.scss";
 
+.title {
+  color: $tertiary-color;
+  font-weight: 800;
+  margin: 3rem 0 1rem 0;
+}
 .post {
   @include boxShadow;
   margin: 2em 0;

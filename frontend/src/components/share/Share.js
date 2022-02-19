@@ -28,7 +28,6 @@ export default function Share() {
     const data = new FormData();
     data.append("content", content);
     data.append("file", file);
-    console.log(data);
     await axios
       .post(`http://localhost:3000/api/post`, data, {
         headers: {
