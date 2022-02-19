@@ -1,6 +1,6 @@
 import { faImage, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useRef } from "react";
 import "../profile/profile.css";
 import Header from "../../components/header/Header";
 import { useParams, useNavigate, Link } from "react-router-dom";
@@ -24,6 +24,7 @@ export default function Profile() {
     };
     fetchUserProfile();
   }, [userId]);
+  //Upload profile picture
   const handleUpload = (e) => {
     e.preventDefault();
     const data = new FormData();
@@ -47,7 +48,7 @@ export default function Profile() {
         console.log(error);
       });
   };
-
+  //Delete user account
   const handleDelete = () => {
     if (!window.confirm(`Voulez-vous vraiment supprimer votre compte ?`))
       return;
@@ -61,6 +62,36 @@ export default function Profile() {
         localStorage.clear();
         window.location.reload();
         navigate(`/`);
+      });
+  };
+
+  //Update information (firstname, lastname, email)
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [email, setEmail] = useState("");
+  const updateInfo = () => {
+    const data = new FormData();
+    data.append("firstname", firstname);
+    data.append("lastname", lastname);
+    data.append("email", email);
+    axios
+      .put(`http://localhost:3000/api/user/update/${userId}`, data, {
+        headers: {
+          JWToken: user.token,
+        },
+      })
+      .then((res) => {
+        if (res.data.error) {
+          console.log(res.data.error);
+        } else {
+          setEmail({ ...email, email: email });
+          setLastname({ ...lastname, lastname: lastname });
+          setFirstname({ ...firstname, firstname: firstname });
+          window.location.replace(`/profile/${userId}`);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
       });
   };
   return (
@@ -102,16 +133,22 @@ export default function Profile() {
               Prénom{" "}
               <input
                 type="text"
-                name="firstName"
+                name="firstname"
                 placeholder={profileData.firstname}
+                onChange={(e) => {
+                  setFirstname(e.target.value);
+                }}
               ></input>
             </label>
             <label className="profileBottom__info--lastName">
               Nom{" "}
               <input
                 type="text"
-                name="lastName"
+                name="lastname"
                 placeholder={profileData.lastname}
+                onChange={(e) => {
+                  setLastname(e.target.value);
+                }}
               ></input>
             </label>
             <label className="profileBottom__info--email">
@@ -120,12 +157,17 @@ export default function Profile() {
                 type="text"
                 name="email"
                 placeholder={profileData.email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
               ></input>
             </label>
           </form>
         </div>
         <div className="profileButtons">
-          <button className="profileSave">Enregistrer</button>
+          <button className="profileSave" onClick={updateInfo}>
+            Enregistrer
+          </button>
           <button className="profileDelete" onClick={handleDelete}>
             Supprimer le compte
           </button>

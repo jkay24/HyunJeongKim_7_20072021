@@ -95,11 +95,6 @@ exports.login = async (req, res) => {
               token: jwt.sign(
                 {
                   id: user.id,
-                  firstname: user.firstname,
-                  lastname: user.lastname,
-                  email: user.email,
-                  profilePic: user.profilePic,
-                  admin: user.admin,
                 },
                 process.env.ACCESS_TOKEN_SECRET,
                 {

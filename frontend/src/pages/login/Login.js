@@ -15,7 +15,6 @@ export default function Login() {
     e.preventDefault();
     loginCall({ email: email, password: password }, dispatch);
   };
-
   return (
     <div className="login">
       <Header />
