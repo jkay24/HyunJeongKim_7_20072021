@@ -29,7 +29,7 @@ export default function Post() {
       setProfileData(res.data);
     };
     fetchUserProfile();
-  }, [userId]);
+  }, []);
   useEffect(() => {
     const fetchPosts = async () => {
       const res = await axios.get(`http://localhost:3000/api/post/`, {
@@ -46,46 +46,46 @@ export default function Post() {
       <div className="title">Publications récentes</div>
       <hr />
       <div className="post">
-        {Object.values(listOfPosts).map((value, key) => {
+        {Object.values(listOfPosts).map((post, i) => {
           return (
-            <div className="postWrapper" key={key}>
+            <div className="postWrapper" key={post[i].id}>
               <div className="postTop">
                 <img
                   className="postTop__img"
                   src={
-                    value[key].profilePic ||
+                    post[i].profilePic ||
                     "http://localhost:3000/images/default-avatar.png"
                   }
                   alt=""
                 ></img>
-                <span className="postTop__user">{value[key].firstname}</span>
+                <span className="postTop__user">{post[i].firstname}</span>
                 <span className="postTop__postDate">
-                  <TimeAgo date={value[key].createdAt} formatter={formatter} />
+                  <TimeAgo date={post[i].createdAt} formatter={formatter} />
                 </span>
               </div>
               <div className="postCenter">
-                <span className="postCenter__text">{value[key].content}</span>
-                {value[key].image && (
+                <span className="postCenter__text">{post[i].content}</span>
+                {post[i].image && (
                   <>
                     <img
                       className="postCenter__img"
-                      src={value[key].image}
+                      src={post[i].image}
                       alt="illustration du post"
                     />
                   </>
                 )}
               </div>
-              <div className="postBottom">
-                <div className="postBottom__like">
-                  <FontAwesomeIcon
-                    icon={faThumbsUp}
-                    className="postBottom__like--icon"
-                    // onClick={this.likeHandler}
-                  />
-                  <span className="postBottom__like--counter">2</span>
-                </div>
-                <span className="postBottom__noComments">0 commentaires</span>
-              </div>
+
+              {/* <div className="postBottom">
+                    <div className="postBottom__like">
+                      <FontAwesomeIcon
+                        icon={faThumbsUp}
+                        className="postBottom__like--icon"
+                      />
+                      <span className="postBottom__like--counter">2</span>
+                    </div>
+                    <span className="postBottom__noComments">0 commentaires</span>
+                  </div> */}
             </div>
           );
         })}

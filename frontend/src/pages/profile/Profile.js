@@ -48,23 +48,6 @@ export default function Profile() {
         console.log(error);
       });
   };
-  //Delete user account
-  const handleDelete = () => {
-    if (!window.confirm(`Voulez-vous vraiment supprimer votre compte ?`))
-      return;
-    axios
-      .delete(`http://localhost:3000/api/user/delete/${userId}`, {
-        headers: {
-          JWToken: user.token,
-        },
-      })
-      .then(() => {
-        localStorage.clear();
-        window.location.reload();
-        navigate(`/`);
-      });
-  };
-
   //Update information (firstname, lastname, email)
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
@@ -92,6 +75,22 @@ export default function Profile() {
       })
       .catch((error) => {
         console.log(error);
+      });
+  };
+  //Delete user account
+  const handleDelete = () => {
+    if (!window.confirm(`Voulez-vous vraiment supprimer votre compte ?`))
+      return;
+    axios
+      .delete(`http://localhost:3000/api/user/delete/${userId}`, {
+        headers: {
+          JWToken: user.token,
+        },
+      })
+      .then(() => {
+        localStorage.clear();
+        window.location.reload();
+        navigate(`/`);
       });
   };
   return (
