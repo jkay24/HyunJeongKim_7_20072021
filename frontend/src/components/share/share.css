@@ -48,6 +48,12 @@
   background-color: #fffaf0;
 }
 
+@media (max-width: 600px) {
+  .share > .shareWrapper > .shareTop > .shareTop__input {
+    font-size: 90%;
+  }
+}
+
 .share > .shareWrapper > .shareTop > .shareTop__input:focus {
   outline: none;
 }
@@ -78,6 +84,12 @@
           align-items: center;
   margin-right: 1rem;
   cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .share > .shareWrapper > .shareBottom > .shareBottom__upload {
+    font-size: 90%;
+  }
 }
 
 .share > .shareWrapper > .shareBottom > .shareBottom__upload > .shareBottom__upload__icon {

@@ -47,6 +47,12 @@
   margin: 0 10px;
 }
 
+@media (max-width: 600px) {
+  .post > .postWrapper > .postTop > .postTop__user {
+    font-size: 90%;
+  }
+}
+
 .post > .postWrapper > .postTop > .postTop__postDate {
   font-size: 12px;
 }

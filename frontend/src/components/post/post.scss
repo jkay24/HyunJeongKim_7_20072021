@@ -19,6 +19,9 @@
         font-size: 15px;
         font-weight: 600;
         margin: 0 10px;
+        @media (max-width: $sm) {
+          font-size: 90%;
+        }
       }
       > .postTop__postDate {
         font-size: 12px;

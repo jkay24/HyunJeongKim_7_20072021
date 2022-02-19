@@ -12,7 +12,6 @@ export default function Profile() {
   const { user } = useContext(AuthContext);
   const [profileData, setProfileData] = useState({});
   const [image, setImage] = useState("");
-  console.log(profileData);
   useEffect(() => {
     const fetchUserProfile = async () => {
       const res = await axios.get(`http://localhost:3000/api/user/${userId}`, {

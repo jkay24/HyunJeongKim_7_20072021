@@ -32,6 +32,7 @@ export default function Topbar() {
       </div>
       <div className="topbarRight">
         <div className="topbarRight__profile">
+          <a className="topbarRight__profile--name">{profileData.firstname}</a>
           <img
             src={
               profileData.profilePic
@@ -41,9 +42,6 @@ export default function Topbar() {
             alt="photo de profil"
             className="topbarRight__profile--img"
           ></img>
-          <div className="topbarRight__profile--name">
-            {profileData.firstname}
-          </div>
         </div>
         <div className="topbarRight__links">
           <a

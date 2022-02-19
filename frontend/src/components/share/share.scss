@@ -20,6 +20,9 @@
         width: 80%;
         font-size: 16px;
         background-color: $tertiary-color;
+        @media (max-width: $sm) {
+          font-size: 90%;
+        }
         &:focus {
           outline: none;
         }
@@ -38,6 +41,9 @@
         align-items: center;
         margin-right: 1rem;
         cursor: pointer;
+        @media (max-width: $sm) {
+          font-size: 90%;
+        }
         > .shareBottom__upload__icon {
           margin-right: 10px;
           color: $quaternary-color;
