@@ -8,6 +8,7 @@ import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 
 export default function Profile() {
+  let navigate = useNavigate();
   let { id: userId } = useParams();
   const { user } = useContext(AuthContext);
   const [profileData, setProfileData] = useState({});
@@ -44,6 +45,22 @@ export default function Profile() {
       })
       .catch((error) => {
         console.log(error);
+      });
+  };
+
+  const handleDelete = () => {
+    if (!window.confirm(`Voulez-vous vraiment supprimer votre compte ?`))
+      return;
+    axios
+      .delete(`http://localhost:3000/api/user/delete/${userId}`, {
+        headers: {
+          JWToken: user.token,
+        },
+      })
+      .then(() => {
+        localStorage.clear();
+        window.location.reload();
+        navigate(`/`);
       });
   };
   return (
@@ -109,7 +126,9 @@ export default function Profile() {
         </div>
         <div className="profileButtons">
           <button className="profileSave">Enregistrer</button>
-          <button className="profileDelete">Supprimer le compte</button>
+          <button className="profileDelete" onClick={handleDelete}>
+            Supprimer le compte
+          </button>
         </div>
       </div>
     </div>
