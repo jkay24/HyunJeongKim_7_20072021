@@ -45,6 +45,7 @@
   border: none;
   width: 80%;
   font-size: 16px;
+  background-color: #fffaf0;
 }
 
 .share > .shareWrapper > .shareTop > .shareTop__input:focus {
