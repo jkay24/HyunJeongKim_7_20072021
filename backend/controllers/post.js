@@ -12,6 +12,7 @@ exports.createPost = async (req, res) => {
       }`;
     }
     const post = req.body;
+    post.firstname = req.user.firstname;
     post.UserId = req.user.id;
     post.image = image;
     await Posts.create(post)

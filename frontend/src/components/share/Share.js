@@ -2,7 +2,7 @@ import "./share.css";
 import { faPhotoVideo } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useParams, useNavigate } from "react-router-dom";
-import React, { useEffect, useState, useContext, useRef } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 
@@ -28,15 +28,20 @@ export default function Share() {
     const data = new FormData();
     data.append("content", content);
     data.append("file", file);
-    axios
+    console.log(data);
+    await axios
       .post(`http://localhost:3000/api/post`, data, {
         headers: {
           JWToken: user.token,
         },
       })
       .then((res) => {
-        setContent(res.data);
-        window.location.reload();
+        console.log(res);
+        if (res.data.error) {
+          console.log(res.data.error);
+        } else {
+          window.location.reload();
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -65,12 +70,12 @@ export default function Share() {
           ></input>
         </form>
         <hr className="shareHr" />
-        {file && (
+        {/*  {file && (
           <div className="shareImgContainer">
             <img className="shareImg" src={URL.createObjectURL(file)} alt="" />
             <span className="shareCancelImg" onClick={() => setFile(null)} />
           </div>
-        )}
+        )} */}
         <form className="shareBottom" onSubmit={submitHandler}>
           <label htmlFor="file" className="shareBottom__upload">
             <FontAwesomeIcon
