@@ -23,7 +23,7 @@ const useProfileData = (user) => {
       setProfileData(res.data);
     };
     fetchUserProfile();
-  }, []);
+  }, [userId]);
 
   return profileData;
 };
@@ -61,7 +61,7 @@ export default function Post({ firstname, createdAt, content, image }) {
             </>
           )}
         </div>
-        <div className="postBottom">
+        {/* <div className="postBottom">
           <div className="postBottom__like">
             <FontAwesomeIcon
               icon={faThumbsUp}
@@ -71,7 +71,7 @@ export default function Post({ firstname, createdAt, content, image }) {
 
             <span className="postBottom__noComments">0 commentaires</span>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

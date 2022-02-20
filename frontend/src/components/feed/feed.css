@@ -6,14 +6,13 @@
   font-family: "Poppins", sans-serif;
 }
 
-.app {
+/* .app {
   position: fixed;
   width: 100vw;
 }
-
+ */
 .feed {
   background-color: #586470;
-  height: 100vh;
   padding-top: 6rem;
 }
 

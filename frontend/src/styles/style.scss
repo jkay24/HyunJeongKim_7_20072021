@@ -62,7 +62,6 @@ $lg: 992px;
   display: flex;
   flex-direction: column;
   background-color: $secondary-color;
-  height: 100vh;
 }
 
 * {
@@ -70,9 +69,4 @@ $lg: 992px;
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
-}
-
-.app {
-  position: fixed;
-  width: 100vw;
 }

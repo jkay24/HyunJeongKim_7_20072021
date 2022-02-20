@@ -24,7 +24,7 @@ const useProfileData = (user) => {
 };
 
 export default function Feed() {
-  const [posts, setPosts] = useState([]);
+  const [listOfPosts, setlistOfPosts] = useState([]);
   const { user } = useContext(AuthContext);
   const profileData = useProfileData(user);
   useEffect(() => {
@@ -34,9 +34,11 @@ export default function Feed() {
           JWToken: user.token,
         },
       });
-      setPosts(res.data.posts);
-      console.log(res.data);
-      console.log(posts);
+      setlistOfPosts(
+        res.data.listOfPosts.sort((p1, p2) => {
+          return new Date(p2.createdAt) - new Date(p1.createdAt);
+        })
+      );
     };
     fetchPosts();
   }, []);
@@ -48,7 +50,7 @@ export default function Feed() {
         <>
           <div className="title">Publications récentes</div>
           <hr />
-          {posts?.map((post) => {
+          {listOfPosts?.map((post) => {
             return (
               <Post
                 key={post.id}

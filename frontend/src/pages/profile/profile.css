@@ -6,11 +6,11 @@
   font-family: "Poppins", sans-serif;
 }
 
-.app {
+/* .app {
   position: fixed;
   width: 100vw;
 }
-
+ */
 .profile {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -20,7 +20,6 @@
       -ms-flex-direction: column;
           flex-direction: column;
   background-color: #586470;
-  height: 100vh;
 }
 
 .profile > .profileWrapper {
