@@ -2,6 +2,7 @@
 
 .profile {
   @include profileLogin;
+  height: 100vh;
   > .profileWrapper {
     @include wrapper;
     > a {

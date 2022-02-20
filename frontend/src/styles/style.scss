@@ -59,6 +59,7 @@ $lg: 992px;
 
 //div for profile and login pages
 @mixin profileLogin {
+  height: 100vh;
   display: flex;
   flex-direction: column;
   background-color: $secondary-color;

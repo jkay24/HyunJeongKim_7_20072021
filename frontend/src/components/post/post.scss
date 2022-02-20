@@ -12,7 +12,8 @@
   > .postWrapper {
     padding: 10px;
     > .postTop {
-      display: flex;
+      display: grid;
+      grid-template-columns: 0fr 8fr 35fr 2fr;
       align-items: center;
       > .postTop__img {
         width: 40px;
@@ -30,6 +31,12 @@
       }
       > .postTop__postDate {
         font-size: 12px;
+      }
+      > .postTop__delete {
+        > .postTop__delete--icon {
+          color: $quaternary-color;
+          cursor: pointer;
+        }
       }
     }
     > .postCenter {

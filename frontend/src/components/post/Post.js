@@ -1,5 +1,5 @@
 import "../post/post.css";
-import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
+import { faThumbsUp, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
@@ -29,12 +29,22 @@ const useProfileData = (user) => {
 };
 
 export default function Post({ firstname, createdAt, content, image }) {
-  // const [content, setContent] = useState("");
-  // const [file, setFile] = useState(null);
-  // const [image, setImage] = useState();
   const { user } = useContext(AuthContext);
   const formatter = buildFormatter(frenchStrings);
   const profileData = useProfileData(user);
+  console.log(user);
+  /* let navigate = useNavigate();
+  const deletePost = (user) => {
+    axios
+      .delete(`http://localhost:3000/api/post/delete/${userId}`, {
+        headers: {
+          JWToken: user.token,
+        },
+      })
+      .then(() => {
+        navigate("/");
+      });
+  }; */
   return (
     <div className="post">
       <div className="postWrapper">
@@ -48,6 +58,19 @@ export default function Post({ firstname, createdAt, content, image }) {
           <span className="postTop__postDate">
             <TimeAgo date={createdAt} formatter={formatter} />
           </span>
+          {user.id === firstname && (
+            <>
+              <div className="postTop__delete">
+                <FontAwesomeIcon
+                  icon={faTrash}
+                  className="postTop__delete--icon"
+                  /*onClick={() => {
+            deletePost(id);
+          }}*/
+                />
+              </div>
+            </>
+          )}
         </div>
         <div className="postCenter">
           <span className="postCenter__text">{content}</span>
@@ -68,7 +91,6 @@ export default function Post({ firstname, createdAt, content, image }) {
               className="postBottom__like--icon"
             />
             <span className="postBottom__like--counter">2</span>
-
             <span className="postBottom__noComments">0 commentaires</span>
           </div>
         </div> */}

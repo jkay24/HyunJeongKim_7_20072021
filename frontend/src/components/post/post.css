@@ -6,11 +6,6 @@
   font-family: "Poppins", sans-serif;
 }
 
-/* .app {
-  position: fixed;
-  width: 100vw;
-}
- */
 .title {
   color: #fffaf0;
   font-weight: 800;
@@ -31,9 +26,10 @@
 }
 
 .post > .postWrapper > .postTop {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 0fr 8fr 35fr 2fr;
+      grid-template-columns: 0fr 8fr 35fr 2fr;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -61,6 +57,11 @@
 
 .post > .postWrapper > .postTop > .postTop__postDate {
   font-size: 12px;
+}
+
+.post > .postWrapper > .postTop > .postTop__delete > .postTop__delete--icon {
+  color: #e79095;
+  cursor: pointer;
 }
 
 .post > .postWrapper > .postCenter {

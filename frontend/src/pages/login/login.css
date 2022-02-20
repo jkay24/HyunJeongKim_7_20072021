@@ -6,12 +6,8 @@
   font-family: "Poppins", sans-serif;
 }
 
-/* .app {
-  position: fixed;
-  width: 100vw;
-}
- */
 .login {
+  height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
