@@ -9,9 +9,9 @@ import TimeAgo from "react-timeago";
 import frenchStrings from "react-timeago/lib/language-strings/fr";
 import buildFormatter from "react-timeago/lib/formatters/buildFormatter";
 
-export default function Post() {
+export default function Post(post) {
   let navigate = useNavigate();
-  const [listOfPosts, setListOfPosts] = useState([]);
+  const [posts, setPosts] = useState([]);
   const [content, setContent] = useState("");
   const [file, setFile] = useState(null);
   const [image, setImage] = useState();
@@ -19,6 +19,7 @@ export default function Post() {
   let userId = JSON.parse(localStorage.getItem("user")).id;
   const [profileData, setProfileData] = useState({});
   const formatter = buildFormatter(frenchStrings);
+
   useEffect(() => {
     const fetchUserProfile = async () => {
       const res = await axios.get(`http://localhost:3000/api/user/${userId}`, {
@@ -37,16 +38,17 @@ export default function Post() {
           JWToken: user.token,
         },
       });
-      setListOfPosts(res.data);
+      setPosts(res.data);
     };
     fetchPosts();
-  }, []);
+  }, [post.id]);
+  console.log(posts);
   return (
     <>
       <div className="title">Publications récentes</div>
       <hr />
       <div className="post">
-        {Object.values(listOfPosts).map((post, i) => {
+        {Object.values(posts).map((post, i) => {
           return (
             <div className="postWrapper" key={post[i].id}>
               <div className="postTop">

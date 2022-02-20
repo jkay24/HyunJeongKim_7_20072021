@@ -8,7 +8,7 @@ import { AuthContext } from "../../context/AuthContext";
 
 export default function Share() {
   const [content, setContent] = useState("");
-  const [file, setFile] = useState(null);
+  const [image, setImage] = useState(null);
   const { user } = useContext(AuthContext);
   let userId = JSON.parse(localStorage.getItem("user")).id;
   const [profileData, setProfileData] = useState({});
@@ -27,7 +27,7 @@ export default function Share() {
     e.preventDefault();
     const data = new FormData();
     data.append("content", content);
-    data.append("file", file);
+    data.append("image", image);
     await axios
       .post(`http://localhost:3000/api/post`, data, {
         headers: {
@@ -69,14 +69,14 @@ export default function Share() {
           ></input>
         </form>
         <hr className="shareHr" />
-        {/*  {file && (
+        {/*  {image && (
           <div className="shareImgContainer">
             <img className="shareImg" src={URL.createObjectURL(file)} alt="" />
-            <span className="shareCancelImg" onClick={() => setFile(null)} />
+            <span className="shareCancelImg" onClick={() => setImage(null)} />
           </div>
         )} */}
         <form className="shareBottom" onSubmit={submitHandler}>
-          <label htmlFor="file" className="shareBottom__upload">
+          <label htmlFor="image" className="shareBottom__upload">
             <FontAwesomeIcon
               icon={faPhotoVideo}
               className="shareBottom__upload__icon"
@@ -85,10 +85,10 @@ export default function Share() {
             <input
               style={{ display: "none" }}
               type="file"
-              id="file"
-              name="file"
+              id="image"
+              name="image"
               accept=".jpeg, .jpg, .png, .gif, .webp"
-              onChange={(e) => setFile(e.target.files[0])}
+              onChange={(e) => setImage(e.target.files[0])}
             />
           </label>
           <button

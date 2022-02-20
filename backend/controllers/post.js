@@ -12,8 +12,8 @@ exports.createPost = async (req, res) => {
       }`;
     }
     const post = req.body;
-    post.firstname = req.user.firstname;
     post.id = req.user.id;
+    post.firstname = req.user.firstname;
     post.image = image;
     await Posts.create(post)
       .then((post) => {
