@@ -28,9 +28,8 @@ export default function Share({ profileData }) {
         if (res.data.error) {
           console.log(res.data.error);
         } else {
-          window.location.reload();
+          /* window.location.reload(); */
           console.log("successfully shared a post!");
-          // window.location.reload();
         }
       })
       .catch((error) => {
@@ -81,8 +80,9 @@ export default function Share({ profileData }) {
           </label>
           <button
             className="shareBottom__submit"
-            type="submit"
+            type="button"
             aria-label="valider"
+            onClick={submitHandler}
           >
             Publier
           </button>

@@ -1,29 +1,32 @@
 const { Posts } = require("../models");
+const { Users } = require("../models");
 const fs = require("fs");
 
 exports.createPost = async (req, res) => {
   let image;
   const { body, protocol, file } = req;
-  if (body.content === null || !body.content) {
+  if ((body.content === null || !body.content) && file === null) {
     return res.status(400).json({ message: "Content is required." });
   } else {
     if (file) {
       image = `${protocol}://${req.get("host")}/images/${file.filename}`;
     }
     const post = req.body;
-    post.id = req.user.id;
-    post.firstname = req.user.firstname;
-    post.image = image;
+    const id = req.user.id;
+    await Users.findByPk(id, {
+      attributes: ["firstname"],
+    }).then((user) => {
+      post.firstname = user.firstname;
+      post.image = image;
+    });
     await Posts.create(post)
       .then((post) => {
-        return res
+        res
           .status(201)
           .json({ message: "Post created with the ID " + post.id });
       })
       .catch((error) => {
-        return res
-          .status(400)
-          .json({ error: "An error has occurred. " + error });
+        res.status(400).json({ error: "An error has occurred. " + error });
       });
   }
 };
