@@ -40,6 +40,7 @@ export default function Feed() {
     };
     fetchPosts();
   }, []);
+
   return (
     <div className="feed">
       <div className="feedWrapper">
