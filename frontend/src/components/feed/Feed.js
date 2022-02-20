@@ -5,10 +5,28 @@ import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 
-export default function Feed() {
-  /*  const [posts, setPosts] = useState([]);
-  const { user } = useContext(AuthContext);
+const useProfileData = (user) => {
+  const [profileData, setProfileData] = useState({});
   let userId = JSON.parse(localStorage.getItem("user")).id;
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      const res = await axios.get(`http://localhost:3000/api/user/${userId}`, {
+        headers: {
+          JWToken: user.token,
+        },
+      });
+      setProfileData(res.data);
+    };
+    fetchUserProfile();
+  }, []);
+
+  return profileData;
+};
+
+export default function Feed() {
+  const [posts, setPosts] = useState([]);
+  const { user } = useContext(AuthContext);
+  const profileData = useProfileData(user);
   useEffect(() => {
     const fetchPosts = async () => {
       const res = await axios.get(`http://localhost:3000/api/post/`, {
@@ -21,15 +39,26 @@ export default function Feed() {
       console.log(posts);
     };
     fetchPosts();
-  }, [userId]); */
+  }, []);
   return (
     <div className="feed">
       <div className="feedWrapper">
-        <Share />
-        <Post />
-        {/*   {posts.map((p) => (
-          <Post key={p.id} post={p} />
-        ))} */}
+        <Share profileData={profileData} />
+        <>
+          <div className="title">Publications récentes</div>
+          <hr />
+          {posts?.map((post) => {
+            return (
+              <Post
+                key={post.id}
+                firstname={post.firstname}
+                createdAt={post.createdAt}
+                content={post.content}
+                image={post.image}
+              />
+            );
+          })}
+        </>
       </div>
     </div>
   );

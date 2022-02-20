@@ -1,33 +1,22 @@
 import "./share.css";
 import { faPhotoVideo } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useParams, useNavigate } from "react-router-dom";
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 
-export default function Share() {
+export default function Share({ profileData }) {
   const [content, setContent] = useState("");
   const [image, setImage] = useState(null);
   const { user } = useContext(AuthContext);
-  let userId = JSON.parse(localStorage.getItem("user")).id;
-  const [profileData, setProfileData] = useState({});
-  useEffect(() => {
-    const fetchUserProfile = async () => {
-      const res = await axios.get(`http://localhost:3000/api/user/${userId}`, {
-        headers: {
-          JWToken: user.token,
-        },
-      });
-      setProfileData(res.data);
-    };
-    fetchUserProfile();
-  }, [userId]);
+  const defaultAvatar = "http://localhost:3000/images/default-avatar.png";
   const submitHandler = async (e) => {
     e.preventDefault();
     const data = new FormData();
     data.append("content", content);
     data.append("image", image);
+    /* console.log(document.getElementById("image"));
+    data.append("image", document.getElementById("image").files[0]); */
     await axios
       .post(`http://localhost:3000/api/post`, data, {
         headers: {
@@ -40,6 +29,8 @@ export default function Share() {
           console.log(res.data.error);
         } else {
           window.location.reload();
+          console.log("successfully shared a post!");
+          // window.location.reload();
         }
       })
       .catch((error) => {
@@ -51,10 +42,7 @@ export default function Share() {
       <div className="shareWrapper">
         <form className="shareTop" onSubmit={submitHandler}>
           <img
-            src={
-              profileData.profilePic ||
-              "http://localhost:3000/images/default-avatar.png"
-            }
+            src={profileData.profilePic || defaultAvatar}
             alt="photo de profil"
             className="shareTop__img"
           ></img>
@@ -75,7 +63,7 @@ export default function Share() {
             <span className="shareCancelImg" onClick={() => setImage(null)} />
           </div>
         )} */}
-        <form className="shareBottom" onSubmit={submitHandler}>
+        <form className="shareBottom">
           <label htmlFor="image" className="shareBottom__upload">
             <FontAwesomeIcon
               icon={faPhotoVideo}
