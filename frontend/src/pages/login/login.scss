@@ -14,6 +14,11 @@
         width: 95%;
       }
       .loginTop__info {
+        > p {
+          color: $primary-color;
+          font-size: smaller;
+          margin-left: 0.5rem;
+        }
         > label {
           display: flex;
           justify-content: space-between;

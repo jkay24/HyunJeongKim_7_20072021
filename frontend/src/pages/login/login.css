@@ -75,6 +75,12 @@
   }
 }
 
+.login > .loginWrapper > .loginTop .loginTop__info > p {
+  color: #fd2d01;
+  font-size: smaller;
+  margin-left: 0.5rem;
+}
+
 .login > .loginWrapper > .loginTop .loginTop__info > label {
   display: -webkit-box;
   display: -ms-flexbox;

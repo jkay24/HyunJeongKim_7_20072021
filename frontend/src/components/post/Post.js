@@ -52,7 +52,7 @@ export default function Post({ id, firstname, createdAt, content, image }) {
         window.location.reload();
       });
   };
-
+  //@HELP - new image upload not being recognized in request to backend...?!
   const editPostHandler = async (e) => {
     e.preventDefault();
     const data = new FormData();
@@ -65,13 +65,10 @@ export default function Post({ id, firstname, createdAt, content, image }) {
         },
       })
       .then((res) => {
-        console.log(res);
         if (res.data.error) {
           console.log(res.data.error);
         } else {
-          /* 
-          setNewImage(res.data.newImage); */
-          /* window.location.reload(); */
+          window.location.reload();
         }
       })
       .catch((error) => {

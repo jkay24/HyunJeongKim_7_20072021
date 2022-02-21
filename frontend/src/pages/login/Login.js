@@ -11,9 +11,24 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPw] = useState("");
   const { user, isFetching, error, dispatch } = useContext(AuthContext);
+
+  //Form input validation
+  const regExEmail = (value) => {
+    return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value);
+  };
+
+  function formValidationEmail() {
+    const isCorrect = regExEmail(email);
+    document.getElementById("emailErrorMsg").innerHTML = isCorrect
+      ? ""
+      : "Veuillez saisir une adresse mail valide.";
+    return isCorrect;
+  }
+
   const login = (e) => {
     e.preventDefault();
-    loginCall({ email: email, password: password }, dispatch);
+    if (formValidationEmail())
+      loginCall({ email: email, password: password }, dispatch);
   };
   return (
     <div className="login">
@@ -33,6 +48,7 @@ export default function Login() {
                 value={email}
               ></input>
             </label>
+            <p id="emailErrorMsg"></p>
             <label className="loginTop__info--pw">
               Mot de passe{" "}
               <input
