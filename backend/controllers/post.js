@@ -14,9 +14,10 @@ exports.createPost = async (req, res) => {
     const post = req.body;
     const id = req.user.id;
     await Users.findByPk(id, {
-      attributes: ["firstname"],
+      attributes: ["firstname", "profilePic"],
     }).then((user) => {
       post.firstname = user.firstname;
+      post.profilePic = user.profilePic;
       post.image = image;
     });
     await Posts.create(post)

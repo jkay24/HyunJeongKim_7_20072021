@@ -35,6 +35,23 @@ exports.modifyUser = async (req, res) => {
   }
 };
 
+exports.getProfilPicture = async (req, res) => {
+  console.log(req.params);
+  const firstname = req.params;
+  await Users.findOne(
+    { where: { firstname: firstname } },
+    {
+      attributes: ["profilePic"],
+    }
+  )
+    .then((user) => {
+      imgSrc.profilePic = user.profilePic;
+    })
+    .catch((error) => {
+      res.status(400).send({ error: error });
+    });
+};
+
 exports.deleteUser = (req, res) => {
   const id = req.params.id;
   Users.destroy({ where: { id: id } })

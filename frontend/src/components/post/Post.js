@@ -31,10 +31,10 @@ const useProfileData = (user) => {
 export default function Post({ firstname, createdAt, content, image }) {
   const { user } = useContext(AuthContext);
   const formatter = buildFormatter(frenchStrings);
-  const profileData = useProfileData(user);
-  console.log(user);
-  /* let navigate = useNavigate();
-  const deletePost = (user) => {
+  const [imgSrc, setImgSrc] = useState("");
+  let userId = JSON.parse(localStorage.getItem("user")).id;
+  let navigate = useNavigate();
+  const deletePost = (userId) => {
     axios
       .delete(`http://localhost:3000/api/post/delete/${userId}`, {
         headers: {
@@ -44,14 +44,32 @@ export default function Post({ firstname, createdAt, content, image }) {
       .then(() => {
         navigate("/");
       });
-  }; */
+  };
+  /* const fetchAvatarOfPoster = async () => {
+    console.log(posterId);
+    try {
+      const res = await axios.get(
+        `http://localhost:4200/api/user/image/${posterId}`,
+        {
+          headers: {
+            JWToken: user.token,
+          },
+        }
+      );
+      console.log(res.data);
+      setImgSrc(res.data[0].profilePic);
+    } catch (err) {
+      throw err;
+    }
+  };
+  fetchAvatarOfPoster(); */
   return (
     <div className="post">
       <div className="postWrapper">
         <div className="postTop">
           <img
             className="postTop__img"
-            src={profileData.profilePic || defaultAvatar}
+            src={imgSrc || defaultAvatar}
             alt=""
           ></img>
           <span className="postTop__user">{firstname}</span>
@@ -64,9 +82,9 @@ export default function Post({ firstname, createdAt, content, image }) {
                 <FontAwesomeIcon
                   icon={faTrash}
                   className="postTop__delete--icon"
-                  /*onClick={() => {
-            deletePost(id);
-          }}*/
+                  onClick={() => {
+                    deletePost(userId);
+                  }}
                 />
               </div>
             </>

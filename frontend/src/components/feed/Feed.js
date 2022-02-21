@@ -27,7 +27,6 @@ export default function Feed() {
   const [listOfPosts, setlistOfPosts] = useState([]);
   const { user } = useContext(AuthContext);
   const profileData = useProfileData(user);
-  console.log(profileData);
   useEffect(() => {
     const fetchPosts = async () => {
       const res = await axios.get(`http://localhost:3000/api/post/`, {
@@ -43,7 +42,6 @@ export default function Feed() {
     };
     fetchPosts();
   }, []);
-
   return (
     <div className="feed">
       <div className="feedWrapper">

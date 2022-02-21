@@ -15,8 +15,6 @@ export default function Share({ profileData }) {
     const data = new FormData();
     data.append("content", content);
     data.append("image", image);
-    /* console.log(document.getElementById("image"));
-    data.append("image", document.getElementById("image").files[0]); */
     await axios
       .post(`http://localhost:3000/api/post`, data, {
         headers: {
@@ -28,8 +26,8 @@ export default function Share({ profileData }) {
         if (res.data.error) {
           console.log(res.data.error);
         } else {
-          /* window.location.reload(); */
           console.log("successfully shared a post!");
+          window.location.reload();
         }
       })
       .catch((error) => {
@@ -39,7 +37,7 @@ export default function Share({ profileData }) {
   return (
     <div className="share">
       <div className="shareWrapper">
-        <form className="shareTop" onSubmit={submitHandler}>
+        <form className="shareTop">
           <img
             src={profileData.profilePic || defaultAvatar}
             alt="photo de profil"
@@ -56,12 +54,6 @@ export default function Share({ profileData }) {
           ></input>
         </form>
         <hr className="shareHr" />
-        {/*  {image && (
-          <div className="shareImgContainer">
-            <img className="shareImg" src={URL.createObjectURL(file)} alt="" />
-            <span className="shareCancelImg" onClick={() => setImage(null)} />
-          </div>
-        )} */}
         <form className="shareBottom">
           <label htmlFor="image" className="shareBottom__upload">
             <FontAwesomeIcon
