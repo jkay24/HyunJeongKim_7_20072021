@@ -14,10 +14,11 @@ exports.createPost = async (req, res) => {
     }
     const post = req.body;
     const id = req.user.id;
+    post.authorId = id;
     await Users.findByPk(id, {
       attributes: ["firstname"],
     }).then((user) => {
-      post.firstname = user.firstname;
+      post.authorFirstname = user.firstname;
       post.image = image;
     });
     await Posts.create(post)

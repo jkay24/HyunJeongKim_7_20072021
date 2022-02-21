@@ -33,7 +33,14 @@ const useProfileData = (user) => {
   return profileData;
 };
 
-export default function Post({ id, firstname, createdAt, content, image }) {
+export default function Post({
+  id,
+  authorFirstname,
+  authorId,
+  createdAt,
+  content,
+  image,
+}) {
   const { user } = useContext(AuthContext);
   const formatter = buildFormatter(frenchStrings);
   const [imgSrc, setImgSrc] = useState("");
@@ -102,23 +109,20 @@ export default function Post({ id, firstname, createdAt, content, image }) {
             src={imgSrc || defaultAvatar}
             alt=""
           ></img>
-          <span className="postTop__user">{firstname}</span>
+          <span className="postTop__user">{authorFirstname}</span>
           <span className="postTop__postDate">
             <TimeAgo date={createdAt} formatter={formatter} />
           </span>
-          {/* @HELP - need to rethink this - if user modifies firstname and then comes back, he's no longer able to delete his own posts */}
-          {user.firstname === firstname && (
-            <>
-              <div className="postTop__delete">
-                <FontAwesomeIcon
-                  icon={faTrash}
-                  className="postTop__delete--icon"
-                  onClick={() => {
-                    deletePostHandler(id);
-                  }}
-                />
-              </div>
-            </>
+          {userId == authorId && (
+            <div className="postTop__delete">
+              <FontAwesomeIcon
+                icon={faTrash}
+                className="postTop__delete--icon"
+                onClick={() => {
+                  deletePostHandler(id);
+                }}
+              />
+            </div>
           )}
         </div>
         <div className="postCenter">
@@ -134,7 +138,7 @@ export default function Post({ id, firstname, createdAt, content, image }) {
           )}
         </div>
         <div className="postBottom">
-          {user.firstname === firstname && (
+          {userId == authorId && (
             <>
               <form className="postBottom__edit">
                 <input
@@ -168,7 +172,6 @@ export default function Post({ id, firstname, createdAt, content, image }) {
               </form>
             </>
           )}
-
           {/* <div className="postBottom__like">
             <FontAwesomeIcon
               icon={faThumbsUp}

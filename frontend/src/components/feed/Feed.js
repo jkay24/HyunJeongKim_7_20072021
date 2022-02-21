@@ -54,7 +54,8 @@ export default function Feed() {
               <Post
                 key={post.id}
                 id={post.id}
-                firstname={post.firstname}
+                authorFirstname={post.authorFirstname}
+                authorId={post.authorId}
                 createdAt={post.createdAt}
                 content={post.content}
                 image={post.image}
