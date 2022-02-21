@@ -164,11 +164,7 @@ export default function Profile() {
               alt="profile pic"
             ></img>
           </label>
-          <FontAwesomeIcon
-            icon={faImage}
-            className="profileTop__icon"
-            onClick={handleUpload}
-          />
+          <FontAwesomeIcon icon={faImage} className="profileTop__icon" />
         </form>
         <div className="profileBottom">
           <form className="profileBottom__info">
@@ -211,7 +207,7 @@ export default function Profile() {
           </form>
         </div>
         <div className="profileButtons">
-          <button className="profileSave" onClick={updateInfo}>
+          <button className="profileSave" onClick={(updateInfo, handleUpload)}>
             Enregistrer
           </button>
           <button className="profileDelete" onClick={handleDelete}>

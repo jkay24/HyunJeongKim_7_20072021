@@ -26,10 +26,10 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: 0,
     },
   });
-  /* Users.associate = (models) => {
+  Users.associate = (models) => {
     Users.hasMany(models.Posts, {
       onDelete: "cascade",
     });
-  }; */
+  };
   return Users;
 };

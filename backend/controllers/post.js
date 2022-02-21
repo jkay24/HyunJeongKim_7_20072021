@@ -5,8 +5,9 @@ const fs = require("fs");
 exports.createPost = async (req, res) => {
   let image;
   const { body, protocol, file } = req;
+  /*  @ HELP - user is able to post no content?   */
   if ((body.content === null || !body.content) && file === null) {
-    return res.status(400).json({ message: "Content is required." });
+    return res.status(400).json({ message: "Aucun contenu à publier." });
   } else {
     if (file) {
       image = `${protocol}://${req.get("host")}/images/${file.filename}`;
@@ -26,7 +27,7 @@ exports.createPost = async (req, res) => {
           .json({ message: "Post created with the ID " + post.id });
       })
       .catch((error) => {
-        res.status(400).json({ error: "An error has occurred. " + error });
+        res.status(400).json({ message: error });
       });
   }
 };
@@ -53,30 +54,25 @@ exports.getOnePost = async (req, res) => {
 
 exports.modifyPost = async (req, res) => {
   id = req.params.id;
-  const { body, protocol, file } = req;
+  const post = req.body;
   let image;
-  if ((body.content === null || !body.content) && file === null) {
-    return res.status(400).json({ message: "Content is required." });
-  } else {
-    if (file) {
-      Posts.findOne({ where: { id: id } });
-      image = `${protocol}://${req.get("host")}/images/${file.filename}`;
-    }
-    const post = req.body;
-    console.log("is the image here?");
-    await Posts.findOne({ where: { id: id } })
-      .then(() => {
-        Posts.update({ ...req.body, image: image }, { where: { id: id } });
-        return res
-          .status(200)
-          .json({ message: "Post ID " + id + " has been updated." });
-      })
-      .catch((error) => {
-        return res
-          .status(400)
-          .json({ error: "An error has occurred. " + error });
-      });
+  /*  @ HELP - file uploads are not recognized and sent to backend   */
+  console.log(post);
+  if (req.file) {
+    Posts.findOne({ where: { id: id } });
+    image = `${req.protocol}://${req.get("host")}/images/${req.file.filename}`;
   }
+  post.image = image;
+  await Posts.findOne({ where: { id: id } })
+    .then(() => {
+      Posts.update({ ...req.body, image: image }, { where: { id: id } });
+      return res
+        .status(200)
+        .json({ message: "Post ID " + id + " has been updated." });
+    })
+    .catch((error) => {
+      return res.status(400).json({ error: "An error has occurred. " + error });
+    });
 };
 
 exports.deletePost = (req, res) => {

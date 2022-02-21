@@ -79,6 +79,10 @@
           justify-content: flex-end;
 }
 
+.profile > .profileWrapper > .profileTop > label {
+  cursor: pointer;
+}
+
 .profile > .profileWrapper > .profileTop > label > img {
   width: 100px;
   height: 100px;
