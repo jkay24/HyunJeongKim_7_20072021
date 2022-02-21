@@ -32,53 +32,55 @@ export default function Share({ profileData }) {
         }
       })
       .catch((error) => {
-        window.alert("Non publiée..." + error.response.data.message);
+        window.alert("Publication plantée ! " + error.response.data.message);
       });
   };
   return (
     <div className="share">
       <div className="shareWrapper">
-        <form className="shareTop">
-          <img
-            src={profileData.profilePic || defaultAvatar}
-            alt="photo de profil"
-            className="shareTop__img"
-          ></img>
-          <input
-            name="content"
-            id="content"
-            type="text"
-            className="shareTop__input"
-            placeholder={`Quoi de neuf, ${profileData.firstname}?`}
-            aria-label="quoi de neuf"
-            onChange={(e) => setContent(e.target.value)}
-          ></input>
-        </form>
-        <hr className="shareHr" />
-        <form className="shareBottom">
-          <label htmlFor="image" className="shareBottom__upload">
-            <FontAwesomeIcon
-              icon={faPhotoVideo}
-              className="shareBottom__upload__icon"
-            />
-            Photo/video
+        <form className="form">
+          <div className="shareTop">
+            <img
+              src={profileData.profilePic || defaultAvatar}
+              alt="photo de profil"
+              className="shareTop__img"
+            ></img>
             <input
-              style={{ display: "none" }}
-              type="file"
-              id="image"
-              name="image"
-              accept=".jpeg, .jpg, .png, .gif, .webp"
-              onChange={(e) => setImage(e.target.files[0])}
-            />
-          </label>
-          <button
-            className="shareBottom__submit"
-            type="button"
-            aria-label="valider"
-            onClick={submitHandler}
-          >
-            Publier
-          </button>
+              name="content"
+              id="content"
+              type="text"
+              className="shareTop__input"
+              placeholder={`Quoi de neuf, ${profileData.firstname}?`}
+              aria-label="quoi de neuf"
+              onChange={(e) => setContent(e.target.value)}
+            ></input>
+          </div>
+          <hr className="shareHr" />
+          <div className="shareBottom">
+            <label htmlFor="image" className="shareBottom__upload">
+              <FontAwesomeIcon
+                icon={faPhotoVideo}
+                className="shareBottom__upload__icon"
+              />
+              Photo/video
+              <input
+                style={{ display: "none" }}
+                type="file"
+                id="image"
+                name="image"
+                accept=".jpeg, .jpg, .png, .gif, .webp"
+                onChange={(e) => setImage(e.target.files[0])}
+              />
+            </label>
+            <button
+              className="shareBottom__submit"
+              type="button"
+              aria-label="valider"
+              onClick={submitHandler}
+            >
+              Publier
+            </button>
+          </div>
         </form>
       </div>
     </div>

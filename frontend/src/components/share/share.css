@@ -18,7 +18,7 @@
   padding: 10px;
 }
 
-.share > .shareWrapper > .shareTop {
+.share > .shareWrapper > form > .shareTop {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -27,7 +27,7 @@
           align-items: center;
 }
 
-.share > .shareWrapper > .shareTop > .shareTop__img {
+.share > .shareWrapper > form > .shareTop > .shareTop__img {
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -37,13 +37,13 @@
 }
 
 @media (max-width: 600px) {
-  .share > .shareWrapper > .shareTop > .shareTop__img {
+  .share > .shareWrapper > form > .shareTop > .shareTop__img {
     height: 40px;
     width: 40px;
   }
 }
 
-.share > .shareWrapper > .shareTop > .shareTop__input {
+.share > .shareWrapper > form > .shareTop > .shareTop__input {
   border: none;
   width: 80%;
   font-size: 16px;
@@ -51,20 +51,16 @@
 }
 
 @media (max-width: 600px) {
-  .share > .shareWrapper > .shareTop > .shareTop__input {
+  .share > .shareWrapper > form > .shareTop > .shareTop__input {
     font-size: 90%;
   }
 }
 
-.share > .shareWrapper > .shareTop > .shareTop__input:focus {
+.share > .shareWrapper > form > .shareTop > .shareTop__input:focus {
   outline: none;
 }
 
-.share > .shareWrapper > .shareHr {
-  margin: 5px;
-}
-
-.share > .shareWrapper > .shareBottom {
+.share > .shareWrapper > form > .shareBottom {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -77,7 +73,7 @@
   margin: 0 10px 0 10px;
 }
 
-.share > .shareWrapper > .shareBottom > .shareBottom__upload {
+.share > .shareWrapper > form > .shareBottom > .shareBottom__upload {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -89,17 +85,17 @@
 }
 
 @media (max-width: 600px) {
-  .share > .shareWrapper > .shareBottom > .shareBottom__upload {
+  .share > .shareWrapper > form > .shareBottom > .shareBottom__upload {
     font-size: 90%;
   }
 }
 
-.share > .shareWrapper > .shareBottom > .shareBottom__upload > .shareBottom__upload__icon {
+.share > .shareWrapper > form > .shareBottom > .shareBottom__upload > .shareBottom__upload__icon {
   margin-right: 10px;
   color: #e79095;
 }
 
-.share > .shareWrapper > .shareBottom > .shareBottom__submit {
+.share > .shareWrapper > form > .shareBottom > .shareBottom__submit {
   border: none;
   padding: 10px;
   border-radius: 7px;
@@ -112,13 +108,17 @@
 }
 
 @media (max-width: 600px) {
-  .share > .shareWrapper > .shareBottom > .shareBottom__submit {
+  .share > .shareWrapper > form > .shareBottom > .shareBottom__submit {
     font-size: 90%;
   }
 }
 
-.share > .shareWrapper > .shareBottom > .shareBottom__submit:hover {
+.share > .shareWrapper > form > .shareBottom > .shareBottom__submit:hover {
   font-weight: bold;
   text-transform: uppercase;
+}
+
+.share > .shareWrapper > form > .shareHr {
+  margin: 5px;
 }
 /*# sourceMappingURL=share.css.map */

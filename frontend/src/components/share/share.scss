@@ -5,60 +5,62 @@
   height: 150px;
   > .shareWrapper {
     padding: 10px;
-    > .shareTop {
-      display: flex;
-      align-items: center;
-      > .shareTop__img {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        object-fit: cover;
-        margin-right: 15px;
-        @media (max-width: $sm) {
-          height: 40px;
-          width: 40px;
-        }
-      }
-      > .shareTop__input {
-        border: none;
-        width: 80%;
-        font-size: 16px;
-        background-color: $tertiary-color;
-        @media (max-width: $sm) {
-          font-size: 90%;
-        }
-        &:focus {
-          outline: none;
-        }
-      }
-    }
-    > .shareHr {
-      margin: 5px;
-    }
-    > .shareBottom {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      margin: 0 10px 0 10px;
-      > .shareBottom__upload {
+    > form {
+      > .shareTop {
         display: flex;
         align-items: center;
-        margin-right: 1rem;
-        cursor: pointer;
-        @media (max-width: $sm) {
-          font-size: 90%;
+        > .shareTop__img {
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          object-fit: cover;
+          margin-right: 15px;
+          @media (max-width: $sm) {
+            height: 40px;
+            width: 40px;
+          }
         }
-        > .shareBottom__upload__icon {
-          margin-right: 10px;
-          color: $quaternary-color;
+        > .shareTop__input {
+          border: none;
+          width: 80%;
+          font-size: 16px;
+          background-color: $tertiary-color;
+          @media (max-width: $sm) {
+            font-size: 90%;
+          }
+          &:focus {
+            outline: none;
+          }
         }
       }
-      > .shareBottom__submit {
-        @include button;
-        width: 30%;
-        &:hover {
-          @include hover;
+      > .shareBottom {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        margin: 0 10px 0 10px;
+        > .shareBottom__upload {
+          display: flex;
+          align-items: center;
+          margin-right: 1rem;
+          cursor: pointer;
+          @media (max-width: $sm) {
+            font-size: 90%;
+          }
+          > .shareBottom__upload__icon {
+            margin-right: 10px;
+            color: $quaternary-color;
+          }
         }
+        > .shareBottom__submit {
+          @include button;
+          width: 30%;
+          &:hover {
+            @include hover;
+          }
+        }
+      }
+      > .shareHr {
+        margin: 5px;
       }
     }
   }
