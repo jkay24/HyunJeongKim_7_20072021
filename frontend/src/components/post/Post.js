@@ -69,9 +69,8 @@ export default function Post({ id, firstname, createdAt, content, image }) {
         if (res.data.error) {
           console.log(res.data.error);
         } else {
-          setNewContent(res.data.newContent);
-          setNewImage(res.data.newImage);
-          console.log("Successfully edited your post!");
+          /* 
+          setNewImage(res.data.newImage); */
           /* window.location.reload(); */
         }
       })

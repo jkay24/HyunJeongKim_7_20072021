@@ -53,20 +53,20 @@ exports.getOnePost = async (req, res) => {
 
 exports.modifyPost = async (req, res) => {
   id = req.params.id;
-  let image;
   const { body, protocol, file } = req;
+  let image;
   if ((body.content === null || !body.content) && file === null) {
     return res.status(400).json({ message: "Content is required." });
   } else {
     if (file) {
       Posts.findOne({ where: { id: id } });
-      image = `${req.protocol}://${req.get("host")}/images/${file.filename}`;
+      image = `${protocol}://${req.get("host")}/images/${file.filename}`;
     }
     const post = req.body;
-    console.log(post);
+    console.log("is the image here?");
     await Posts.findOne({ where: { id: id } })
       .then(() => {
-        Posts.update({ ...req.body, image: post.image }, { where: { id: id } });
+        Posts.update({ ...req.body, image: image }, { where: { id: id } });
         return res
           .status(200)
           .json({ message: "Post ID " + id + " has been updated." });
