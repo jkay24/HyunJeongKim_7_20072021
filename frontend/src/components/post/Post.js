@@ -59,6 +59,7 @@ export default function Post({
         window.location.reload();
       });
   };
+
   //@HELP - new image upload not being recognized in request to backend...?!
   const editPostHandler = async (e) => {
     e.preventDefault();
@@ -82,24 +83,24 @@ export default function Post({
         console.log(error);
       });
   };
-  /* const fetchAvatarOfPoster = async () => {
-    console.log(posterId);
+
+  const fetchAvatarOfPoster = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:4200/api/user/image/${posterId}`,
+        `http://localhost:3000/api/user/${authorId}`,
         {
           headers: {
             JWToken: user.token,
           },
         }
       );
-      console.log(res.data);
-      setImgSrc(res.data[0].profilePic);
+      setImgSrc(res.data.profilePic);
     } catch (err) {
       throw err;
     }
   };
-  fetchAvatarOfPoster(); */
+  fetchAvatarOfPoster();
+
   return (
     <div className="post">
       <div className="postWrapper">
@@ -107,7 +108,7 @@ export default function Post({
           <img
             className="postTop__img"
             src={imgSrc || defaultAvatar}
-            alt=""
+            alt="photo d'auteur de post"
           ></img>
           <span className="postTop__user">{authorFirstname}</span>
           <span className="postTop__postDate">
@@ -157,8 +158,8 @@ export default function Post({
                   id="content"
                   type="text"
                   className="postBottom__edit--input"
-                  placeholder="Modifier votre publication"
-                  aria-label="modifier la publication"
+                  placeholder="Modifiez votre publication"
+                  aria-label="modifier votre publication"
                   onChange={(e) => setNewContent(e.target.value)}
                 ></input>
                 <label htmlFor="image" className="postBottom__edit--upload">
