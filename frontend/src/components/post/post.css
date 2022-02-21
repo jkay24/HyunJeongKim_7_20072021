@@ -28,8 +28,8 @@
 .post > .postWrapper > .postTop {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 0fr 8fr 35fr 2fr;
-      grid-template-columns: 0fr 8fr 35fr 2fr;
+  -ms-grid-columns: 0fr 8fr 34fr 2fr;
+      grid-template-columns: 0fr 8fr 34fr 2fr;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -59,6 +59,11 @@
   font-size: 12px;
 }
 
+.post > .postWrapper > .postTop > .postTop__edit > .postTop__edit--icon {
+  color: #e79095;
+  cursor: pointer;
+}
+
 .post > .postWrapper > .postTop > .postTop__delete > .postTop__delete--icon {
   color: #e79095;
   cursor: pointer;
@@ -79,16 +84,29 @@
      object-fit: contain;
 }
 
-.post > .postWrapper > .postBottom {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+.post > .postWrapper > .postBottom > .postBottom__edit {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 40fr 3fr 2fr;
+      grid-template-columns: 40fr 3fr 2fr;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+}
+
+.post > .postWrapper > .postBottom > .postBottom__edit > input {
+  margin-right: 0.7rem;
+  font-size: 15px;
+}
+
+.post > .postWrapper > .postBottom > .postBottom__edit > .postBottom__edit--icon1 {
+  color: #e79095;
+  cursor: pointer;
+}
+
+.post > .postWrapper > .postBottom > .postBottom__edit > .postBottom__edit--icon2 {
+  color: #e79095;
+  cursor: pointer;
 }
 
 .post > .postWrapper > .postBottom > .postBottom__like > .postBottom__like--icon {

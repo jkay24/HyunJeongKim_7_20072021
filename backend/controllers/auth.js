@@ -92,6 +92,11 @@ exports.login = async (req, res) => {
           if (match) {
             res.status(200).json({
               id: user.id,
+              firstname: user.firstname,
+              lastname: user.lastname,
+              email: user.email,
+              profilePic: user.profilePic,
+              admin: user.admin,
               token: jwt.sign(
                 {
                   id: user.id,

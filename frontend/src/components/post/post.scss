@@ -13,7 +13,7 @@
     padding: 10px;
     > .postTop {
       display: grid;
-      grid-template-columns: 0fr 8fr 35fr 2fr;
+      grid-template-columns: 0fr 8fr 34fr 2fr;
       align-items: center;
       > .postTop__img {
         width: 40px;
@@ -32,10 +32,14 @@
       > .postTop__postDate {
         font-size: 12px;
       }
+      > .postTop__edit {
+        > .postTop__edit--icon {
+          @include icon;
+        }
+      }
       > .postTop__delete {
         > .postTop__delete--icon {
-          color: $quaternary-color;
-          cursor: pointer;
+          @include icon;
         }
       }
     }
@@ -51,9 +55,22 @@
       }
     }
     > .postBottom {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      > .postBottom__edit {
+        display: grid;
+        grid-template-columns: 40fr 3fr 2fr;
+        align-items: center;
+        > input {
+          margin-right: 0.7rem;
+          font-size: 15px;
+        }
+        > .postBottom__edit--icon1 {
+          @include icon;
+        }
+        > .postBottom__edit--icon2 {
+          @include icon;
+        }
+      }
+
       > .postBottom__like {
         > .postBottom__like--icon {
           color: $primary-color;

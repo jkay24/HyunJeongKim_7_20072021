@@ -1,5 +1,10 @@
 import "../post/post.css";
-import { faThumbsUp, faTrash } from "@fortawesome/free-solid-svg-icons";
+import {
+  faPen,
+  faThumbsUp,
+  faTrash,
+  faLink,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
@@ -28,21 +33,21 @@ const useProfileData = (user) => {
   return profileData;
 };
 
-export default function Post({ firstname, createdAt, content, image }) {
+export default function Post({ id, firstname, createdAt, content, image }) {
   const { user } = useContext(AuthContext);
   const formatter = buildFormatter(frenchStrings);
   const [imgSrc, setImgSrc] = useState("");
   let userId = JSON.parse(localStorage.getItem("user")).id;
   let navigate = useNavigate();
-  const deletePost = (userId) => {
+  const deletePost = (id) => {
     axios
-      .delete(`http://localhost:3000/api/post/delete/${userId}`, {
+      .delete(`http://localhost:3000/api/post/delete/${id}`, {
         headers: {
           JWToken: user.token,
         },
       })
       .then(() => {
-        navigate("/");
+        window.location.reload();
       });
   };
   /* const fetchAvatarOfPoster = async () => {
@@ -76,14 +81,14 @@ export default function Post({ firstname, createdAt, content, image }) {
           <span className="postTop__postDate">
             <TimeAgo date={createdAt} formatter={formatter} />
           </span>
-          {user.id === firstname && (
+          {user.firstname === firstname && (
             <>
               <div className="postTop__delete">
                 <FontAwesomeIcon
                   icon={faTrash}
                   className="postTop__delete--icon"
                   onClick={() => {
-                    deletePost(userId);
+                    deletePost(id);
                   }}
                 />
               </div>
@@ -102,16 +107,43 @@ export default function Post({ firstname, createdAt, content, image }) {
             </>
           )}
         </div>
-        {/* <div className="postBottom">
-          <div className="postBottom__like">
+        <div className="postBottom">
+          {user.firstname === firstname && (
+            <>
+              <div className="postBottom__edit">
+                <input
+                  name="content"
+                  id="content"
+                  type="text"
+                  className="postBottom__edit--input"
+                  placeholder="Modifier votre publication"
+                  aria-label="modifier la publication"
+                  /* onChange={(e) => setContent(e.target.value)}*/
+                ></input>
+                <FontAwesomeIcon
+                  icon={faLink}
+                  className="postBottom__edit--icon1"
+                />
+                <FontAwesomeIcon
+                  icon={faPen}
+                  className="postBottom__edit--icon2"
+                  /*onClick={() => {
+                    editPost(id);
+                  }}*/
+                />
+              </div>
+            </>
+          )}
+
+          {/* <div className="postBottom__like">
             <FontAwesomeIcon
               icon={faThumbsUp}
               className="postBottom__like--icon"
             />
             <span className="postBottom__like--counter">2</span>
             <span className="postBottom__noComments">0 commentaires</span>
-          </div>
-        </div> */}
+          </div> */}
+        </div>
       </div>
     </div>
   );

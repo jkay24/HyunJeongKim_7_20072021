@@ -53,6 +53,7 @@ export default function Feed() {
             return (
               <Post
                 key={post.id}
+                id={post.id}
                 firstname={post.firstname}
                 createdAt={post.createdAt}
                 content={post.content}

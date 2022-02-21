@@ -14,10 +14,9 @@ exports.createPost = async (req, res) => {
     const post = req.body;
     const id = req.user.id;
     await Users.findByPk(id, {
-      attributes: ["firstname", "profilePic"],
+      attributes: ["firstname"],
     }).then((user) => {
       post.firstname = user.firstname;
-      post.profilePic = user.profilePic;
       post.image = image;
     });
     await Posts.create(post)
@@ -73,6 +72,7 @@ exports.modifyPost = async (req, res) => {
 
 exports.deletePost = (req, res) => {
   id = req.params.id;
+  console.log(id);
   Posts.destroy({ where: { id: id } })
     .then(() => {
       return res

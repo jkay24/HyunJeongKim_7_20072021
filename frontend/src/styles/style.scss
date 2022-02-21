@@ -37,6 +37,11 @@ $lg: 992px;
   background-color: $tertiary-color;
 }
 
+@mixin icon {
+  color: $quaternary-color;
+  cursor: pointer;
+}
+
 //wrapper for login and profile pages
 @mixin wrapper {
   @include flexCenter;
