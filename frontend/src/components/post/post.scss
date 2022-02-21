@@ -63,8 +63,10 @@
           margin-right: 0.7rem;
           font-size: 15px;
         }
-        > .postBottom__edit--icon1 {
-          @include icon;
+        > .postBottom__edit--upload {
+          > .postBottom__edit--icon1 {
+            @include icon;
+          }
         }
         > .postBottom__edit--icon2 {
           @include icon;

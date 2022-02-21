@@ -37,9 +37,11 @@ export default function Post({ id, firstname, createdAt, content, image }) {
   const { user } = useContext(AuthContext);
   const formatter = buildFormatter(frenchStrings);
   const [imgSrc, setImgSrc] = useState("");
+  const [newContent, setNewContent] = useState("");
+  const [newImage, setNewImage] = useState("");
   let userId = JSON.parse(localStorage.getItem("user")).id;
   let navigate = useNavigate();
-  const deletePost = (id) => {
+  const deletePostHandler = (id) => {
     axios
       .delete(`http://localhost:3000/api/post/delete/${id}`, {
         headers: {
@@ -48,6 +50,33 @@ export default function Post({ id, firstname, createdAt, content, image }) {
       })
       .then(() => {
         window.location.reload();
+      });
+  };
+
+  const editPostHandler = async (e) => {
+    e.preventDefault();
+    const data = new FormData();
+    data.append("content", newContent);
+    data.append("image", newImage);
+    await axios
+      .put(`http://localhost:3000/api/post/update/${id}`, data, {
+        headers: {
+          JWToken: user.token,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        if (res.data.error) {
+          console.log(res.data.error);
+        } else {
+          setNewContent(res.data.newContent);
+          setNewImage(res.data.newImage);
+          console.log("Successfully edited your post!");
+          /* window.location.reload(); */
+        }
+      })
+      .catch((error) => {
+        console.log(error);
       });
   };
   /* const fetchAvatarOfPoster = async () => {
@@ -88,7 +117,7 @@ export default function Post({ id, firstname, createdAt, content, image }) {
                   icon={faTrash}
                   className="postTop__delete--icon"
                   onClick={() => {
-                    deletePost(id);
+                    deletePostHandler(id);
                   }}
                 />
               </div>
@@ -110,7 +139,7 @@ export default function Post({ id, firstname, createdAt, content, image }) {
         <div className="postBottom">
           {user.firstname === firstname && (
             <>
-              <div className="postBottom__edit">
+              <form className="postBottom__edit">
                 <input
                   name="content"
                   id="content"
@@ -118,20 +147,28 @@ export default function Post({ id, firstname, createdAt, content, image }) {
                   className="postBottom__edit--input"
                   placeholder="Modifier votre publication"
                   aria-label="modifier la publication"
-                  /* onChange={(e) => setContent(e.target.value)}*/
+                  onChange={(e) => setNewContent(e.target.value)}
                 ></input>
-                <FontAwesomeIcon
-                  icon={faLink}
-                  className="postBottom__edit--icon1"
-                />
+                <label htmlFor="image" className="postBottom__edit--upload">
+                  <FontAwesomeIcon
+                    icon={faLink}
+                    className="postBottom__edit--icon1"
+                  />
+                  <input
+                    style={{ display: "none" }}
+                    type="file"
+                    id="image"
+                    name="image"
+                    accept=".jpeg, .jpg, .png, .gif, .webp"
+                    onChange={(e) => setNewImage(e.target.files[0])}
+                  />
+                </label>
                 <FontAwesomeIcon
                   icon={faPen}
                   className="postBottom__edit--icon2"
-                  /*onClick={() => {
-                    editPost(id);
-                  }}*/
+                  onClick={editPostHandler}
                 />
-              </div>
+              </form>
             </>
           )}
 

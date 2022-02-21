@@ -99,7 +99,7 @@
   font-size: 15px;
 }
 
-.post > .postWrapper > .postBottom > .postBottom__edit > .postBottom__edit--icon1 {
+.post > .postWrapper > .postBottom > .postBottom__edit > .postBottom__edit--upload > .postBottom__edit--icon1 {
   color: #e79095;
   cursor: pointer;
 }

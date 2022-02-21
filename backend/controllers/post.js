@@ -54,25 +54,33 @@ exports.getOnePost = async (req, res) => {
 exports.modifyPost = async (req, res) => {
   id = req.params.id;
   let image;
-  if (req.file) {
-    Posts.findOne({ where: { id: id } });
-    image = `${req.protocol}://${req.get("host")}/images/${req.file.filename}`;
+  const { body, protocol, file } = req;
+  if ((body.content === null || !body.content) && file === null) {
+    return res.status(400).json({ message: "Content is required." });
+  } else {
+    if (file) {
+      Posts.findOne({ where: { id: id } });
+      image = `${req.protocol}://${req.get("host")}/images/${file.filename}`;
+    }
+    const post = req.body;
+    console.log(post);
+    await Posts.findOne({ where: { id: id } })
+      .then(() => {
+        Posts.update({ ...req.body, image: post.image }, { where: { id: id } });
+        return res
+          .status(200)
+          .json({ message: "Post ID " + id + " has been updated." });
+      })
+      .catch((error) => {
+        return res
+          .status(400)
+          .json({ error: "An error has occurred. " + error });
+      });
   }
-  await Posts.findOne({ where: { id: id } })
-    .then(() => {
-      Posts.update({ ...req.body, image: image }, { where: { id: id } });
-      return res
-        .status(200)
-        .json({ message: "Post ID " + id + " has been updated." });
-    })
-    .catch((error) => {
-      return res.status(400).json({ error: "An error has occurred. " + error });
-    });
 };
 
 exports.deletePost = (req, res) => {
   id = req.params.id;
-  console.log(id);
   Posts.destroy({ where: { id: id } })
     .then(() => {
       return res
