@@ -106,6 +106,7 @@ export default function Post({ id, firstname, createdAt, content, image }) {
           <span className="postTop__postDate">
             <TimeAgo date={createdAt} formatter={formatter} />
           </span>
+          {/* @HELP - need to rethink this - if user modifies firstname and then comes back, he's no longer able to delete his own posts */}
           {user.firstname === firstname && (
             <>
               <div className="postTop__delete">

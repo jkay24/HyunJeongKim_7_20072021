@@ -1,4 +1,8 @@
-import { faImage, faTimes } from "@fortawesome/free-solid-svg-icons";
+import {
+  faImage,
+  faTimes,
+  faWindowRestore,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState, useContext, useRef } from "react";
 import "../profile/profile.css";
@@ -51,30 +55,71 @@ export default function Profile() {
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
+
+  //Form input validation
+  const regExNames = (value) => {
+    return /^[a-zA-Z\s]{2,20}$/.test(value);
+  };
+  const textAlert = (value) => {
+    return `Veuillez saisir un ${value} valide entre 2 à 20 lettres, sans chiffre ni symbole.`;
+  };
+
+  const regExEmail = (value) => {
+    return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value);
+  };
+
+  function formValidationFirstName() {
+    const isCorrect = regExNames(firstname);
+    document.getElementById("firstNameErrorMsg").innerHTML = isCorrect
+      ? ""
+      : textAlert("prénom");
+    return isCorrect;
+  }
+  function formValidationLastName() {
+    const isCorrect = regExNames(lastname);
+    document.getElementById("lastNameErrorMsg").innerHTML = isCorrect
+      ? ""
+      : textAlert("nom");
+    return isCorrect;
+  }
+  function formValidationEmail() {
+    const isCorrect = regExEmail(email);
+    document.getElementById("emailErrorMsg").innerHTML = isCorrect
+      ? ""
+      : "Veuillez saisir une adresse mail valide.";
+    return isCorrect;
+  }
+
   const updateInfo = () => {
     const data = new FormData();
     data.append("firstname", firstname);
     data.append("lastname", lastname);
     data.append("email", email);
-    axios
-      .put(`http://localhost:3000/api/user/update/${userId}`, data, {
-        headers: {
-          JWToken: user.token,
-        },
-      })
-      .then((res) => {
-        if (res.data.error) {
-          console.log(res.data.error);
-        } else {
-          setEmail({ ...email, email: email });
-          setLastname({ ...lastname, lastname: lastname });
-          setFirstname({ ...firstname, firstname: firstname });
-          window.location.replace(`/profile/${userId}`);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    if (
+      formValidationFirstName() &&
+      formValidationLastName() &&
+      formValidationEmail()
+    )
+      axios
+        .put(`http://localhost:3000/api/user/update/${userId}`, data, {
+          headers: {
+            JWToken: user.token,
+          },
+        })
+        .then((res) => {
+          if (res.data.error) {
+            console.log(res.data.error);
+          } else {
+            setEmail({ ...email, email: email });
+            setLastname({ ...lastname, lastname: lastname });
+            setFirstname({ ...firstname, firstname: firstname });
+            window.alert("Modifications bien sauvegardées !");
+            window.location.replace(`/profile/${userId}`);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
   };
   //Delete user account
   const handleDelete = () => {
@@ -138,6 +183,7 @@ export default function Profile() {
                 }}
               ></input>
             </label>
+            <p id="firstNameErrorMsg"></p>
             <label className="profileBottom__info--lastName">
               Nom{" "}
               <input
@@ -149,6 +195,7 @@ export default function Profile() {
                 }}
               ></input>
             </label>
+            <p id="lastNameErrorMsg"></p>
             <label className="profileBottom__info--email">
               Email{" "}
               <input
@@ -160,6 +207,7 @@ export default function Profile() {
                 }}
               ></input>
             </label>
+            <p id="emailErrorMsg"></p>
           </form>
         </div>
         <div className="profileButtons">
