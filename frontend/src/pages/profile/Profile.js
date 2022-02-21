@@ -28,29 +28,7 @@ export default function Profile() {
     };
     fetchUserProfile();
   }, [userId]);
-  //Upload profile picture
-  const handleUpload = (e) => {
-    e.preventDefault();
-    const data = new FormData();
-    data.append("image", image);
-    axios
-      .put(`http://localhost:3000/api/user/update/${userId}`, data, {
-        headers: {
-          JWToken: user.token,
-        },
-      })
-      .then((res) => {
-        if (res.data.error) {
-          console.log(res.data.error);
-        } else {
-          setImage(res.data);
-          window.location.replace(`/profile/${userId}`);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+
   //Update information (firstname, lastname, email)
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
@@ -89,9 +67,9 @@ export default function Profile() {
       : "Veuillez saisir une adresse mail valide.";
     return isCorrect;
   }
-
   const updateInfo = () => {
     const data = new FormData();
+    data.append("image", image);
     data.append("firstname", firstname);
     data.append("lastname", lastname);
     data.append("email", email);
@@ -113,6 +91,7 @@ export default function Profile() {
             setEmail({ ...email, email: email });
             setLastname({ ...lastname, lastname: lastname });
             setFirstname({ ...firstname, firstname: firstname });
+            setImage(res.data);
             window.alert("Modifications bien sauvegardées !");
             window.location.replace(`/profile/${userId}`);
           }
@@ -144,30 +123,28 @@ export default function Profile() {
         <Link to="/">
           <FontAwesomeIcon icon={faTimes} className="profileClose" />
         </Link>
-        <form className="profileTop">
-          <label htmlFor="image" className="profileTop__upload">
-            <input
-              style={{ display: "none" }}
-              type="file"
-              id="image"
-              name="image"
-              accept=".jpeg, .jpg, .png, .gif, .webp"
-              onChange={(e) => setImage(e.target.files[0])}
-              aria-label="modifier votre image"
-            />{" "}
-            <img
-              className="profileTop__img"
-              src={
-                profileData.profilePic ||
-                "http://localhost:3000/images/default-avatar.png"
-              }
-              alt="profile pic"
-            ></img>
-          </label>
-          <FontAwesomeIcon icon={faImage} className="profileTop__icon" />
-        </form>
-        <div className="profileBottom">
-          <form className="profileBottom__info">
+        <div className="formWrapper">
+          <form className="profileTop">
+            <label htmlFor="image" className="profileTop__upload">
+              <img
+                className="profileTop__img"
+                src={
+                  profileData.profilePic ||
+                  "http://localhost:3000/images/default-avatar.png"
+                }
+                alt="profile pic"
+              ></img>
+              <input
+                style={{ display: "none" }}
+                type="file"
+                id="image"
+                name="image"
+                accept=".jpeg, .jpg, .png, .gif, .webp"
+                onChange={(e) => setImage(e.target.files[0])}
+                aria-label="modifier votre image"
+              />
+              <FontAwesomeIcon icon={faImage} className="profileTop__icon" />
+            </label>
             <label className="profileBottom__info--firstName">
               Prénom{" "}
               <input
@@ -207,7 +184,7 @@ export default function Profile() {
           </form>
         </div>
         <div className="profileButtons">
-          <button className="profileSave" onClick={(updateInfo, handleUpload)}>
+          <button className="profileSave" onClick={updateInfo}>
             Enregistrer
           </button>
           <button className="profileDelete" onClick={handleDelete}>

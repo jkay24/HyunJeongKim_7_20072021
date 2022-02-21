@@ -12,41 +12,16 @@
         color: $quaternary-color;
       }
     }
-    > .profileTop {
-      display: flex;
-      justify-content: flex-end;
-      > label {
-        cursor: pointer;
-        > img {
-          width: 100px;
-          height: 100px;
-          border-radius: 50%;
-          object-fit: cover;
-          @media (max-width: $sm) {
-            width: 60px;
-            height: 60px;
-          }
-          @media (min-width: $sm) and (max-width: $lg) {
-            width: 80px;
-            height: 80px;
-          }
-        }
-      }
-      > .profileTop__icon {
-        color: $quaternary-color;
-        position: absolute;
-        cursor: pointer;
-        align-self: flex-end;
-      }
-    }
-    > .profileBottom {
-      width: 85%;
-      margin: 1rem 0 1rem 0;
+    > .formWrapper {
+      width: 65%;
       @media (max-width: $sm) {
-        width: 100%;
+        width: 95%;
       }
-      .profileBottom__info {
-        padding: 0rem 1rem 0 1rem;
+      > .profileTop {
+        > .profileTop__upload {
+          display: flex;
+          justify-content: center;
+        }
         > p {
           color: $primary-color;
           font-size: smaller;
@@ -56,6 +31,7 @@
           display: flex;
           justify-content: space-between;
           padding: 0.5rem;
+
           > input {
             width: 70%;
             font-size: 15px;
@@ -63,7 +39,43 @@
               width: 65%;
             }
           }
+          > img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            @media (max-width: $sm) {
+              width: 60px;
+              height: 60px;
+            }
+            @media (min-width: $sm) and (max-width: $lg) {
+              width: 80px;
+              height: 80px;
+            }
+          }
+          > .profileTop__icon {
+            color: $quaternary-color;
+            cursor: pointer;
+            position: absolute;
+            align-self: flex-end;
+            left: 52%;
+          }
         }
+      }
+    }
+    > .profileImg {
+      border: none;
+      padding: 6px;
+      border-radius: 7px;
+      background-color: $primary-color;
+      width: 11em;
+      cursor: pointer;
+      color: $tertiary-color;
+      @media (max-width: $sm) {
+        font-size: 90%;
+      }
+      &:hover {
+        @include hover;
       }
     }
     > .profileButtons {

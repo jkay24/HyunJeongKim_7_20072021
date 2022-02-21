@@ -113,7 +113,7 @@ export default function Post({
           <span className="postTop__postDate">
             <TimeAgo date={createdAt} formatter={formatter} />
           </span>
-          {userId == authorId && (
+          {(userId == authorId && (
             <div className="postTop__delete">
               <FontAwesomeIcon
                 icon={faTrash}
@@ -123,7 +123,18 @@ export default function Post({
                 }}
               />
             </div>
-          )}
+          )) ||
+            (user.admin === true && (
+              <div className="postTop__delete">
+                <FontAwesomeIcon
+                  icon={faTrash}
+                  className="postTop__delete--icon"
+                  onClick={() => {
+                    deletePostHandler(id);
+                  }}
+                />
+              </div>
+            ))}
         </div>
         <div className="postCenter">
           <span className="postCenter__text">{content}</span>
