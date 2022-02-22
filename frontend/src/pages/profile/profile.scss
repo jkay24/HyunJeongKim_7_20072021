@@ -21,6 +21,13 @@
         > .profileTop__upload {
           display: flex;
           justify-content: center;
+          > .image__name {
+            font-size: smaller;
+            position: absolute;
+            align-self: flex-end;
+            left: 55%;
+            color: $quaternary-color;
+          }
         }
         > p {
           color: $primary-color;

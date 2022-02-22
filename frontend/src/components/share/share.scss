@@ -45,6 +45,11 @@
           @media (max-width: $sm) {
             font-size: 90%;
           }
+          > .image__name {
+            font-size: smaller;
+            margin-right: 10px;
+            color: $quaternary-color;
+          }
           > .shareBottom__upload__icon {
             margin-right: 10px;
             color: $quaternary-color;

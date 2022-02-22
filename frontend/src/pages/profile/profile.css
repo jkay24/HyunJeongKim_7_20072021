@@ -89,6 +89,15 @@
           justify-content: center;
 }
 
+.profile > .profileWrapper > .formWrapper > .profileTop > .profileTop__upload > .image__name {
+  font-size: smaller;
+  position: absolute;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  left: 55%;
+  color: #e79095;
+}
+
 .profile > .profileWrapper > .formWrapper > .profileTop > p {
   color: #fd2d01;
   font-size: smaller;

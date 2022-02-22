@@ -116,6 +116,14 @@ export default function Profile() {
         navigate(`/`);
       });
   };
+  const [imageName, setImageName] = useState("");
+  const [imageAdded, setImageAdded] = useState(false);
+  const imageAddedToPost = (e) => {
+    setImageName(e.target.value.slice(12));
+    setImage(e.target.files[0]);
+    setImageAdded(true);
+  };
+
   return (
     <div className="profile">
       <Header />
@@ -139,11 +147,13 @@ export default function Profile() {
                 id="image"
                 name="image"
                 accept=".jpeg, .jpg, .png, .gif, .webp"
-                onChange={(e) => setImage(e.target.files[0])}
+                onInput={imageAddedToPost}
                 aria-label="modifier votre image"
               />
-              <FontAwesomeIcon icon={faImage} className="profileTop__icon" />
+              <FontAwesomeIcon icon={faImage} className="profileTop__icon" />{" "}
+              <div className="image__name">{imageName}</div>
             </label>
+
             <label className="profileBottom__info--firstName">
               Prénom{" "}
               <input

@@ -4,16 +4,13 @@
   padding-top: 6rem;
   > .feedWrapper {
     margin: auto;
-    width: 50%;
+    width: 55%;
     @media (max-width: $sm) {
       width: 80%;
       font-size: 85%;
     }
     @media (min-width: $sm) and (max-width: $md) {
       width: 60%;
-    }
-    @media (min-width: $lg) {
-      width: 45%;
     }
   }
 }

@@ -35,6 +35,14 @@ export default function Share({ profileData }) {
         window.alert("Publication plantée ! " + error.response.data.message);
       });
   };
+  const [imageName, setImageName] = useState("");
+  const [imageAdded, setImageAdded] = useState(false);
+  const imageAddedToPost = (e) => {
+    setImageName(e.target.value.slice(12));
+    setImage(e.target.files[0]);
+    setImageAdded(true);
+  };
+
   return (
     <div className="share">
       <div className="shareWrapper">
@@ -58,6 +66,7 @@ export default function Share({ profileData }) {
           <hr className="shareHr" />
           <div className="shareBottom">
             <label htmlFor="image" className="shareBottom__upload">
+              <div className="image__name">{imageName}</div>
               <FontAwesomeIcon
                 icon={faPhotoVideo}
                 className="shareBottom__upload__icon"
@@ -68,7 +77,7 @@ export default function Share({ profileData }) {
                 id="image"
                 name="image"
                 accept=".jpeg, .jpg, .png, .gif, .webp"
-                onChange={(e) => setImage(e.target.files[0])}
+                onInput={imageAddedToPost}
               />
             </label>
             <button

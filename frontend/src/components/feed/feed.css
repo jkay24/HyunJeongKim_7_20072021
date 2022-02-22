@@ -13,7 +13,7 @@
 
 .feed > .feedWrapper {
   margin: auto;
-  width: 50%;
+  width: 55%;
 }
 
 @media (max-width: 600px) {
@@ -26,12 +26,6 @@
 @media (min-width: 600px) and (max-width: 822px) {
   .feed > .feedWrapper {
     width: 60%;
-  }
-}
-
-@media (min-width: 992px) {
-  .feed > .feedWrapper {
-    width: 45%;
   }
 }
 /*# sourceMappingURL=feed.css.map */
