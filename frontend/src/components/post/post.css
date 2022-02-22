@@ -99,8 +99,8 @@
 .post > .postWrapper > .postBottom > .postBottom__edit {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 40fr 3fr 2fr;
-      grid-template-columns: 40fr 3fr 2fr;
+  -ms-grid-columns: 40fr 3fr 3fr;
+      grid-template-columns: 40fr 3fr 3fr;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -117,15 +117,12 @@
   }
 }
 
-.post > .postWrapper > .postBottom > .postBottom__edit > .postBottom__edit--upload > input[type="file"] {
-  display: none;
+.post > .postWrapper > .postBottom > .postBottom__edit > .postBottom__edit--upload {
+  color: #586470;
 }
 
 .post > .postWrapper > .postBottom > .postBottom__edit > .postBottom__edit--upload > .image__name {
-  position: absolute;
-  top: 57%;
   font-size: smaller;
-  margin-right: 10px;
   color: #e79095;
 }
 

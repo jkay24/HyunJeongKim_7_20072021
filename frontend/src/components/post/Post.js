@@ -14,6 +14,8 @@ import frenchStrings from "react-timeago/lib/language-strings/fr";
 import buildFormatter from "react-timeago/lib/formatters/buildFormatter";
 
 const defaultAvatar = "http://localhost:3000/images/default-avatar.png";
+
+//*Issue if user is deleted - his posts still show and there are GET errors
 const useProfileData = (user) => {
   const [profileData, setProfileData] = useState({});
   let userId = JSON.parse(localStorage.getItem("user")).id;
@@ -32,7 +34,7 @@ const useProfileData = (user) => {
   return profileData;
 };
 
-/* @ Figure out what to display if there are no posts on the Feed */
+/* @ Figure out what to display if there are no posts on the Feed - how do conditional styling for page height? */
 export default function Post({
   id,
   authorFirstname,
@@ -76,7 +78,7 @@ export default function Post({
         if (res.data.error) {
           console.log(res.data.error);
         } else {
-          /* window.location.reload(); */
+          window.location.reload();
         }
       })
       .catch((error) => {
@@ -142,7 +144,9 @@ export default function Post({
             src={imgSrc || defaultAvatar}
             alt="photo d'auteur de post"
           ></img>
-          <span className="postTop__user">{newFirstname}</span>
+          <span className="postTop__user">
+            {newFirstname || (!newFirstname && "Utilisateur supprimée")}
+          </span>
           <span className="postTop__postDate">
             <TimeAgo date={createdAt || updatedAt} formatter={formatter} />
           </span>
@@ -158,20 +162,23 @@ export default function Post({
             </div>
           )}
         </div>
-        <div className="postCenter">
-          <span className="postCenter__text">{content}</span>
-          {image && (
-            <>
-              <img
-                className="postCenter__img"
-                src={image}
-                alt="illustration du post"
-              />
-            </>
-          )}
-        </div>
+        {/* @ HOW to stop showing posts of users who've since been deleted?! */}
+        {userId && (
+          <div className="postCenter">
+            <span className="postCenter__text">{content}</span>
+            {image && (
+              <>
+                <img
+                  className="postCenter__img"
+                  src={image}
+                  alt="illustration du post"
+                />
+              </>
+            )}
+          </div>
+        )}
         <div className="postBottom">
-          {isToEditPost(user.admin, userId, authorId) && (
+          {userId == authorId && (
             <>
               <form className="postBottom__edit">
                 <input
@@ -180,26 +187,27 @@ export default function Post({
                   type="text"
                   className="postBottom__edit--input"
                   placeholder="Modifiez votre publication"
-                  aria-label="modifier votre publication"
+                  aria-label="modifiez le texte de votre publication"
                   onChange={(e) => setNewContent(e.target.value)}
                 ></input>
-                <label htmlFor="newImage" className="postBottom__edit--upload">
-                  <div className="image__name">{imageName}</div>
-                  <FontAwesomeIcon
-                    icon={faLink}
-                    className="postBottom__edit--icon1"
-                  />
+                <div className="postBottom__edit--upload">
+                  {/* <div className="image__name">{imageName}</div> <FontAwesomeIcon
+                  icon={faLink}
+                  className="postBottom__edit--icon1"
+                />*/}
                   <input
                     type="file"
                     id="newImage"
                     name="newImage"
                     accept=".jpeg, .jpg, .png, .gif, .webp"
+                    aria-label="ajoutez une image"
                     onInput={imageAddedToPost}
                   />
-                </label>
+                </div>
                 <FontAwesomeIcon
                   icon={faPen}
                   className="postBottom__edit--icon2"
+                  aria-label="valider"
                   onClick={editPostHandler}
                 />
               </form>

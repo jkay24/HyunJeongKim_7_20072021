@@ -63,7 +63,7 @@
     > .postBottom {
       > .postBottom__edit {
         display: grid;
-        grid-template-columns: 40fr 3fr 2fr;
+        grid-template-columns: 40fr 3fr 3fr;
         align-items: center;
         > input {
           margin-right: 0.7rem;
@@ -73,14 +73,9 @@
           }
         }
         > .postBottom__edit--upload {
-          > input[type="file"] {
-            display: none;
-          }
+          color: $secondary-color;
           > .image__name {
-            position: absolute;
-            top: 57%;
             font-size: smaller;
-            margin-right: 10px;
             color: $quaternary-color;
           }
           > .postBottom__edit--icon1 {

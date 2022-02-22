@@ -49,20 +49,21 @@ export default function Feed() {
         <>
           <h1 className="title">Publications récentes</h1>
           <hr />
-          {listOfPosts?.map((post) => {
-            return (
-              <Post
-                key={post.id}
-                id={post.id}
-                authorFirstname={post.authorFirstname}
-                authorId={post.authorId}
-                createdAt={post.createdAt}
-                updatedAt={post.updatedAt}
-                content={post.content}
-                image={post.image}
-              />
-            );
-          })}
+          {(!listOfPosts && "Aucun post pour le moment...") ||
+            listOfPosts.map((post) => {
+              return (
+                <Post
+                  key={post.id}
+                  id={post.id}
+                  authorFirstname={post.authorFirstname}
+                  authorId={post.authorId}
+                  createdAt={post.createdAt}
+                  updatedAt={post.updatedAt}
+                  content={post.content}
+                  image={post.image}
+                />
+              );
+            })}
         </>
       </div>
     </div>
