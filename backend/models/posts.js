@@ -1,5 +1,19 @@
+'use strict';
+const {
+  Model
+} = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  const Posts = sequelize.define("Posts", {
+  class Posts extends Model {
+    static associate(models) {
+      models.Post.belongsTo(models.User, {
+        foreignKey: {
+          allowNull: false
+        }
+      })
+      models.Post.hasMany(models.Comment)
+    }
+  };
+  Posts.init({
     content: {
       type: DataTypes.TEXT,
       allowNull: false,
@@ -16,6 +30,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+  }, {
+    sequelize,
+    modelName: 'Posts',
   });
   return Posts;
 };
