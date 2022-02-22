@@ -34,7 +34,7 @@ export default function Login() {
     <div className="login">
       <Header />
       <div className="loginWrapper">
-        <div className="loginTitle">Connexion</div>
+        <h1 className="loginTitle">Connexion</h1>
         <div className="loginTop">
           <form className="loginTop__info">
             <label className="loginTop__info--email">

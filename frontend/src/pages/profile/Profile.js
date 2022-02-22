@@ -1,10 +1,6 @@
-import {
-  faImage,
-  faTimes,
-  faWindowRestore,
-} from "@fortawesome/free-solid-svg-icons";
+import { faImage, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useEffect, useState, useContext, useRef } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "../profile/profile.css";
 import Header from "../../components/header/Header";
 import { useParams, useNavigate, Link } from "react-router-dom";
@@ -67,6 +63,7 @@ export default function Profile() {
       : "Veuillez saisir une adresse mail valide.";
     return isCorrect;
   }
+
   const updateInfo = () => {
     const data = new FormData();
     data.append("image", image);
@@ -100,6 +97,7 @@ export default function Profile() {
           console.log(error);
         });
   };
+
   //Delete user account
   const handleDelete = () => {
     if (!window.confirm(`Voulez-vous vraiment supprimer votre compte ?`))
@@ -116,6 +114,7 @@ export default function Profile() {
         navigate(`/`);
       });
   };
+
   const [imageName, setImageName] = useState("");
   const [imageAdded, setImageAdded] = useState(false);
   const imageAddedToPost = (e) => {
@@ -129,8 +128,13 @@ export default function Profile() {
       <Header />
       <div className="profileWrapper">
         <Link to="/">
-          <FontAwesomeIcon icon={faTimes} className="profileClose" />
+          <FontAwesomeIcon
+            icon={faTimes}
+            className="profileClose"
+            title="close this page"
+          />
         </Link>
+        <h1 className="profileTitle">Modifiez votre profil</h1>
         <div className="formWrapper">
           <form className="profileTop">
             <label htmlFor="image" className="profileTop__upload">

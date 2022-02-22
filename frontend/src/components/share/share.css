@@ -8,8 +8,8 @@
 
 .share {
   border-radius: 10px;
-  -webkit-box-shadow: 0 0 8px 3px #fd2d01;
-          box-shadow: 0 0 8px 3px #fd2d01;
+  -webkit-box-shadow: 0 0 8px 3px #e41e01;
+          box-shadow: 0 0 8px 3px #e41e01;
   background-color: #fffaf0;
 }
 
@@ -92,12 +92,12 @@
 .share > .shareWrapper > form > .shareBottom > .shareBottom__upload > .image__name {
   font-size: smaller;
   margin-right: 10px;
-  color: #e79095;
+  color: #e79297;
 }
 
 .share > .shareWrapper > form > .shareBottom > .shareBottom__upload > .shareBottom__upload__icon {
   margin-right: 10px;
-  color: #e79095;
+  color: #e79297;
 }
 
 .share > .shareWrapper > form > .shareBottom > .shareBottom__upload > input[type="file"] {
@@ -108,7 +108,7 @@
   border: none;
   padding: 10px;
   border-radius: 7px;
-  background-color: #fd2d01;
+  background-color: #e41e01;
   cursor: pointer;
   font-weight: 600;
   font-size: 16px;

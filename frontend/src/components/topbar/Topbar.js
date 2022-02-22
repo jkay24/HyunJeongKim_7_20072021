@@ -34,7 +34,7 @@ export default function Topbar() {
   };
 
   return (
-    <div className="topbarContainer">
+    <header className="topbarContainer">
       <div className="topbar__logo">
         <img
           src={require("../../assets/logos/logo-aligned.svg").default}
@@ -79,6 +79,6 @@ export default function Topbar() {
           </a>
         </div>
       </div>
-    </div>
+    </header>
   );
 }

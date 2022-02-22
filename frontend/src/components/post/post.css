@@ -14,8 +14,8 @@
 
 .post {
   border-radius: 10px;
-  -webkit-box-shadow: 0 0 8px 3px #fd2d01;
-          box-shadow: 0 0 8px 3px #fd2d01;
+  -webkit-box-shadow: 0 0 8px 3px #e41e01;
+          box-shadow: 0 0 8px 3px #e41e01;
   background-color: #fffaf0;
   margin: 2em 0;
   width: 100%;
@@ -66,12 +66,12 @@
 }
 
 .post > .postWrapper > .postTop > .postTop__edit > .postTop__edit--icon {
-  color: #e79095;
+  color: #e79297;
   cursor: pointer;
 }
 
 .post > .postWrapper > .postTop > .postTop__delete > .postTop__delete--icon {
-  color: #e79095;
+  color: #e79297;
   cursor: pointer;
 }
 
@@ -118,17 +118,17 @@
 }
 
 .post > .postWrapper > .postBottom > .postBottom__edit > .postBottom__edit--upload > .postBottom__edit--icon1 {
-  color: #e79095;
+  color: #e79297;
   cursor: pointer;
 }
 
 .post > .postWrapper > .postBottom > .postBottom__edit > .postBottom__edit--icon2 {
-  color: #e79095;
+  color: #e79297;
   cursor: pointer;
 }
 
 .post > .postWrapper > .postBottom > .postBottom__like > .postBottom__like--icon {
-  color: #fd2d01;
+  color: #e41e01;
   margin-right: 3px;
   cursor: pointer;
 }

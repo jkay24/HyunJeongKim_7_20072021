@@ -12,5 +12,9 @@
     @media (min-width: $sm) and (max-width: $md) {
       width: 60%;
     }
+    > .title {
+      font-size: 17px;
+      font-weight: bolder;
+    }
   }
 }

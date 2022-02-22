@@ -47,7 +47,7 @@ export default function Feed() {
       <div className="feedWrapper">
         <Share profileData={profileData} />
         <>
-          <div className="title">Publications récentes</div>
+          <h1 className="title">Publications récentes</h1>
           <hr />
           {listOfPosts?.map((post) => {
             return (

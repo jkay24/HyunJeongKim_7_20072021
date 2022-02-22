@@ -30,8 +30,8 @@
       -ms-flex-align: center;
           align-items: center;
   border-radius: 10px;
-  -webkit-box-shadow: 0 0 8px 3px #fd2d01;
-          box-shadow: 0 0 8px 3px #fd2d01;
+  -webkit-box-shadow: 0 0 8px 3px #e41e01;
+          box-shadow: 0 0 8px 3px #e41e01;
   background-color: #fffaf0;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -70,6 +70,11 @@
   color: #e79095;
 }
 
+.profile > .profileWrapper > .profileTitle {
+  font-weight: bolder;
+  font-size: 17px;
+}
+
 .profile > .profileWrapper > .formWrapper {
   width: 65%;
 }
@@ -99,7 +104,7 @@
 }
 
 .profile > .profileWrapper > .formWrapper > .profileTop > p {
-  color: #fd2d01;
+  color: #e41e01;
   font-size: smaller;
   margin-left: 0.5rem;
 }
@@ -165,7 +170,7 @@
   border: none;
   padding: 6px;
   border-radius: 7px;
-  background-color: #fd2d01;
+  background-color: #e41e01;
   width: 11em;
   cursor: pointer;
   color: #fffaf0;
@@ -192,7 +197,7 @@
   border: none;
   padding: 10px;
   border-radius: 7px;
-  background-color: #fd2d01;
+  background-color: #e41e01;
   cursor: pointer;
   font-weight: 600;
   font-size: 16px;

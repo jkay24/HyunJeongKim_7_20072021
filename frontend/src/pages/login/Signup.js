@@ -85,7 +85,7 @@ export default function Signup() {
     <div className="login">
       <Header />
       <div className="loginWrapper">
-        <div className="loginTitle">Inscription</div>
+        <h1 className="loginTitle">Inscription</h1>
         <div className="loginTop">
           <form className="loginTop__info">
             <label className="loginTop__info--firstName">

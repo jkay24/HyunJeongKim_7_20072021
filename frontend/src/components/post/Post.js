@@ -8,7 +8,6 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
-import { useNavigate, useParams, Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import TimeAgo from "react-timeago";
 import frenchStrings from "react-timeago/lib/language-strings/fr";
@@ -33,6 +32,7 @@ const useProfileData = (user) => {
   return profileData;
 };
 
+/* @ Figure out what to display if there are no posts on the Feed */
 export default function Post({
   id,
   authorFirstname,
@@ -102,7 +102,7 @@ export default function Post({
   };
   fetchAvatarOfPoster();
 
-  //The below function automatically updates the post author's firstname in case the user changed his/her name
+  //The below function automatically updates the post author's firstname in case the user changed his/her name (could use localStorage value otherwise)
   const fetchNewFirstname = async () => {
     try {
       const res = await axios.get(
