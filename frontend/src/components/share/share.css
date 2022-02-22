@@ -11,11 +11,10 @@
   -webkit-box-shadow: 0 0 8px 3px #fd2d01;
           box-shadow: 0 0 8px 3px #fd2d01;
   background-color: #fffaf0;
-  height: 150px;
 }
 
 .share > .shareWrapper {
-  padding: 10px;
+  padding: 15px;
 }
 
 .share > .shareWrapper > form > .shareTop {
@@ -93,6 +92,10 @@
 .share > .shareWrapper > form > .shareBottom > .shareBottom__upload > .shareBottom__upload__icon {
   margin-right: 10px;
   color: #e79095;
+}
+
+.share > .shareWrapper > form > .shareBottom > .shareBottom__upload > input[type="file"] {
+  display: none;
 }
 
 .share > .shareWrapper > form > .shareBottom > .shareBottom__submit {

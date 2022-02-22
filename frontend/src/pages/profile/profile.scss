@@ -31,12 +31,15 @@
           display: flex;
           justify-content: space-between;
           padding: 0.5rem;
-
+          > input[type="file"] {
+            display: none;
+          }
           > input {
             width: 70%;
             font-size: 15px;
             @media (max-width: $sm) {
               width: 65%;
+              font-size: 85%;
             }
           }
           > img {

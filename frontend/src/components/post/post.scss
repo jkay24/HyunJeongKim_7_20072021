@@ -10,7 +10,7 @@
   margin: 2em 0;
   width: 100%;
   > .postWrapper {
-    padding: 10px;
+    padding: 15px;
     > .postTop {
       display: grid;
       grid-template-columns: 0fr 8fr 34fr 2fr;
@@ -31,6 +31,9 @@
       }
       > .postTop__postDate {
         font-size: 12px;
+        @media (max-width: $sm) {
+          font-size: 75%;
+        }
       }
       > .postTop__edit {
         > .postTop__edit--icon {
@@ -47,6 +50,9 @@
       margin: 20px 0;
       > .postCenter__text {
         font-size: 15px;
+        @media (max-width: $sm) {
+          font-size: 90%;
+        }
       }
       > .postCenter__img {
         width: 100%;
@@ -62,6 +68,9 @@
         > input {
           margin-right: 0.7rem;
           font-size: 15px;
+          @media (max-width: $sm) {
+            font-size: 85%;
+          }
         }
         > .postBottom__edit--upload {
           > .postBottom__edit--icon1 {

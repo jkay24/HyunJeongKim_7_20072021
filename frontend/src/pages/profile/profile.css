@@ -105,6 +105,10 @@
   padding: 0.5rem;
 }
 
+.profile > .profileWrapper > .formWrapper > .profileTop > label > input[type="file"] {
+  display: none;
+}
+
 .profile > .profileWrapper > .formWrapper > .profileTop > label > input {
   width: 70%;
   font-size: 15px;
@@ -113,6 +117,7 @@
 @media (max-width: 600px) {
   .profile > .profileWrapper > .formWrapper > .profileTop > label > input {
     width: 65%;
+    font-size: 85%;
   }
 }
 

@@ -57,6 +57,7 @@ export default function Feed() {
                 authorFirstname={post.authorFirstname}
                 authorId={post.authorId}
                 createdAt={post.createdAt}
+                updatedAt={post.updatedAt}
                 content={post.content}
                 image={post.image}
               />

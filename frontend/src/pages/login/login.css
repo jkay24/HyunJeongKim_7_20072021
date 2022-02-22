@@ -108,6 +108,12 @@
   text-align: center;
 }
 
+@media (max-width: 600px) {
+  .login > .loginWrapper > .loginBottom {
+    width: 70%;
+  }
+}
+
 .login > .loginWrapper > .loginBottom > .loginBottom__prompt {
   font-style: italic;
   font-size: smaller;

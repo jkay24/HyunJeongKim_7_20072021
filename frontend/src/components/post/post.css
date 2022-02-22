@@ -22,7 +22,7 @@
 }
 
 .post > .postWrapper {
-  padding: 10px;
+  padding: 15px;
 }
 
 .post > .postWrapper > .postTop {
@@ -59,6 +59,12 @@
   font-size: 12px;
 }
 
+@media (max-width: 600px) {
+  .post > .postWrapper > .postTop > .postTop__postDate {
+    font-size: 75%;
+  }
+}
+
 .post > .postWrapper > .postTop > .postTop__edit > .postTop__edit--icon {
   color: #e79095;
   cursor: pointer;
@@ -75,6 +81,12 @@
 
 .post > .postWrapper > .postCenter > .postCenter__text {
   font-size: 15px;
+}
+
+@media (max-width: 600px) {
+  .post > .postWrapper > .postCenter > .postCenter__text {
+    font-size: 90%;
+  }
 }
 
 .post > .postWrapper > .postCenter > .postCenter__img {
@@ -97,6 +109,12 @@
 .post > .postWrapper > .postBottom > .postBottom__edit > input {
   margin-right: 0.7rem;
   font-size: 15px;
+}
+
+@media (max-width: 600px) {
+  .post > .postWrapper > .postBottom > .postBottom__edit > input {
+    font-size: 85%;
+  }
 }
 
 .post > .postWrapper > .postBottom > .postBottom__edit > .postBottom__edit--upload > .postBottom__edit--icon1 {

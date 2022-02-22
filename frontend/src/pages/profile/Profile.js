@@ -135,7 +135,6 @@ export default function Profile() {
                 alt="profile pic"
               ></img>
               <input
-                style={{ display: "none" }}
                 type="file"
                 id="image"
                 name="image"

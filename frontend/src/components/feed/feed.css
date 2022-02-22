@@ -13,7 +13,7 @@
 
 .feed > .feedWrapper {
   margin: auto;
-  width: 45%;
+  width: 50%;
 }
 
 @media (max-width: 600px) {

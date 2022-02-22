@@ -37,6 +37,9 @@
       padding: 1rem;
       width: 60%;
       text-align: center;
+      @media (max-width: $sm) {
+        width: 70%;
+      }
       > .loginBottom__prompt {
         font-style: italic;
         font-size: smaller;

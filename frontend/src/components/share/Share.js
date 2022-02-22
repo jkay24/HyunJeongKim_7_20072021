@@ -64,7 +64,6 @@ export default function Share({ profileData }) {
               />
               Photo/video
               <input
-                style={{ display: "none" }}
                 type="file"
                 id="image"
                 name="image"

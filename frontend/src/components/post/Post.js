@@ -38,6 +38,7 @@ export default function Post({
   authorFirstname,
   authorId,
   createdAt,
+  updatedAt,
   content,
   image,
 }) {
@@ -46,8 +47,8 @@ export default function Post({
   const [imgSrc, setImgSrc] = useState("");
   const [newContent, setNewContent] = useState("");
   const [newImage, setNewImage] = useState("");
+  const [newFirstname, setNewFirstname] = useState("");
   let userId = JSON.parse(localStorage.getItem("user")).id;
-  let navigate = useNavigate();
   const deletePostHandler = (id) => {
     axios
       .delete(`http://localhost:3000/api/post/delete/${id}`, {
@@ -101,6 +102,24 @@ export default function Post({
   };
   fetchAvatarOfPoster();
 
+  //The below function automatically updates the post author's firstname in case the user changed his/her name
+  const fetchNewFirstname = async () => {
+    try {
+      const res = await axios.get(
+        `http://localhost:3000/api/user/${authorId}`,
+        {
+          headers: {
+            JWToken: user.token,
+          },
+        }
+      );
+      setNewFirstname(res.data.firstname);
+    } catch (err) {
+      throw err;
+    }
+  };
+  fetchNewFirstname();
+
   return (
     <div className="post">
       <div className="postWrapper">
@@ -110,9 +129,10 @@ export default function Post({
             src={imgSrc || defaultAvatar}
             alt="photo d'auteur de post"
           ></img>
-          <span className="postTop__user">{authorFirstname}</span>
+          <span className="postTop__user">{newFirstname}</span>
           <span className="postTop__postDate">
-            <TimeAgo date={createdAt} formatter={formatter} />
+            {/* @ Is there a way to show the time as of updatedAt IF post was edited? */}
+            <TimeAgo date={createdAt || updatedAt} formatter={formatter} />
           </span>
           {(userId == authorId && (
             <div className="postTop__delete">
