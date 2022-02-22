@@ -1,6 +1,7 @@
 import "./feed.scss";
 import Share from "../share/Share";
 import Post from "../post/Post";
+import NoPosts from "../noPosts/noPosts";
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
@@ -42,6 +43,7 @@ export default function Feed() {
     };
     fetchPosts();
   }, []);
+
   return (
     <div className="feed">
       <div className="feedWrapper">
@@ -49,21 +51,22 @@ export default function Feed() {
         <>
           <h1 className="title">Publications récentes</h1>
           <hr />
-          {(!listOfPosts && "Aucun post pour le moment...") ||
-            listOfPosts.map((post) => {
-              return (
-                <Post
-                  key={post.id}
-                  id={post.id}
-                  authorFirstname={post.authorFirstname}
-                  authorId={post.authorId}
-                  createdAt={post.createdAt}
-                  updatedAt={post.updatedAt}
-                  content={post.content}
-                  image={post.image}
-                />
-              );
-            })}
+          {/* {listOfPosts == null && <NoPosts />}
+          <NoPosts /> */}
+          {listOfPosts.map((post) => {
+            return (
+              <Post
+                key={post.id}
+                id={post.id}
+                authorFirstname={post.authorFirstname}
+                authorId={post.authorId}
+                createdAt={post.createdAt}
+                updatedAt={post.updatedAt}
+                content={post.content}
+                image={post.image}
+              />
+            );
+          })}
         </>
       </div>
     </div>

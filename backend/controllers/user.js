@@ -1,4 +1,5 @@
 const { Users } = require("../models");
+const { Posts } = require("../models");
 const bcrypt = require("bcrypt");
 
 exports.getOneUser = async (req, res) => {
@@ -36,9 +37,14 @@ exports.modifyUser = async (req, res) => {
   }
 };
 
-exports.deleteUser = (req, res) => {
+exports.deleteUser = async (req, res) => {
   const id = req.params.id;
-  Users.destroy({ where: { id: id } })
+  const findPosts = await Posts.findAll({ where: { id: id } });
+  console.log(findPosts);
+  for (let i = 0; i < findPosts.length; i++) {
+    await Posts.destroy({ where: { id: findPosts[i].id } });
+  }
+  await Users.destroy({ where: { id: id } })
     .then(() => res.status(200).json({ message: "User deleted." }))
     .catch((error) => res.status(400).json({ error }));
 };

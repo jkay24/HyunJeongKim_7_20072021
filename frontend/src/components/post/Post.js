@@ -148,7 +148,7 @@ export default function Post({
             {newFirstname || (!newFirstname && "Utilisateur supprimée")}
           </span>
           <span className="postTop__postDate">
-            <TimeAgo date={createdAt || updatedAt} formatter={formatter} />
+            <TimeAgo date={createdAt} formatter={formatter} />
           </span>
           {isToEditPost(user.admin, userId, authorId) && (
             <div className="postTop__delete">

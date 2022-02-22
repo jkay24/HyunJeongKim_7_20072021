@@ -17,7 +17,7 @@ export default function Profile() {
     const fetchUserProfile = async () => {
       const res = await axios.get(`http://localhost:3000/api/user/${userId}`, {
         headers: {
-          JWToken: user.token,
+          Authorization: "basic " + user.token,
         },
       });
       setProfileData(res.data);
@@ -110,8 +110,7 @@ export default function Profile() {
       })
       .then(() => {
         localStorage.clear();
-        window.location.reload();
-        navigate(`/`);
+        navigate(`/nav`);
       });
   };
 

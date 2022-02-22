@@ -71,7 +71,6 @@ export default function Signup() {
           password: pw,
         })
         .then((response) => {
-          console.log(response);
           window.alert("Inscription réussie ! Veuillez connecter.");
           navigate("/login");
         })

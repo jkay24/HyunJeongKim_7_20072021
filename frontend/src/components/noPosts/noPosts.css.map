@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "ACwEA,AAAA,CAAC,CAAC;EACA,MAAM,EAAE,CAAC;EACT,OAAO,EAAE,CAAC;EACV,UAAU,EAAE,UAAU;EACtB,WAAW,EAAE,qBAAqB;CACnC;;AD3ED,AAAA,QAAQ,CAAC;EACP,UAAU,EAAE,IAAI;EAChB,MAAM,EAAE,IAAI;EACZ,KAAK,ECHU,OAAO;CDIvB",
+    "sources": [
+        "noPosts.scss",
+        "../../styles/style.scss"
+    ],
+    "names": [],
+    "file": "noPosts.css"
+}

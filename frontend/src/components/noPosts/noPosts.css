@@ -1,0 +1,14 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.noPosts {
+  margin-top: 2rem;
+  height: 55vh;
+  color: #fffaf0;
+}
+/*# sourceMappingURL=noPosts.css.map */
