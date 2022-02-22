@@ -160,7 +160,40 @@ export default function Post({
           )}
         </div>
         <div className="postBottom">
-          {userId == authorId ||
+          {(userId == authorId && (
+            <>
+              <form className="postBottom__edit">
+                <input
+                  name="content"
+                  id="content"
+                  type="text"
+                  className="postBottom__edit--input"
+                  placeholder="Modifiez votre publication"
+                  aria-label="modifier votre publication"
+                  onChange={(e) => setNewContent(e.target.value)}
+                ></input>
+                <label htmlFor="image" className="postBottom__edit--upload">
+                  <FontAwesomeIcon
+                    icon={faLink}
+                    className="postBottom__edit--icon1"
+                  />
+                  <input
+                    style={{ display: "none" }}
+                    type="file"
+                    id="image"
+                    name="image"
+                    accept=".jpeg, .jpg, .png, .gif, .webp"
+                    onChange={(e) => setNewImage(e.target.files[0])}
+                  />
+                </label>
+                <FontAwesomeIcon
+                  icon={faPen}
+                  className="postBottom__edit--icon2"
+                  onClick={editPostHandler}
+                />
+              </form>
+            </>
+          )) ||
             (user.admin === true && (
               <>
                 <form className="postBottom__edit">
