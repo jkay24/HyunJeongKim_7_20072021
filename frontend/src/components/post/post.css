@@ -66,12 +66,12 @@
 }
 
 .post > .postWrapper > .postTop > .postTop__edit > .postTop__edit--icon {
-  color: #e79297;
+  color: #e79095;
   cursor: pointer;
 }
 
 .post > .postWrapper > .postTop > .postTop__delete > .postTop__delete--icon {
-  color: #e79297;
+  color: #e79095;
   cursor: pointer;
 }
 
@@ -117,13 +117,25 @@
   }
 }
 
+.post > .postWrapper > .postBottom > .postBottom__edit > .postBottom__edit--upload > input[type="file"] {
+  display: none;
+}
+
+.post > .postWrapper > .postBottom > .postBottom__edit > .postBottom__edit--upload > .image__name {
+  position: absolute;
+  top: 57%;
+  font-size: smaller;
+  margin-right: 10px;
+  color: #e79095;
+}
+
 .post > .postWrapper > .postBottom > .postBottom__edit > .postBottom__edit--upload > .postBottom__edit--icon1 {
-  color: #e79297;
+  color: #e79095;
   cursor: pointer;
 }
 
 .post > .postWrapper > .postBottom > .postBottom__edit > .postBottom__edit--icon2 {
-  color: #e79297;
+  color: #e79095;
   cursor: pointer;
 }
 

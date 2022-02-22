@@ -61,7 +61,6 @@ export default function Post({
       });
   };
 
-  //@HELP - new image upload not being recognized in request to backend...?!
   const editPostHandler = async (e) => {
     e.preventDefault();
     const data = new FormData();
@@ -77,7 +76,7 @@ export default function Post({
         if (res.data.error) {
           console.log(res.data.error);
         } else {
-          window.location.reload();
+          /* window.location.reload(); */
         }
       })
       .catch((error) => {
@@ -120,6 +119,20 @@ export default function Post({
   };
   fetchNewFirstname();
 
+  //Conditional rendering of edit and delete icons
+  function isToEditPost(admin, userId, authorId) {
+    return admin || userId == authorId;
+  }
+
+  //Show names of uploaded images
+  const [imageName, setImageName] = useState("");
+  const [imageAdded, setImageAdded] = useState(false);
+  const imageAddedToPost = (e) => {
+    setImageName(e.target.value.slice(12));
+    setNewImage(e.target.files[0]);
+    setImageAdded(true);
+  };
+
   return (
     <div className="post">
       <div className="postWrapper">
@@ -131,21 +144,19 @@ export default function Post({
           ></img>
           <span className="postTop__user">{newFirstname}</span>
           <span className="postTop__postDate">
-            {/* @ Is there a way to show the time as of updatedAt IF post was edited? */}
             <TimeAgo date={createdAt || updatedAt} formatter={formatter} />
           </span>
-          {userId == authorId ||
-            (user.admin === true && (
-              <div className="postTop__delete">
-                <FontAwesomeIcon
-                  icon={faTrash}
-                  className="postTop__delete--icon"
-                  onClick={() => {
-                    deletePostHandler(id);
-                  }}
-                />
-              </div>
-            ))}
+          {isToEditPost(user.admin, userId, authorId) && (
+            <div className="postTop__delete">
+              <FontAwesomeIcon
+                icon={faTrash}
+                className="postTop__delete--icon"
+                onClick={() => {
+                  deletePostHandler(id);
+                }}
+              />
+            </div>
+          )}
         </div>
         <div className="postCenter">
           <span className="postCenter__text">{content}</span>
@@ -160,7 +171,7 @@ export default function Post({
           )}
         </div>
         <div className="postBottom">
-          {(userId == authorId && (
+          {isToEditPost(user.admin, userId, authorId) && (
             <>
               <form className="postBottom__edit">
                 <input
@@ -172,18 +183,18 @@ export default function Post({
                   aria-label="modifier votre publication"
                   onChange={(e) => setNewContent(e.target.value)}
                 ></input>
-                <label htmlFor="image" className="postBottom__edit--upload">
+                <label htmlFor="newImage" className="postBottom__edit--upload">
+                  <div className="image__name">{imageName}</div>
                   <FontAwesomeIcon
                     icon={faLink}
                     className="postBottom__edit--icon1"
                   />
                   <input
-                    style={{ display: "none" }}
                     type="file"
-                    id="image"
-                    name="image"
+                    id="newImage"
+                    name="newImage"
                     accept=".jpeg, .jpg, .png, .gif, .webp"
-                    onChange={(e) => setNewImage(e.target.files[0])}
+                    onInput={imageAddedToPost}
                   />
                 </label>
                 <FontAwesomeIcon
@@ -193,41 +204,7 @@ export default function Post({
                 />
               </form>
             </>
-          )) ||
-            (user.admin === true && (
-              <>
-                <form className="postBottom__edit">
-                  <input
-                    name="content"
-                    id="content"
-                    type="text"
-                    className="postBottom__edit--input"
-                    placeholder="Modifiez votre publication"
-                    aria-label="modifier votre publication"
-                    onChange={(e) => setNewContent(e.target.value)}
-                  ></input>
-                  <label htmlFor="image" className="postBottom__edit--upload">
-                    <FontAwesomeIcon
-                      icon={faLink}
-                      className="postBottom__edit--icon1"
-                    />
-                    <input
-                      style={{ display: "none" }}
-                      type="file"
-                      id="image"
-                      name="image"
-                      accept=".jpeg, .jpg, .png, .gif, .webp"
-                      onChange={(e) => setNewImage(e.target.files[0])}
-                    />
-                  </label>
-                  <FontAwesomeIcon
-                    icon={faPen}
-                    className="postBottom__edit--icon2"
-                    onClick={editPostHandler}
-                  />
-                </form>
-              </>
-            ))}
+          )}
           {/* <div className="postBottom__like">
             <FontAwesomeIcon
               icon={faThumbsUp}

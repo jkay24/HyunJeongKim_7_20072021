@@ -73,6 +73,16 @@
           }
         }
         > .postBottom__edit--upload {
+          > input[type="file"] {
+            display: none;
+          }
+          > .image__name {
+            position: absolute;
+            top: 57%;
+            font-size: smaller;
+            margin-right: 10px;
+            color: $quaternary-color;
+          }
           > .postBottom__edit--icon1 {
             @include icon;
           }
