@@ -92,12 +92,12 @@
 .share > .shareWrapper > form > .shareBottom > .shareBottom__upload > .image__name {
   font-size: smaller;
   margin-right: 10px;
-  color: #e79297;
+  color: #e79095;
 }
 
 .share > .shareWrapper > form > .shareBottom > .shareBottom__upload > .shareBottom__upload__icon {
   margin-right: 10px;
-  color: #e79297;
+  color: #e79095;
 }
 
 .share > .shareWrapper > form > .shareBottom > .shareBottom__upload > input[type="file"] {
@@ -119,6 +119,12 @@
 @media (max-width: 600px) {
   .share > .shareWrapper > form > .shareBottom > .shareBottom__submit {
     font-size: 90%;
+  }
+}
+
+@media (max-width: 600px) {
+  .share > .shareWrapper > form > .shareBottom > .shareBottom__submit {
+    font-size: 85%;
   }
 }
 

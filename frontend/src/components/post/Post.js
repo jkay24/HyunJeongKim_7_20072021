@@ -34,7 +34,6 @@ const useProfileData = (user) => {
   return profileData;
 };
 
-/* @ Figure out what to display if there are no posts on the Feed - how do conditional styling for page height? */
 export default function Post({
   id,
   authorFirstname,
@@ -122,7 +121,7 @@ export default function Post({
   fetchNewFirstname();
 
   //Conditional rendering of edit and delete icons
-  function isToEditPost(admin, userId, authorId) {
+  function isToDeletePost(admin, userId, authorId) {
     return admin || userId == authorId;
   }
 
@@ -144,13 +143,11 @@ export default function Post({
             src={imgSrc || defaultAvatar}
             alt="photo d'auteur de post"
           ></img>
-          <span className="postTop__user">
-            {newFirstname || (!newFirstname && "Utilisateur supprimée")}
-          </span>
+          <span className="postTop__user">{newFirstname}</span>
           <span className="postTop__postDate">
             <TimeAgo date={createdAt} formatter={formatter} />
           </span>
-          {isToEditPost(user.admin, userId, authorId) && (
+          {isToDeletePost(user.admin, userId, authorId) && (
             <div className="postTop__delete">
               <FontAwesomeIcon
                 icon={faTrash}
@@ -162,7 +159,6 @@ export default function Post({
             </div>
           )}
         </div>
-        {/* @ HOW to stop showing posts of users who've since been deleted?! */}
         {userId && (
           <div className="postCenter">
             <span className="postCenter__text">{content}</span>

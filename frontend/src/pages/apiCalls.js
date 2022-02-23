@@ -1,5 +1,7 @@
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
+const navigate = useNavigate;
 export const loginCall = async (userCredential, dispatch) => {
   dispatch({ type: "LOGIN_START" });
   try {
@@ -10,6 +12,6 @@ export const loginCall = async (userCredential, dispatch) => {
     dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
   } catch (err) {
     dispatch({ type: "LOGIN_FAILURE", payload: err });
-    window.alert("Connexion plantée ! " + err.response.data.message);
+    window.alert("Connexion plantée !");
   }
 };

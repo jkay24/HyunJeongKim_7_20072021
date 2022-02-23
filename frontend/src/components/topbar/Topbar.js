@@ -14,7 +14,6 @@ export default function Topbar() {
   const { user } = useContext(AuthContext);
   let navigate = useNavigate();
   let userId = JSON.parse(localStorage.getItem("user")).id;
-  console.log(userId);
   const [profileData, setProfileData] = useState({});
   useEffect(() => {
     const fetchUserProfile = async () => {
@@ -30,8 +29,8 @@ export default function Topbar() {
 
   const logOut = (e) => {
     localStorage.clear();
+    navigate(`/signup`);
     window.location.reload();
-    navigate(`/`);
   };
 
   return (

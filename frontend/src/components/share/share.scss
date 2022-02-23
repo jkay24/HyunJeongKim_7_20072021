@@ -61,6 +61,9 @@
         > .shareBottom__submit {
           @include button;
           width: 30%;
+          @media (max-width: $sm) {
+            font-size: 85%;
+          }
           &:hover {
             @include hover;
           }

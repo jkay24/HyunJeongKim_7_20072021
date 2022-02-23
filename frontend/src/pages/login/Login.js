@@ -1,7 +1,7 @@
 import "../login/login.css";
 import Header from "../../components/header/Header";
 import React, { useState, useContext } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { loginCall } from "../apiCalls";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
@@ -30,6 +30,7 @@ export default function Login() {
     if (formValidationEmail())
       loginCall({ email: email, password: password }, dispatch);
   };
+
   return (
     <div className="login">
       <Header />
