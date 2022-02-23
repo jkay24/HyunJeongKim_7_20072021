@@ -67,6 +67,8 @@ export default function Share({ profileData }) {
               <div className="image__name">{imageName}</div>
               <FontAwesomeIcon
                 icon={faPhotoVideo}
+                title="ajouter une image"
+                tabIndex="0"
                 className="shareBottom__upload__icon"
               />
               Photo/video

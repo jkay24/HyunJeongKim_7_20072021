@@ -37,7 +37,7 @@ export default function Topbar() {
           alt="Groupomania logo"
         ></img>
       </div>
-      <div className="topbarRight">
+      <div className="topbarRight" tabIndex="1">
         <div className="topbarRight__profile">
           <a className="topbarRight__profile--name">{profileData.firstname}</a>
           <img
@@ -58,6 +58,8 @@ export default function Topbar() {
           >
             <FontAwesomeIcon
               icon={faUserEdit}
+              title="modifier le profil"
+              tabIndex="0"
               className="topbarRight__links__icons--edit"
             />
             Modifier
@@ -69,6 +71,8 @@ export default function Topbar() {
           >
             <FontAwesomeIcon
               icon={faSignOutAlt}
+              title="deconnecter"
+              tabIndex="0"
               className="topbarRight__links__icons--logout"
             />
             Déconnexion

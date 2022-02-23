@@ -146,6 +146,8 @@ export default function Post({
             <div className="postTop__delete">
               <FontAwesomeIcon
                 icon={faTrash}
+                title="supprimer le post"
+                tabIndex="0"
                 className="postTop__delete--icon"
                 onClick={() => {
                   deletePostHandler(id);
@@ -194,6 +196,8 @@ export default function Post({
                 <FontAwesomeIcon
                   icon={faPen}
                   className="postBottom__edit--icon2"
+                  title="valider la modification du post"
+                  tabIndex="0"
                   aria-label="valider"
                   onClick={editPostHandler}
                 />
