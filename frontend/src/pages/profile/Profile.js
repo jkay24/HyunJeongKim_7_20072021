@@ -131,7 +131,8 @@ export default function Profile() {
           <FontAwesomeIcon
             icon={faTimes}
             className="profileClose"
-            title="close this page"
+            tabIndex="0"
+            title="fermer la page"
           />
         </Link>
         <h1 className="profileTitle">Modifiez votre profil</h1>
@@ -151,7 +152,12 @@ export default function Profile() {
                 onInput={imageAddedToPost}
                 aria-label="modifier votre image"
               />
-              <FontAwesomeIcon icon={faImage} className="profileTop__icon" />{" "}
+              <FontAwesomeIcon
+                icon={faImage}
+                className="profileTop__icon"
+                tabIndex="0"
+                title="ajouter une image"
+              />{" "}
               <div className="image__name">{imageName}</div>
             </label>
 
