@@ -12,6 +12,6 @@ export const loginCall = async (userCredential, dispatch) => {
     dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
   } catch (err) {
     dispatch({ type: "LOGIN_FAILURE", payload: err });
-    window.alert("Connexion plantée !");
+    window.alert("Connexion plantée ! Veuillez réessayer.");
   }
 };
