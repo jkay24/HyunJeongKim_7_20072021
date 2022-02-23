@@ -1,7 +1,7 @@
 import "./share.css";
 import { faPhotoVideo } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useEffect, useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 

@@ -18,7 +18,6 @@ exports.getOneUser = async (req, res) => {
 };
 
 exports.modifyUser = async (req, res) => {
-  console.log(req.body);
   try {
     const id = req.params.id;
     let image;

@@ -56,8 +56,6 @@ exports.modifyPost = async (req, res) => {
   id = req.params.id;
   const post = req.body;
   let image;
-  /*  @ HELP - file uploads are not recognized and sent to backend   */
-  console.log(post);
   if (req.file) {
     Posts.findOne({ where: { id: id } });
     image = `${req.protocol}://${req.get("host")}/images/${req.file.filename}`;

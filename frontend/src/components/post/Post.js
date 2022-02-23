@@ -1,10 +1,5 @@
 import "../post/post.css";
-import {
-  faPen,
-  faThumbsUp,
-  faTrash,
-  faLink,
-} from "@fortawesome/free-solid-svg-icons";
+import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
@@ -15,7 +10,6 @@ import buildFormatter from "react-timeago/lib/formatters/buildFormatter";
 
 const defaultAvatar = "http://localhost:3000/images/default-avatar.png";
 
-//*Issue if user is deleted - his posts still show and there are GET errors
 const useProfileData = (user) => {
   const [profileData, setProfileData] = useState({});
   let userId = JSON.parse(localStorage.getItem("user")).id;
@@ -121,7 +115,7 @@ export default function Post({
   };
   fetchNewFirstname();
 
-  //Conditional rendering of edit and delete icons
+  //Conditional rendering of delete icons
   function isToDeletePost(admin, userId, authorId) {
     return admin || userId == authorId;
   }
@@ -188,10 +182,6 @@ export default function Post({
                   onChange={(e) => setNewContent(e.target.value)}
                 ></input>
                 <div className="postBottom__edit--upload">
-                  {/* <div className="image__name">{imageName}</div> <FontAwesomeIcon
-                  icon={faLink}
-                  className="postBottom__edit--icon1"
-                />*/}
                   <input
                     type="file"
                     id="newImage"
@@ -210,14 +200,6 @@ export default function Post({
               </form>
             </>
           )}
-          {/* <div className="postBottom__like">
-            <FontAwesomeIcon
-              icon={faThumbsUp}
-              className="postBottom__like--icon"
-            />
-            <span className="postBottom__like--counter">2</span>
-            <span className="postBottom__noComments">0 commentaires</span>
-          </div> */}
         </div>
       </div>
     </div>

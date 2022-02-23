@@ -1,12 +1,8 @@
 import "../topbar/topbar.css";
-import {
-  faSignOutAlt,
-  faUserEdit,
-  faWindowRestore,
-} from "@fortawesome/free-solid-svg-icons";
+import { faSignOutAlt, faUserEdit } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
-import React, { useState, useEffect, useContext, createContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 
