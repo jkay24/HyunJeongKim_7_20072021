@@ -112,7 +112,6 @@ export default function Profile() {
         localStorage.clear();
         navigate(`/signup`);
         window.location.reload();
-        localStorage.clear();
       });
   };
 
