@@ -50,6 +50,7 @@ export default function Post({
   const [newImage, setNewImage] = useState("");
   const [newFirstname, setNewFirstname] = useState("");
   let userId = JSON.parse(localStorage.getItem("user")).id;
+
   const deletePostHandler = (id) => {
     axios
       .delete(`http://localhost:3000/api/post/delete/${id}`, {
