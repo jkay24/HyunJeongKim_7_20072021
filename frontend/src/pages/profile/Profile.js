@@ -123,7 +123,7 @@ export default function Profile() {
     setImage(e.target.files[0]);
     setImageAdded(true);
   };
-
+  const defaultAvatar = "http://localhost:3000/images/default-avatar.png";
   return (
     <div className="profile">
       <Header />
@@ -141,10 +141,7 @@ export default function Profile() {
             <label htmlFor="image" className="profileTop__upload">
               <img
                 className="profileTop__img"
-                src={
-                  profileData.profilePic ||
-                  "http://localhost:3000/images/default-avatar.png"
-                }
+                src={profileData.profilePic || defaultAvatar}
                 alt="profile pic"
               ></img>
               <input
