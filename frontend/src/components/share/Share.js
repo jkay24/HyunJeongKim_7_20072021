@@ -25,8 +25,6 @@ export default function Share({ profileData }) {
         console.log(res);
         if (res.data.error) {
           console.log(res.data.error);
-          /* Figure out why backend allows for publication of nothing upon click
-          window.alert("Non publiée..." + res.data.error.message); */
         } else {
           window.location.reload();
         }

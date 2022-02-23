@@ -5,8 +5,7 @@ const fs = require("fs");
 exports.createPost = async (req, res) => {
   let image;
   const { body, protocol, file } = req;
-  /*  @ HELP - user is able to post no content?   */
-  if ((body.content === null || !body.content) && file === null) {
+  if ((body.content === null || !body.content) && !file) {
     return res.status(400).json({ message: "Aucun contenu à publier." });
   } else {
     if (file) {
