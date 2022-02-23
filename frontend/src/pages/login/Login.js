@@ -4,7 +4,6 @@ import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginCall } from "../apiCalls";
 import { AuthContext } from "../../context/AuthContext";
-import axios from "axios";
 
 export default function Login() {
   let navigate = useNavigate();
