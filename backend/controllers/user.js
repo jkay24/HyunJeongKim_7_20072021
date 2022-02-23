@@ -39,8 +39,7 @@ exports.modifyUser = async (req, res) => {
 
 exports.deleteUser = async (req, res) => {
   const id = req.params.id;
-  const findPosts = await Posts.findAll({ where: { id: id } });
-  console.log(findPosts);
+  const findPosts = await Posts.findAll({ where: { authorId: id } });
   for (let i = 0; i < findPosts.length; i++) {
     await Posts.destroy({ where: { id: findPosts[i].id } });
   }

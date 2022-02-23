@@ -18,7 +18,10 @@ function App() {
     <div className="app">
       <Router>
         <Routes>
-          <Route path="/" element={<Signup />} />
+          <Route
+            path="/"
+            element={user ? <Navigate replace to="/home" /> : <Signup />}
+          />
           <Route path="/signup" element={<Signup />} />
           <Route
             path="/login"
