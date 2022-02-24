@@ -14,7 +14,7 @@ FRONTEND
 
 DATABASE
 
-1. Se rendre au dossier backend et installer MySQL.
+1. Se rendre au dossier backend, installer MySQL et se connecter à MySQL.
 2. Créez une base de donnée dans MySQL nommée 'groupomania'.
 3. Modifiez le fichier .env (contenu dans le dossier backend ) en remplaçant les valeurs pour 'user' et 'password' avec celles crées et utilisées pour votre propre compte MySQL.
 4. Modifiez le fichier connexionDb.json (contenu dans le dossier backend > config) en remplaçant les valeurs pour 'username' et 'password' avec celles crées et utilisées pour votre propre compte MySQL.
