@@ -2,11 +2,17 @@ const config = require("../config/db");
 const Sequelize = require("sequelize");
 const fs = require("fs");
 const path = require("path");
+require("dotenv").config({ path: "../.env" });
 
-const sequelize = new Sequelize("groupomania", "root", "Hellokitty1!", {
-  host: "localhost",
-  dialect: "mysql",
-});
+const sequelize = new Sequelize(
+  "groupomania",
+  process.env.user,
+  process.env.password,
+  {
+    host: "localhost",
+    dialect: "mysql",
+  }
+);
 
 const db = {};
 db.Sequelize = Sequelize;
